@@ -32,8 +32,9 @@ import com.gmail.gcolaianni5.jris.bean.Type;
 import com.gmail.gcolaianni5.jris.exception.JRisException;
 
 /**
- * This is the core class of the module. It is capable to parse a {@code RIF} file from different source types
- * and to build a well formatted {@code RIF} format.
+ * {@code RIS} format parsers and builder. </br>
+ * This is the core class of the module. It is capable to parse a {@code RIS} file from different source types
+ * and to build a well formatted {@code RIS} format.
  *
  * @author Gianluca Colaianni -- g.colaianni5@gmail.com
  * @version 1.0

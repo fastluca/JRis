@@ -1,0 +1,22 @@
+-encoding
+'Cp1252'
+-public
+-sourcepath
+'C:/Users/fast_/git/JRis/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2017. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/fast_/git/JRis/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'jris 1.0.0 API'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' 'C:/Users/fast_/git/JRis/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'jris 1.0.0 API'

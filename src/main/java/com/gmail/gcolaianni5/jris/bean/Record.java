@@ -411,7 +411,6 @@ public class Record {
 	 * 
 	 */
 	public Record() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -440,7 +439,7 @@ public class Record {
 
 	/**
 	 * Add a secondary author to the list. If the list is null, it is created.
-	 * @param firstAuthor
+	 * @param firstAuthor the value to add.
 	 */
 	public void addFirstAuthor(String firstAuthor) {
 		if (this.firstAuthors == null) {
@@ -459,7 +458,7 @@ public class Record {
 	
 	/**
 	 * Add a secondary author to the list. If the list is null, it is created.
-	 * @param secondaryAuthor
+	 * @param secondaryAuthor the value to add.
 	 */
 	public void addSecondaryAuthor(String secondaryAuthor) {
 		if (this.secondaryAuthors == null) {
@@ -478,7 +477,7 @@ public class Record {
 	
 	/**
 	 * Add a tertiary author to the list. If the list is null, it is created.
-	 * @param tertiaryAuthor
+	 * @param tertiaryAuthor the value to add.
 	 */
 	public void addTertiaryAuthor(String tertiaryAuthor) {
 		if (this.tertiaryAuthors == null) {
@@ -497,7 +496,7 @@ public class Record {
 
 	/**
 	 * Add a subsidiary author to the list. If the list is null, it is created.
-	 * @param subsidiaryAuthor
+	 * @param subsidiaryAuthor the value to add.
 	 */
 	public void addSubsidiaryAuthor(String subsidiaryAuthor) {
 		if (this.subsidiaryAuthors == null) {
@@ -564,7 +563,7 @@ public class Record {
 
 	/**
 	 * Add an author to the list. If the list is null, it is created.
-	 * @param author
+	 * @param author the value to add.
 	 */
 	public void addAuthor(String author) {
 		if (this.authors == null) {
@@ -1066,7 +1065,7 @@ public class Record {
 
 	/**
 	 * Add a pdf link to the list. If the list is empty, it is created.
-	 * @param pdfLink
+	 * @param pdfLink value to add.
 	 */
 	public void addPdfLink(String pdfLink) {
 		if (this.pdfLinks == null) {
@@ -1085,7 +1084,7 @@ public class Record {
 
 	/**
 	 * Add a full text link to the list. If the list is empty, it is created.
-	 * @param fullTextLink
+	 * @param fullTextLink value to add.
 	 */
 	public void addFullTextLink(String fullTextLink) {
 		if (this.fullTextLinks == null) {
@@ -1104,7 +1103,7 @@ public class Record {
 
 	/**
 	 * Add a related record to the list. If the list is null, it s created.
-	 * @param relatedRecord
+	 * @param relatedRecord value to add.
 	 */
 	public void addRelatedRecord(String relatedRecord) {
 		if (this.relatedRecords == null) {
@@ -1123,7 +1122,7 @@ public class Record {
 
 	/**
 	 * Add an image link to the list. If the list is null, it is created.
-	 * @param image
+	 * @param image value to add.
 	 */
 	public void addImage(String image) {
 		if (this.images == null) {

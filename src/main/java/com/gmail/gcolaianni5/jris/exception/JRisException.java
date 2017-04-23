@@ -16,32 +16,32 @@ public class JRisException extends Throwable {
 
 
 	/**
-	 * @param message
+	 * @param message the message.
 	 */
 	public JRisException(String message) {
 		super(message);
 	}
 
 	/**
-	 * @param cause
+	 * @param cause the cause.
 	 */
 	public JRisException(Throwable cause) {
 		super(cause);
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * @param message the message.
+	 * @param cause the cause.
 	 */
 	public JRisException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
-	 * @param message
-	 * @param cause
-	 * @param enableSuppression
-	 * @param writableStackTrace
+	 * @param message the message.
+	 * @param cause the cause.
+	 * @param enableSuppression value.
+	 * @param writableStackTrace value.
 	 */
 	public JRisException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
