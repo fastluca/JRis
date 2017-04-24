@@ -298,11 +298,11 @@ public class JRis {
 	}
 
 	/**
-	 * 
-	 * @param reader
-	 * @return
-	 * @throws IOException
-	 * @throws JRisException
+	 * Parse the content of the {@link Reader} as RIS format and builds the associated {@code List<Record> list}.
+	 * @param reader the reader to parse.
+	 * @return the related {@link List} of {@link Record} parsed from the Reader.
+	 * @throws IOException if an IO error occurred.
+	 * @throws JRisException if an applicative error occurred.
 	 */
 	public static List<Record> parse(Reader reader) throws IOException, JRisException {
 		List<Record> result = null;
@@ -341,7 +341,8 @@ public class JRis {
 	}
 
 	/**
-	 * 
+	 * See {@link #parse(Reader)}.
+	 * @see {@link #parse(Reader)}.
 	 * @param file
 	 * @return
 	 * @throws IOException
@@ -366,8 +367,9 @@ public class JRis {
 	}
 
 	/**
-	 * 
-	 * @param filePath
+	  * See {@link #parse(Reader)}.
+     * @see {@link #parse(Reader)}.
+	 * @param filePath the file path of the file to parse.
 	 * @return
 	 * @throws IOException
 	 * @throws JRisException
@@ -376,6 +378,14 @@ public class JRis {
 		return parse(JRis.class.getResourceAsStream(filePath));
 	}
 
+	/**
+	 * See {@link #parse(Reader)}.
+     * @see {@link #parse(Reader)}.
+	 * @param in
+	 * @return
+	 * @throws IOException
+	 * @throws JRisException
+	 */
 	public static List<Record> parse(InputStream in) throws IOException, JRisException {
 		List<Record> result = null;
 		InputStreamReader reader = null;
