@@ -7,6 +7,7 @@ package com.gmail.gcolaianni5.jris.engine;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -212,7 +213,6 @@ public class JRis {
 				if (matchcer.matches()) {
 					arg = Integer.valueOf((String) arg);
 				} else {
-					System.out.println("Scartato " + code + " avente valore " + arg.toString());
 					return;
 				}
 			}
@@ -281,7 +281,7 @@ public class JRis {
 	private static String lineParser(String line, String lastParsed, Record record) throws JRisException {
 		String code = lastParsed;
 		MethodTypeMapping mappedField = null;
-		if (!line.trim().isEmpty()) {
+		if (!line.isEmpty() && line.length() > 6) {
 			code = line.substring(0, 2);
 			mappedField = TAG_METHOD_DICTIONARY.get(code);
 			if (mappedField != null) {
@@ -375,7 +375,21 @@ public class JRis {
 	 * @throws JRisException
 	 */
 	public static List<Record> parse(String filePath) throws IOException, JRisException {
-		return parse(JRis.class.getResourceAsStream(filePath));
+	    List<Record> result = null;
+	    FileInputStream in = null;
+	    try {
+	       in = new FileInputStream(filePath);
+	       result = parse(in);
+	    } finally {
+	        if (in != null) {
+	            try {
+	                in.close();
+	            } catch (IOException e) {
+	                //NOTHING TO DO.
+	            }
+	        }
+	    }
+		return result;
 	}
 
 	/**
