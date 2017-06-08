@@ -133,7 +133,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("OP", new MethodTypeMapping("setOriginalPublication", String.class));
 		TAG_METHOD_DICTIONARY.put("PB", new MethodTypeMapping("setPublisher", String.class));
 		TAG_METHOD_DICTIONARY.put("PP", new MethodTypeMapping("setPublishingPlace", String.class));
-		TAG_METHOD_DICTIONARY.put("PY", new MethodTypeMapping("setPubblicationYear", String.class));
+		TAG_METHOD_DICTIONARY.put("PY", new MethodTypeMapping("setPublicationYear", String.class));
 		TAG_METHOD_DICTIONARY.put("R1", new MethodTypeMapping("setReviewedItem", String.class));
 		TAG_METHOD_DICTIONARY.put("RN", new MethodTypeMapping("setResearchNotes", String.class));
 		TAG_METHOD_DICTIONARY.put("RP", new MethodTypeMapping("setReprintEdition", String.class));

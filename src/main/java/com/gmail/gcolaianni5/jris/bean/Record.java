@@ -290,7 +290,7 @@ public class Record {
 	/**
 	 * PY. Publication year (YYYY/MM/DD).
 	 */
-	private String pubblicationYear;
+	private String publicationYear;
 	
 	/**
 	 * RI.
@@ -1308,19 +1308,19 @@ public class Record {
 	}
 
 	/**
-	 * Return pubblicationYear value or reference.
-	 * @return pubblicationYear value or reference.
+	 * Return publicationYear value or reference.
+	 * @return publicationYear value or reference.
 	 */
-	public String getPubblicationYear() {
-		return pubblicationYear;
+	public String getPublicationYear() {
+		return publicationYear;
 	}
 
 	/**
-	 * Set pubblicationYear value or reference.
-	 * @param pubblicationYear Value to set.
+	 * Set publicationYear value or reference.
+	 * @param publicationYear Value to set.
 	 */
-	public void setPubblicationYear(String pubblicationYear) {
-		this.pubblicationYear = pubblicationYear;
+	public void setPublicationYear(String publicationYear) {
+		this.publicationYear = publicationYear;
 	}
 
 	/**
@@ -1805,8 +1805,8 @@ public class Record {
 		builder.append(publisher);
 		builder.append(", publishingPlace=");
 		builder.append(publishingPlace);
-		builder.append(", pubblicationYear=");
-		builder.append(pubblicationYear);
+		builder.append(", publicationYear=");
+		builder.append(publicationYear);
 		builder.append(", reviewedItem=");
 		builder.append(reviewedItem);
 		builder.append(", researchNotes=");
