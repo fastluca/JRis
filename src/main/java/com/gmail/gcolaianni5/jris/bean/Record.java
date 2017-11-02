@@ -7,6 +7,7 @@ package com.gmail.gcolaianni5.jris.bean;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A single RIS record. It contains all the allowed tag from RIS format.
@@ -1857,5 +1858,103 @@ public class Record {
 		return builder.toString();
 	}
 
-	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Record record = (Record) o;
+		return type == record.type &&
+				Objects.equals(firstAuthors, record.firstAuthors) &&
+				Objects.equals(secondaryAuthors, record.secondaryAuthors) &&
+				Objects.equals(tertiaryAuthors, record.tertiaryAuthors) &&
+				Objects.equals(subsidiaryAuthors, record.subsidiaryAuthors) &&
+				Objects.equals(abstr, record.abstr) &&
+				Objects.equals(authorAddress, record.authorAddress) &&
+				Objects.equals(accessionNumber, record.accessionNumber) &&
+				Objects.equals(authors, record.authors) &&
+				Objects.equals(archivesLocation, record.archivesLocation) &&
+				Objects.equals(bt, record.bt) &&
+				Objects.equals(custom1, record.custom1) &&
+				Objects.equals(custom2, record.custom2) &&
+				Objects.equals(custom3, record.custom3) &&
+				Objects.equals(custom4, record.custom4) &&
+				Objects.equals(custom5, record.custom5) &&
+				Objects.equals(custom6, record.custom6) &&
+				Objects.equals(custom7, record.custom7) &&
+				Objects.equals(custom8, record.custom8) &&
+				Objects.equals(caption, record.caption) &&
+				Objects.equals(callNumber, record.callNumber) &&
+				Objects.equals(cp, record.cp) &&
+				Objects.equals(unpublishedReferenceTitle, record.unpublishedReferenceTitle) &&
+				Objects.equals(placePublished, record.placePublished) &&
+				Objects.equals(date, record.date) &&
+				Objects.equals(databaseName, record.databaseName) &&
+				Objects.equals(doi, record.doi) &&
+				Objects.equals(databaseProvider, record.databaseProvider) &&
+				Objects.equals(editor, record.editor) &&
+				Objects.equals(endPage, record.endPage) &&
+				Objects.equals(edition, record.edition) &&
+				Objects.equals(referenceId, record.referenceId) &&
+				Objects.equals(issueNumber, record.issueNumber) &&
+				Objects.equals(periodicalNameUserAbbrevation, record.periodicalNameUserAbbrevation) &&
+				Objects.equals(alternativeTitle, record.alternativeTitle) &&
+				Objects.equals(periodicalNameStandardAbbrevation, record.periodicalNameStandardAbbrevation) &&
+				Objects.equals(periodicalNameFullFormatJF, record.periodicalNameFullFormatJF) &&
+				Objects.equals(periodicalNameFullFormatJO, record.periodicalNameFullFormatJO) &&
+				Objects.equals(keywords, record.keywords) &&
+				Objects.equals(pdfLinks, record.pdfLinks) &&
+				Objects.equals(fullTextLinks, record.fullTextLinks) &&
+				Objects.equals(relatedRecords, record.relatedRecords) &&
+				Objects.equals(images, record.images) &&
+				Objects.equals(language, record.language) &&
+				Objects.equals(label, record.label) &&
+				Objects.equals(websiteLink, record.websiteLink) &&
+				Objects.equals(number, record.number) &&
+				Objects.equals(miscellaneous2, record.miscellaneous2) &&
+				Objects.equals(typeOfWork, record.typeOfWork) &&
+				Objects.equals(notes, record.notes) &&
+				Objects.equals(abstr2, record.abstr2) &&
+				Objects.equals(originalPublication, record.originalPublication) &&
+				Objects.equals(publisher, record.publisher) &&
+				Objects.equals(publishingPlace, record.publishingPlace) &&
+				Objects.equals(publicationYear, record.publicationYear) &&
+				Objects.equals(reviewedItem, record.reviewedItem) &&
+				Objects.equals(researchNotes, record.researchNotes) &&
+				Objects.equals(reprintEdition, record.reprintEdition) &&
+				Objects.equals(section, record.section) &&
+				Objects.equals(isbnIssn, record.isbnIssn) &&
+				Objects.equals(startPage, record.startPage) &&
+				Objects.equals(shortTitle, record.shortTitle) &&
+				Objects.equals(primaryTitle, record.primaryTitle) &&
+				Objects.equals(secondaryTitle, record.secondaryTitle) &&
+				Objects.equals(tertiaryTitle, record.tertiaryTitle) &&
+				Objects.equals(translatedAuthor, record.translatedAuthor) &&
+				Objects.equals(title, record.title) &&
+				Objects.equals(transaltedTitle, record.transaltedTitle) &&
+				Objects.equals(userDefinable1, record.userDefinable1) &&
+				Objects.equals(userDefinable2, record.userDefinable2) &&
+				Objects.equals(userDefinable3, record.userDefinable3) &&
+				Objects.equals(userDefinable4, record.userDefinable4) &&
+				Objects.equals(userDefinable5, record.userDefinable5) &&
+				Objects.equals(url, record.url) &&
+				Objects.equals(volumeNumber, record.volumeNumber) &&
+				Objects.equals(publisherStandardNumber, record.publisherStandardNumber) &&
+				Objects.equals(primaryDate, record.primaryDate) &&
+				Objects.equals(accessDate, record.accessDate);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(type, firstAuthors, secondaryAuthors, tertiaryAuthors, subsidiaryAuthors, abstr,
+				authorAddress, accessionNumber, authors, archivesLocation, bt, custom1, custom2, custom3, custom4,
+				custom5, custom6, custom7, custom8, caption, callNumber, cp, unpublishedReferenceTitle, placePublished,
+				date, databaseName, doi, databaseProvider, editor, endPage, edition, referenceId, issueNumber,
+				periodicalNameUserAbbrevation, alternativeTitle, periodicalNameStandardAbbrevation,
+				periodicalNameFullFormatJF, periodicalNameFullFormatJO, keywords, pdfLinks, fullTextLinks,
+				relatedRecords, images, language, label, websiteLink, number, miscellaneous2, typeOfWork, notes, abstr2,
+				originalPublication, publisher, publishingPlace, publicationYear, reviewedItem, researchNotes,
+				reprintEdition, section, isbnIssn, startPage, shortTitle, primaryTitle, secondaryTitle, tertiaryTitle,
+				translatedAuthor, title, transaltedTitle, userDefinable1, userDefinable2, userDefinable3,
+				userDefinable4, userDefinable5, url, volumeNumber, publisherStandardNumber, primaryDate, accessDate);
+	}
 }
