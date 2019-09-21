@@ -49,13 +49,9 @@ class JRisTest {
     // Method is not expected to return due to exception thrown
   }
 
-  /**
-   * The list of expected tags was copied from https://en.wikipedia.org/wiki/RIS_(file_format) (version 2019-09-03 15:36)
-   * and modified to pass the current implementation (-> prepare the failing test).
-   * The following elements are not implemented: AD, ET, NV, RI, TT. but in addition we have "AA" and "R1" (typo!).
-   */
   @Test
-  void assertTypes() throws NoSuchFieldException, IllegalAccessException {
+  void assertTags() throws NoSuchFieldException, IllegalAccessException {
+    // The list of expected tags was copied from https://en.wikipedia.org/wiki/RIS_(file_format) (version 2019-09-03 15:36)
     String[] expectedTags = {
         "TY", "A1", "A2", "A3", "A4", "AB", "AD", "AN", "AU", "AV", "BT", "C1", "C2", "C3", "C4", "C5",
         "C6", "C7", "C8", "CA", "CN", "CP", "CT", "CY", "DA", "DB", "DO", "DP", "ED", "EP", "ET", "ID", "IS", "J1",
