@@ -1,23 +1,17 @@
 package com.gmail.gcolaianni5.jris.bean;
 
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.rules.Timeout;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.LinkedList;
 
-public class RecordTest {
+import org.junit.jupiter.api.Test;
 
-  @Rule public final ExpectedException thrown = ExpectedException.none();
-
-  @Rule public final Timeout globalTimeout = new Timeout(10000);
+class RecordTest {
 
   /* testedClasses: Record */
   // Test written by Diffblue Cover.
   @Test
-  public void addAuthorInputNotNullOutputVoid() {
+  void addAuthorInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -29,12 +23,12 @@ public class RecordTest {
     // Assert side effects
     final LinkedList<String> linkedList = new LinkedList<String>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getAuthors());
+    assertEquals(linkedList, objectUnderTest.getAuthors());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addFirstAuthorInputNotNullOutputVoid() {
+  void addFirstAuthorInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -44,14 +38,14 @@ public class RecordTest {
     objectUnderTest.addFirstAuthor(firstAuthor);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getFirstAuthors());
+    assertEquals(linkedList, objectUnderTest.getFirstAuthors());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addFullTextLinkInputNotNullOutputVoid() {
+  void addFullTextLinkInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -61,14 +55,14 @@ public class RecordTest {
     objectUnderTest.addFullTextLink(fullTextLink);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getFullTextLinks());
+    assertEquals(linkedList, objectUnderTest.getFullTextLinks());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addImageInputNotNullOutputVoid() {
+  void addImageInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -78,14 +72,14 @@ public class RecordTest {
     objectUnderTest.addImage(image);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getImages());
+    assertEquals(linkedList, objectUnderTest.getImages());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addKeywordInputNotNullOutputVoid() {
+  void addKeywordInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -95,14 +89,14 @@ public class RecordTest {
     objectUnderTest.addKeyword(keyword);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getKeywords());
+    assertEquals(linkedList, objectUnderTest.getKeywords());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addPdfLinkInputNotNullOutputVoid() {
+  void addPdfLinkInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -112,14 +106,14 @@ public class RecordTest {
     objectUnderTest.addPdfLink(pdfLink);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getPdfLinks());
+    assertEquals(linkedList, objectUnderTest.getPdfLinks());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addRelatedRecordInputNotNullOutputVoid() {
+  void addRelatedRecordInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -129,14 +123,14 @@ public class RecordTest {
     objectUnderTest.addRelatedRecord(relatedRecord);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getRelatedRecords());
+    assertEquals(linkedList, objectUnderTest.getRelatedRecords());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addSecondaryAuthorInputNotNullOutputVoid() {
+  void addSecondaryAuthorInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -146,14 +140,14 @@ public class RecordTest {
     objectUnderTest.addSecondaryAuthor(secondaryAuthor);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getSecondaryAuthors());
+    assertEquals(linkedList, objectUnderTest.getSecondaryAuthors());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addSubsidiaryAuthorInputNotNullOutputVoid() {
+  void addSubsidiaryAuthorInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -163,14 +157,14 @@ public class RecordTest {
     objectUnderTest.addSubsidiaryAuthor(subsidiaryAuthor);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getSubsidiaryAuthors());
+    assertEquals(linkedList, objectUnderTest.getSubsidiaryAuthors());
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void addTertiaryAuthorInputNotNullOutputVoid() {
+  void addTertiaryAuthorInputNotNullOutputVoid() {
 
     // Arrange
     final Record objectUnderTest = new Record();
@@ -180,8 +174,8 @@ public class RecordTest {
     objectUnderTest.addTertiaryAuthor(tertiaryAuthor);
 
     // Assert side effects
-    final LinkedList<String> linkedList = new LinkedList<String>();
+    final LinkedList<String> linkedList = new LinkedList<>();
     linkedList.add("3");
-    Assert.assertEquals(linkedList, objectUnderTest.getTertiaryAuthors());
+    assertEquals(linkedList, objectUnderTest.getTertiaryAuthors());
   }
 }

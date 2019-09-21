@@ -1,11 +1,10 @@
 package com.gmail.gcolaianni5.jris.engine;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.gmail.gcolaianni5.jris.bean.Record;
 import com.gmail.gcolaianni5.jris.exception.JRisException;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.rules.Timeout;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -13,16 +12,12 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JRisTest {
-
-  @Rule public final ExpectedException thrown = ExpectedException.none();
-
-  @Rule public final Timeout globalTimeout = new Timeout(10000);
+class JRisTest {
 
   /* testedClasses: JRis */
   // Test written by Diffblue Cover.
   @Test
-  public void buildInput1NullOutputJRisException() throws IOException, JRisException {
+  void buildInput1NullOutputJRisException() throws IOException, JRisException {
 
     // Arrange
     final ArrayList<Record> records = new ArrayList<Record>();
@@ -30,23 +25,25 @@ public class JRisTest {
     final Writer writer = null;
 
     // Act
-    thrown.expect(JRisException.class);
-    JRis.build(records, writer);
+    assertThrows(JRisException.class, () -> {
+      JRis.build(records, writer);
+    });
 
     // Method is not expected to return due to exception thrown
   }
 
   // Test written by Diffblue Cover.
   @Test
-  public void buildInputNullNullOutputNullPointerException() throws JRisException, IOException {
+  void buildInputNullNullOutputNullPointerException() throws JRisException, IOException {
 
     // Arrange
     final List<Record> records = null;
     final OutputStream out = null;
 
     // Act
-    thrown.expect(NullPointerException.class);
-    JRis.build(records, out);
+    assertThrows(NullPointerException.class, () -> {
+      JRis.build(records, out);
+    });
 
     // Method is not expected to return due to exception thrown
   }

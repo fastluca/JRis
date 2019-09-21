@@ -1,27 +1,23 @@
 package com.gmail.gcolaianni5.jris.bean;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.rules.Timeout;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TypeTest {
+import org.junit.jupiter.api.Test;
 
-  @Rule public final ExpectedException thrown = ExpectedException.none();
-
-  @Rule public final Timeout globalTimeout = new Timeout(10000);
+class TypeTest {
 
   /* testedClasses: Type */
   // Test written by Diffblue Cover.
   @Test
-  public void valueOfInputNotNullOutputIllegalArgumentException() {
+  void valueOfInputNotNullOutputIllegalArgumentException() {
 
     // Arrange
     final String name = "a,b,c";
 
     // Act
-    thrown.expect(IllegalArgumentException.class);
-    Type.valueOf(name);
+    assertThrows(IllegalArgumentException.class, () -> {
+        Type.valueOf(name);
+    });
 
     // Method is not expected to return due to exception thrown
   }
