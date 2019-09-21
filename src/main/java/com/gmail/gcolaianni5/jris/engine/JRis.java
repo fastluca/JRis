@@ -147,6 +147,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("T3", new MethodTypeMapping("setTertiaryTitle", String.class));
 		TAG_METHOD_DICTIONARY.put("TA", new MethodTypeMapping("setTranslatedAuthor", String.class));
 		TAG_METHOD_DICTIONARY.put("TI", new MethodTypeMapping("setTitle", String.class));
+		TAG_METHOD_DICTIONARY.put("TT", new MethodTypeMapping("setTranslatedTitle", String.class));
 		TAG_METHOD_DICTIONARY.put("U1", new MethodTypeMapping("setUserDefinable1", String.class));
 		TAG_METHOD_DICTIONARY.put("U2", new MethodTypeMapping("setUserDefinable2", String.class));
 		TAG_METHOD_DICTIONARY.put("U3", new MethodTypeMapping("setUserDefinable3", String.class));
