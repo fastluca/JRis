@@ -169,7 +169,7 @@ public class Record {
 	private Integer endPage;
 	
 	/**
-	 * ED.
+	 * ET.
 	 */
 	private String edition;
 	
@@ -272,7 +272,12 @@ public class Record {
 	 * N2. Abstract. This is a free text field and can contain alphanumeric characters. There is no practical length limit to this field.
 	 */
 	private String abstr2;
-	
+
+	/**
+	 * NV.
+	 */
+	private String numberOfVolumes;
+
 	/**
 	 * OP.
 	 */
@@ -356,7 +361,7 @@ public class Record {
 	/**
 	 * TT.
 	 */
-	private String transaltedTitle;
+	private String translatedTitle;
 	
 	/**
 	 * U1. User definable 1. This is an alphanumeric field and there is no practical limit to the length of this field.
@@ -1261,6 +1266,22 @@ public class Record {
 	}
 
 	/**
+	 * Return notes value or reference.
+	 * @return notes value or reference.
+	 */
+	public String getNumberOfVolumes() {
+		return numberOfVolumes;
+	}
+
+	/**
+	 * Set number of volumes.
+	 * @param numberOfVolumes Value to set.
+	 */
+	public void setNumberOfVolumes(String numberOfVolumes) {
+		this.numberOfVolumes = numberOfVolumes;
+	}
+
+	/**
 	 * Return originalPublication value or reference.
 	 * @return originalPublication value or reference.
 	 */
@@ -1517,19 +1538,19 @@ public class Record {
 	}
 
 	/**
-	 * Return transaltedTitle value or reference.
-	 * @return transaltedTitle value or reference.
+	 * Return translatedTitle value or reference.
+	 * @return translatedTitle value or reference.
 	 */
-	public String getTransaltedTitle() {
-		return transaltedTitle;
+	public String getTranslatedTitle() {
+		return translatedTitle;
 	}
 
 	/**
-	 * Set transaltedTitle value or reference.
-	 * @param transaltedTitle Value to set.
+	 * Set translatedTitle value or reference.
+	 * @param translatedTitle Value to set.
 	 */
-	public void setTransaltedTitle(String transaltedTitle) {
-		this.transaltedTitle = transaltedTitle;
+	public void setTranslatedTitle(String translatedTitle) {
+		this.translatedTitle = translatedTitle;
 	}
 
 	/**
@@ -1800,6 +1821,8 @@ public class Record {
 		builder.append(notes);
 		builder.append(", abstr2=");
 		builder.append(abstr2);
+		builder.append(", numberOfVolumes=");
+		builder.append(numberOfVolumes);
 		builder.append(", originalPublication=");
 		builder.append(originalPublication);
 		builder.append(", publisher=");
@@ -1832,8 +1855,8 @@ public class Record {
 		builder.append(translatedAuthor);
 		builder.append(", title=");
 		builder.append(title);
-		builder.append(", transaltedTitle=");
-		builder.append(transaltedTitle);
+		builder.append(", translatedTitle=");
+		builder.append(translatedTitle);
 		builder.append(", userDefinable1=");
 		builder.append(userDefinable1);
 		builder.append(", userDefinable2=");
@@ -1914,6 +1937,7 @@ public class Record {
 				Objects.equals(typeOfWork, record.typeOfWork) &&
 				Objects.equals(notes, record.notes) &&
 				Objects.equals(abstr2, record.abstr2) &&
+				Objects.equals(numberOfVolumes, record.numberOfVolumes) &&
 				Objects.equals(originalPublication, record.originalPublication) &&
 				Objects.equals(publisher, record.publisher) &&
 				Objects.equals(publishingPlace, record.publishingPlace) &&
@@ -1930,7 +1954,7 @@ public class Record {
 				Objects.equals(tertiaryTitle, record.tertiaryTitle) &&
 				Objects.equals(translatedAuthor, record.translatedAuthor) &&
 				Objects.equals(title, record.title) &&
-				Objects.equals(transaltedTitle, record.transaltedTitle) &&
+				Objects.equals(translatedTitle, record.translatedTitle) &&
 				Objects.equals(userDefinable1, record.userDefinable1) &&
 				Objects.equals(userDefinable2, record.userDefinable2) &&
 				Objects.equals(userDefinable3, record.userDefinable3) &&
@@ -1951,10 +1975,10 @@ public class Record {
 				date, databaseName, doi, databaseProvider, editor, endPage, edition, referenceId, issueNumber,
 				periodicalNameUserAbbrevation, alternativeTitle, periodicalNameStandardAbbrevation,
 				periodicalNameFullFormatJF, periodicalNameFullFormatJO, keywords, pdfLinks, fullTextLinks,
-				relatedRecords, images, language, label, websiteLink, number, miscellaneous2, typeOfWork, notes, abstr2,
+				relatedRecords, images, language, label, websiteLink, number, miscellaneous2, typeOfWork, notes, abstr2, numberOfVolumes,
 				originalPublication, publisher, publishingPlace, publicationYear, reviewedItem, researchNotes,
 				reprintEdition, section, isbnIssn, startPage, shortTitle, primaryTitle, secondaryTitle, tertiaryTitle,
-				translatedAuthor, title, transaltedTitle, userDefinable1, userDefinable2, userDefinable3,
+				translatedAuthor, title, translatedTitle, userDefinable1, userDefinable2, userDefinable3,
 				userDefinable4, userDefinable5, url, volumeNumber, publisherStandardNumber, primaryDate, accessDate);
 	}
 }

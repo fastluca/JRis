@@ -85,7 +85,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("A3", new MethodTypeMapping("addTertiaryAuthor", List.class));
 		TAG_METHOD_DICTIONARY.put("A4", new MethodTypeMapping("addSubsidiaryAuthor", List.class));
 		TAG_METHOD_DICTIONARY.put("AB", new MethodTypeMapping("setAbstr", String.class));
-		TAG_METHOD_DICTIONARY.put("AA", new MethodTypeMapping("setAuthorAddress", String.class));
+		TAG_METHOD_DICTIONARY.put("AD", new MethodTypeMapping("setAuthorAddress", String.class));
 		TAG_METHOD_DICTIONARY.put("AN", new MethodTypeMapping("setAccessionNumber", String.class));
 		TAG_METHOD_DICTIONARY.put("AU", new MethodTypeMapping("addAuthor", List.class));
 		TAG_METHOD_DICTIONARY.put("AV", new MethodTypeMapping("setArchivesLocation", String.class));
@@ -109,7 +109,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("DP", new MethodTypeMapping("setDatabaseProvider", String.class));
 		TAG_METHOD_DICTIONARY.put("ED", new MethodTypeMapping("setEditor", String.class));
 		TAG_METHOD_DICTIONARY.put("EP", new MethodTypeMapping("setEndPage", Integer.class));
-		TAG_METHOD_DICTIONARY.put("ED", new MethodTypeMapping("setEdition", String.class));
+		TAG_METHOD_DICTIONARY.put("ET", new MethodTypeMapping("setEdition", String.class));
 		TAG_METHOD_DICTIONARY.put("ID", new MethodTypeMapping("setReferenceId", String.class));
 		TAG_METHOD_DICTIONARY.put("IS", new MethodTypeMapping("setIssueNumber", Integer.class));
 		TAG_METHOD_DICTIONARY.put("J1", new MethodTypeMapping("setPeriodicalNameUserAbbrevation", String.class));
@@ -130,11 +130,12 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("M3", new MethodTypeMapping("setTypeOfWork", String.class));
 		TAG_METHOD_DICTIONARY.put("N1", new MethodTypeMapping("setNotes", String.class));
 		TAG_METHOD_DICTIONARY.put("N2", new MethodTypeMapping("setAbstr2", String.class));
+		TAG_METHOD_DICTIONARY.put("NV", new MethodTypeMapping("setNumberOfVolumes", String.class));
 		TAG_METHOD_DICTIONARY.put("OP", new MethodTypeMapping("setOriginalPublication", String.class));
 		TAG_METHOD_DICTIONARY.put("PB", new MethodTypeMapping("setPublisher", String.class));
 		TAG_METHOD_DICTIONARY.put("PP", new MethodTypeMapping("setPublishingPlace", String.class));
 		TAG_METHOD_DICTIONARY.put("PY", new MethodTypeMapping("setPublicationYear", String.class));
-		TAG_METHOD_DICTIONARY.put("R1", new MethodTypeMapping("setReviewedItem", String.class));
+		TAG_METHOD_DICTIONARY.put("RI", new MethodTypeMapping("setReviewedItem", String.class));
 		TAG_METHOD_DICTIONARY.put("RN", new MethodTypeMapping("setResearchNotes", String.class));
 		TAG_METHOD_DICTIONARY.put("RP", new MethodTypeMapping("setReprintEdition", String.class));
 		TAG_METHOD_DICTIONARY.put("SE", new MethodTypeMapping("setSection", String.class));
@@ -146,6 +147,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("T3", new MethodTypeMapping("setTertiaryTitle", String.class));
 		TAG_METHOD_DICTIONARY.put("TA", new MethodTypeMapping("setTranslatedAuthor", String.class));
 		TAG_METHOD_DICTIONARY.put("TI", new MethodTypeMapping("setTitle", String.class));
+		TAG_METHOD_DICTIONARY.put("TT", new MethodTypeMapping("setTranslatedTitle", String.class));
 		TAG_METHOD_DICTIONARY.put("U1", new MethodTypeMapping("setUserDefinable1", String.class));
 		TAG_METHOD_DICTIONARY.put("U2", new MethodTypeMapping("setUserDefinable2", String.class));
 		TAG_METHOD_DICTIONARY.put("U3", new MethodTypeMapping("setUserDefinable3", String.class));
