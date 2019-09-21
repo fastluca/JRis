@@ -4,14 +4,26 @@
 	<groupId>com.gmail.gcolaianni5</groupId>
 	<artifactId>jris</artifactId>
 	<version>1.0.0</version>
+
+    <properties>
+        <junit.version>5.5.2</junit.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.5.2</version>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -22,6 +34,11 @@
 					<show>public</show>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+            </plugin>
 			<plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.1.0</version>
@@ -35,13 +52,13 @@
             </goals>
             <configuration>
               <outputDirectory>${basedir}/apidocs</outputDirectory>
-              <resources>          
+              <resources>
                 <resource>
                   <directory>${basedir}/target/site/apidocs</directory>
                   <filtering>false</filtering>
                 </resource>
-              </resources>              
-            </configuration>            
+              </resources>
+            </configuration>
           </execution>
         </executions>
       </plugin>
