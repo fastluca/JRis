@@ -169,7 +169,7 @@ public class Record {
 	private Integer endPage;
 	
 	/**
-	 * ED.
+	 * ET.
 	 */
 	private String edition;
 	

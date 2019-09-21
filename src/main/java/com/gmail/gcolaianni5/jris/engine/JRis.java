@@ -109,7 +109,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("DP", new MethodTypeMapping("setDatabaseProvider", String.class));
 		TAG_METHOD_DICTIONARY.put("ED", new MethodTypeMapping("setEditor", String.class));
 		TAG_METHOD_DICTIONARY.put("EP", new MethodTypeMapping("setEndPage", Integer.class));
-		TAG_METHOD_DICTIONARY.put("ED", new MethodTypeMapping("setEdition", String.class));
+		TAG_METHOD_DICTIONARY.put("ET", new MethodTypeMapping("setEdition", String.class));
 		TAG_METHOD_DICTIONARY.put("ID", new MethodTypeMapping("setReferenceId", String.class));
 		TAG_METHOD_DICTIONARY.put("IS", new MethodTypeMapping("setIssueNumber", Integer.class));
 		TAG_METHOD_DICTIONARY.put("J1", new MethodTypeMapping("setPeriodicalNameUserAbbrevation", String.class));
