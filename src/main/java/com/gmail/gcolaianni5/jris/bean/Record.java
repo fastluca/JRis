@@ -272,7 +272,12 @@ public class Record {
 	 * N2. Abstract. This is a free text field and can contain alphanumeric characters. There is no practical length limit to this field.
 	 */
 	private String abstr2;
-	
+
+	/**
+	 * NV.
+	 */
+	private String numberOfVolumes;
+
 	/**
 	 * OP.
 	 */
@@ -1261,6 +1266,22 @@ public class Record {
 	}
 
 	/**
+	 * Return notes value or reference.
+	 * @return notes value or reference.
+	 */
+	public String getNumberOfVolumes() {
+		return numberOfVolumes;
+	}
+
+	/**
+	 * Set number of volumes.
+	 * @param numberOfVolumes Value to set.
+	 */
+	public void setNumberOfVolumes(String numberOfVolumes) {
+		this.numberOfVolumes = numberOfVolumes;
+	}
+
+	/**
 	 * Return originalPublication value or reference.
 	 * @return originalPublication value or reference.
 	 */
@@ -1800,6 +1821,8 @@ public class Record {
 		builder.append(notes);
 		builder.append(", abstr2=");
 		builder.append(abstr2);
+		builder.append(", numberOfVolumes=");
+		builder.append(numberOfVolumes);
 		builder.append(", originalPublication=");
 		builder.append(originalPublication);
 		builder.append(", publisher=");
@@ -1914,6 +1937,7 @@ public class Record {
 				Objects.equals(typeOfWork, record.typeOfWork) &&
 				Objects.equals(notes, record.notes) &&
 				Objects.equals(abstr2, record.abstr2) &&
+				Objects.equals(numberOfVolumes, record.numberOfVolumes) &&
 				Objects.equals(originalPublication, record.originalPublication) &&
 				Objects.equals(publisher, record.publisher) &&
 				Objects.equals(publishingPlace, record.publishingPlace) &&
@@ -1951,7 +1975,7 @@ public class Record {
 				date, databaseName, doi, databaseProvider, editor, endPage, edition, referenceId, issueNumber,
 				periodicalNameUserAbbrevation, alternativeTitle, periodicalNameStandardAbbrevation,
 				periodicalNameFullFormatJF, periodicalNameFullFormatJO, keywords, pdfLinks, fullTextLinks,
-				relatedRecords, images, language, label, websiteLink, number, miscellaneous2, typeOfWork, notes, abstr2,
+				relatedRecords, images, language, label, websiteLink, number, miscellaneous2, typeOfWork, notes, abstr2, numberOfVolumes,
 				originalPublication, publisher, publishingPlace, publicationYear, reviewedItem, researchNotes,
 				reprintEdition, section, isbnIssn, startPage, shortTitle, primaryTitle, secondaryTitle, tertiaryTitle,
 				translatedAuthor, title, transaltedTitle, userDefinable1, userDefinable2, userDefinable3,
