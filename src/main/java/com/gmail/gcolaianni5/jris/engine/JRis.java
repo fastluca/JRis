@@ -85,7 +85,7 @@ public class JRis {
 		TAG_METHOD_DICTIONARY.put("A3", new MethodTypeMapping("addTertiaryAuthor", List.class));
 		TAG_METHOD_DICTIONARY.put("A4", new MethodTypeMapping("addSubsidiaryAuthor", List.class));
 		TAG_METHOD_DICTIONARY.put("AB", new MethodTypeMapping("setAbstr", String.class));
-		TAG_METHOD_DICTIONARY.put("AA", new MethodTypeMapping("setAuthorAddress", String.class));
+		TAG_METHOD_DICTIONARY.put("AD", new MethodTypeMapping("setAuthorAddress", String.class));
 		TAG_METHOD_DICTIONARY.put("AN", new MethodTypeMapping("setAccessionNumber", String.class));
 		TAG_METHOD_DICTIONARY.put("AU", new MethodTypeMapping("addAuthor", List.class));
 		TAG_METHOD_DICTIONARY.put("AV", new MethodTypeMapping("setArchivesLocation", String.class));
