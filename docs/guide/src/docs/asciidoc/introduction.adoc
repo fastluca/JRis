@@ -1,0 +1,29 @@
+
+[[_introduction]]
+= Introduction
+
+The RIS file format is one of the common formats used to exchange
+date between citation managers. It was initially developed by the
+commercial company Research Information Systems (RIS). It is used
+by numerous citation managers and digital libraries, some of which
+are e.g. Zotero or EndNote. For more details about the RIS file
+format and it's history, refer to the respective 
+[Wikipedia article](https://en.wikipedia.org/wiki/RIS_(file_format)).
+
+JRis was initially developed by Gianluca Colaianni (fastluca) and
+is available on github: https://github.com/fastluca/JRis.
+
+This [fork](https://github.com/ursjoss/JRis) KRis is currently used
+to develop a variant of the initial version with some differences:
+
+- the code was converted to kotlin and refactored to avoid using
+  reflection
+- the API shall be developed to easily use the project as a library
+  both for software written in Kotlin and/or Java.
+- The library should be published to bintray and/or maven central,
+  so client software can access the library as a maven or gradle
+  dependency.
+
+It is yet to be decided whether to reintegrate the current changes
+into the original project or whether to keep the fork as KRis
+separately.

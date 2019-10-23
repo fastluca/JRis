@@ -10,7 +10,7 @@ config {
     info {
         name = "JRis"
         vendor = "Private"
-        description = "Importing/exporting bibliography data in RIS format"
+        description = "Library for reading/writing RIS files"
         inceptionYear = "2017"
         organization {
             url = "https://github.com/ursjoss/JRis.git"
@@ -20,14 +20,13 @@ config {
         }
         people {
             person {
-                id = "fastluca"
-                name = "Gianluca Colaianni"
-                roles = listOf("developer")
-            }
-
-            person {
                 id = "ursjoss"
                 name = "Urs Joss"
+                roles = listOf("developer")
+            }
+            person {
+                id = "fastluca"
+                name = "Gianluca Colaianni"
                 roles = listOf("developer")
             }
         }
