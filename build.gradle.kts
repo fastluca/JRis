@@ -5,7 +5,7 @@ plugins {
     id("org.kordamp.gradle.project") version "0.27.0"
     java
     id("org.sonarqube") version "2.8"
-    id("io.gitlab.arturbosch.detekt") version "1.1.1"
+//    id("io.gitlab.arturbosch.detekt") version "1.1.1"
 }
 
 config {
@@ -78,6 +78,20 @@ subprojects {
             }
         }
     }
+
+    /*
+    detekt {
+        failFast = false
+        buildUponDefaultConfig = true
+        config = files("$rootDir/detekt-config.yml")
+        baseline = file("detekt-baseline.xml")
+
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+    */
 }
 
 val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
@@ -92,23 +106,11 @@ sonarqube {
     }
 }
 
-detekt {
-    failFast = false
-    buildUponDefaultConfig = true
-    config = files("$rootDir/detekt-config.yml")
-    baseline = file("detekt-baseline.xml")
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
 tasks {
     withType<SonarQubeTask> {
         description = "Push jacoco analysis to sonarcloud."
         group = "Verification"
         dependsOn(subprojects.map { it.tasks.getByName("jacocoTestReport") })
-        dependsOn(subprojects.map { it.tasks.getByName("detekt") })
+        // dependsOn(subprojects.filterNot { it.name.contains("java") }.map { it.tasks.getByName("detekt") })
     }
 }
