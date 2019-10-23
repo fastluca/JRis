@@ -99,7 +99,7 @@ val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 sonarqube {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.projectKey", "ursjoss_jris")
+        property("sonar.projectKey", "ursjoss_JRis")
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
         // property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
