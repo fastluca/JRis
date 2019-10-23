@@ -1,2 +1,6 @@
 .idea/
 target/
+jris.iml
+.gradle/
+build/
+subprojects/kris/build/
