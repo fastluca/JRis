@@ -98,7 +98,7 @@ data class RisRecord(
     var editor: String? = null,
 
     /** EP */
-    var endPage: Int? = null,
+    var endPage: String? = null,
 
     /** ED */
     var edition: String? = null,

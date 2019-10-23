@@ -64,7 +64,7 @@ object JRis {
         TagAccessor(RisTag.DO, { r, v -> r.doi = v as String? }, { r: RisRecord -> r.doi }),
         TagAccessor(RisTag.DP, { r, v -> r.databaseProvider = v as String? }, { r: RisRecord -> r.databaseProvider }),
         TagAccessor(RisTag.ED, { r, v -> r.editor = v as String? }, { r: RisRecord -> r.editor }),
-        TagAccessor(RisTag.EP, { r, v -> r.endPage = v as Int? }, { r: RisRecord -> r.endPage }),
+        TagAccessor(RisTag.EP, { r, v -> r.endPage = v as String? }, { r: RisRecord -> r.endPage }),
         TagAccessor(RisTag.ET, { r, v -> r.edition = v as String? }, { r: RisRecord -> r.edition }),
         TagAccessor(RisTag.ID, { r, v -> r.referenceId = v as String? }, { r: RisRecord -> r.referenceId }),
         TagAccessor(RisTag.IS, { r, v -> r.issue = v as String? }, { r: RisRecord -> r.issue }),
@@ -128,7 +128,7 @@ object JRis {
     fun parse(sequence: Sequence<String>): List<RisRecord> {
         val records = mutableListOf<RisRecord>()
 
-        var record: RisRecord? = null
+        var record: RisRecord = RisRecord()
         var previousTag: String? = null
 
         sequence.filterNotNull()
@@ -136,10 +136,10 @@ object JRis {
             .map { line -> line.trim { it <= ' ' } }
             .forEach { line ->
                 if (line.startsWith(RisTag.ER.name)) {
-                    record?.let { records += it }
+                    record.let { records += it }
                     record = RisRecord()
-                } else if (record != null) {
-                    previousTag = line.parseInto(record!!, previousTag)
+                } else {
+                    previousTag = line.parseInto(record, previousTag)
                 }
             }
 
