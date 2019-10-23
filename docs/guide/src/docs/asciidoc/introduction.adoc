@@ -8,12 +8,12 @@ commercial company Research Information Systems (RIS). It is used
 by numerous citation managers and digital libraries, some of which
 are e.g. Zotero or EndNote. For more details about the RIS file
 format and it's history, refer to the respective 
-[Wikipedia article](https://en.wikipedia.org/wiki/RIS_(file_format)).
+https://en.wikipedia.org/wiki/RIS_(file_format)[Wikipedia article].
 
 JRis was initially developed by Gianluca Colaianni (fastluca) and
 is available on github: https://github.com/fastluca/JRis.
 
-This [fork](https://github.com/ursjoss/JRis) KRis is currently used
+This https://github.com/ursjoss/JRis[fork] KRis is currently used
 to develop a variant of the initial version with some differences:
 
 - the code was converted to kotlin and refactored to avoid using
