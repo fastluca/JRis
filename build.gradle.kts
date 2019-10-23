@@ -102,7 +102,7 @@ sonarqube {
         property("sonar.projectKey", "ursjoss_jris")
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
-        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+        // property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
     }
 }
 
