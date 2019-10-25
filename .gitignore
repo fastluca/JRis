@@ -4,3 +4,4 @@ jris.iml
 .gradle/
 build/
 subprojects/kris/build/
+s101plugin.state

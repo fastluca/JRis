@@ -6,6 +6,7 @@ plugins {
     java
     id("org.sonarqube") version "2.8"
 //    id("io.gitlab.arturbosch.detekt") version "1.1.1"
+    id("org.ajoberstar.reckon") version "0.11.0"
 }
 
 config {
@@ -104,6 +105,11 @@ sonarqube {
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
         // property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
     }
+}
+
+reckon {
+    scopeFromProp()
+    snapshotFromProp()
 }
 
 tasks {
