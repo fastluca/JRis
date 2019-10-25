@@ -8,7 +8,10 @@ import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
+import org.spekframework.spek2.dsl.Skip
 import org.spekframework.spek2.style.specification.describe
+
+private const val SKIP_REASON = "Functionality not implemented yet"
 
 object KrisUsageSpec : Spek({
 
@@ -37,14 +40,14 @@ object KrisUsageSpec : Spek({
         )
 
 
-        it("can be passed to a static method returning a list of RisRecords (blocking)") {
+        it("can be passed to a static method returning a list of RisRecords (blocking)", skip = Skip.Yes(SKIP_REASON)) {
             JRis.process(risLines) shouldHaveSize 2
         }
 
         describe("converted to Flow") {
             val flowOfRisLines: Flow<String> = risLines.asFlow()
 
-            it("can be passed to a flow operator returning a flow of RisRecords (non-blocking)") {
+            it("can be passed to a flow operator returning a flow of RisRecords (non-blocking)", skip = Skip.Yes(SKIP_REASON)) {
                 runBlocking {
                     flowOfRisLines
                         .toRisRecords()
@@ -57,14 +60,14 @@ object KrisUsageSpec : Spek({
         describe("converted to a Sequence") {
             val sequenceOfRisLines: Sequence<String> = risLines.asSequence()
 
-            it("can be passed to a sequence operator returning a sequence of RisRecords (blocking)") {
+            it("can be passed to a sequence operator returning a sequence of RisRecords (blocking)", skip = Skip.Yes(SKIP_REASON)) {
                 sequenceOfRisLines
                     .toRisRecords()
                     .toList()
                     .shouldHaveSize(2)
             }
 
-            it("can be passed to a static method returning a list of RisRecords (blocking)") {
+            it("can be passed to a static method returning a list of RisRecords (blocking)", skip = Skip.No) {
                 JRis.process(sequenceOfRisLines) shouldHaveSize 2
             }
         }
@@ -85,11 +88,11 @@ object KrisUsageSpec : Spek({
 
         val risRecords = listOf(risRecord)
 
-        it("can be passed to a static method returning a list of Strings (blocking)") {
+        it("can be passed to a static method returning a list of Strings (blocking)", skip = Skip.Yes(SKIP_REASON)) {
             JRis.export(risRecords) shouldHaveSize 9
         }
 
-        describe("converted to Flow") {
+        describe("converted to Flow", skip = Skip.Yes(SKIP_REASON)) {
             val flowOfRisRecords: Flow<RisRecord> = risRecords.asFlow()
 
             it("can be passed to a flow operator returning a flow of Strings (non-blocking)") {
@@ -102,7 +105,7 @@ object KrisUsageSpec : Spek({
             }
         }
 
-        describe("converted to a Sequence") {
+        describe("converted to a Sequence", skip = Skip.Yes(SKIP_REASON)) {
             val sequenceOfRisRecords: Sequence<RisRecord> = risRecords.asSequence()
 
             it("can be passed to a sequence operator returning a sequence of Strings (blocking)") {
@@ -114,8 +117,8 @@ object KrisUsageSpec : Spek({
         }
 
 
-        it("can convert risRecord to a string") {
-            risRecords shouldEqual """TY  - JOUR
+        it("can convert risRecord to a string", skip = Skip.No) {
+            JRis.build(records = risRecords) shouldEqual """TY  - JOUR
                                 |AU  - Shannon, Claude E.
                                 |EP  - 423
                                 |PY  - 1948/07//
