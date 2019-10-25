@@ -2,6 +2,8 @@
 
 package com.gmail.gcolaianni5.jris
 
+import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 import java.io.*
 import kotlin.math.min
 import kotlin.reflect.KClass
@@ -118,14 +120,14 @@ object JRis {
 
     private val tag2accessor: Map<String, TagAccessor> = tagAccessors.map { it.tag.name to it }.toMap()
 
-    //region:import
+//region:import
 
     /**
      * Accepts a sequence of Strings representing lines in a RIS file
      * to return a list of [RisRecord]s. Throws a [JRisException] if
      * the lines cannot be parsed appropriately.
      */
-    fun parse(sequence: Sequence<String>): List<RisRecord> {
+    fun process(sequence: Sequence<String>): List<RisRecord> {
         val records = mutableListOf<RisRecord>()
 
         var record: RisRecord = RisRecord()
@@ -185,14 +187,24 @@ object JRis {
         else -> this
     }
 
+    /**
+     * Processes as list of Strings (representing single lines in RIS file format)
+     * into a list of [RisRecord]s
+     */
+    @JvmStatic
+    fun processList(risLines: List<String>): List<RisRecord> = TODO()
+
+    @JvmStatic
+    fun parseFromObservable(risLineObservable: Observable<String>): Observable<RisRecord> = TODO()
+
 //endregion
 
 //region:export
 
     /**
      * Builds the content of a RIS file and returns it as String.
-     * TODO use something more efficient for big files
      */
+    @Deprecated("Replace with non-blocking calls")
     fun build(records: List<RisRecord>, sort: List<String> = emptyList()): String {
         check(records.isNotEmpty()) { throw JRisException("Record list must not be empty.") }
         return records.asString(sort.withIndex().associate { RisTag.valueOf(it.value) to it.index }.toMap())
@@ -233,22 +245,34 @@ object JRis {
         }
     }
 
+    /**
+     * Transforms a list of [RisRecord]s into a list of Strings.
+     */
+    @JvmStatic
+    fun exportList(risRecords: List<RisRecord>): List<String> = TODO()
+
+    /**
+     * Transforms an observable of [RisRecord]s into an observable of Strings.
+     */
+    @JvmStatic
+    fun exportObservable(observable: Observable<RisRecord>): Observable<String> = TODO()
+
 //endregion
 }
 
 //region:helperMethodsForImportingRis
 
 @Throws(IOException::class, JRisException::class)
-fun parse(reader: Reader): List<RisRecord> = JRis.parse(BufferedReader(reader).readLines().asSequence())
+fun process(reader: Reader): List<RisRecord> = JRis.process(BufferedReader(reader).readLines().asSequence())
 
 @Throws(IOException::class, JRisException::class)
-fun parse(file: File): List<RisRecord> = parse(file.bufferedReader())
+fun process(file: File): List<RisRecord> = process(file.bufferedReader())
 
 @Throws(IOException::class, JRisException::class)
-fun parse(filePath: String): List<RisRecord> = parse(File(filePath).bufferedReader())
+fun process(filePath: String): List<RisRecord> = process(File(filePath).bufferedReader())
 
 @Throws(IOException::class, JRisException::class)
-fun parse(inputStream: InputStream): List<RisRecord> = parse(inputStream.bufferedReader())
+fun process(inputStream: InputStream): List<RisRecord> = process(inputStream.bufferedReader())
 
 //endregion
 
@@ -282,4 +306,43 @@ fun build(records: List<RisRecord>, filePath: String): Boolean {
         return build(records, it)
     }
 }
+//endregion
+
+//region:todo
+
+/**
+ * Processes a list of strings (lines from a RIS formatted file)
+ * into a list of [RisRecord]
+ */
+fun JRis.process(risLines: List<String>): List<RisRecord> = TODO()
+
+/**
+ * Transforms a flow of Strings (lines from a RIS formatted file) as receiver
+ * into a flow of [RisRecord]s.
+ */
+fun Flow<String>.toRisRecords(): Flow<RisRecord> = TODO()
+
+/**
+ * Transforms a sequence of Strings (lines from a RIS formatted file) as receiver
+ * into a sequence of [RisRecord]s.
+ */
+fun Sequence<String>.toRisRecords(): Sequence<RisRecord> = TODO()
+
+/**
+ * Processes a list of RisRecords into a list of Strings compliant with the RIS file format.
+ */
+fun JRis.export(risRecords: List<RisRecord>): List<String> = TODO()
+
+/**
+ * Processes a flow of [RisRecord]s into a flow of Strings
+ * representing lines in RIS file format.
+ */
+fun Flow<RisRecord>.toRisLines(): Flow<String> = TODO()
+
+/**
+ * Processes a sequence of [RisRecord]s into a sequence of Strings
+ * representing lines in RIS file format.
+ */
+fun Sequence<RisRecord>.toRisLines(): Sequence<String> = TODO()
+
 //endregion
