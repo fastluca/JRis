@@ -62,6 +62,7 @@ subprojects {
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
 
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
         testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.8")
