@@ -1,6 +1,7 @@
 package ch.difty.kris.example.kotlin
 
 import com.gmail.gcolaianni5.jris.*
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
@@ -8,11 +9,10 @@ import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
-import org.spekframework.spek2.dsl.Skip
 import org.spekframework.spek2.style.specification.describe
 
-private const val SKIP_REASON = "Functionality not implemented yet"
-
+@Suppress("SpellCheckingInspection")
+@InternalCoroutinesApi
 object KrisUsageSpec : Spek({
 
     describe("with list of strings representing two RIS records") {
@@ -36,18 +36,18 @@ object KrisUsageSpec : Spek({
             "EP  - 822",
             "JO  - Annalen der Physik",
             "VL  - 49",
-            "ER  -"
+            "ER  - "
         )
 
 
-        it("can be passed to a static method returning a list of RisRecords (blocking)", skip = Skip.Yes(SKIP_REASON)) {
-            JRis.process(risLines) shouldHaveSize 2
+        it("can be passed to a static method returning a list of RisRecords (blocking)") {
+            JRis.processList(risLines) shouldHaveSize 2
         }
 
         describe("converted to Flow") {
             val flowOfRisLines: Flow<String> = risLines.asFlow()
 
-            it("can be passed to a flow operator returning a flow of RisRecords (non-blocking)", skip = Skip.Yes(SKIP_REASON)) {
+            it("can be passed to a flow operator returning a flow of RisRecords (non-blocking)") {
                 runBlocking {
                     flowOfRisLines
                         .toRisRecords()
@@ -60,15 +60,11 @@ object KrisUsageSpec : Spek({
         describe("converted to a Sequence") {
             val sequenceOfRisLines: Sequence<String> = risLines.asSequence()
 
-            it("can be passed to a sequence operator returning a sequence of RisRecords (blocking)", skip = Skip.Yes(SKIP_REASON)) {
+            it("can be passed to a sequence operator returning a sequence of RisRecords (blocking)") {
                 sequenceOfRisLines
                     .toRisRecords()
                     .toList()
                     .shouldHaveSize(2)
-            }
-
-            it("can be passed to a static method returning a list of RisRecords (blocking)", skip = Skip.No) {
-                JRis.process(sequenceOfRisLines) shouldHaveSize 2
             }
         }
     }
@@ -88,11 +84,11 @@ object KrisUsageSpec : Spek({
 
         val risRecords = listOf(risRecord)
 
-        it("can be passed to a static method returning a list of Strings (blocking)", skip = Skip.Yes(SKIP_REASON)) {
-            JRis.export(risRecords) shouldHaveSize 9
+        it("can be passed to a static method returning a list of Strings (blocking)") {
+            JRis.buildFromList(risRecords) shouldHaveSize 9
         }
 
-        describe("converted to Flow", skip = Skip.Yes(SKIP_REASON)) {
+        describe("converted to Flow") {
             val flowOfRisRecords: Flow<RisRecord> = risRecords.asFlow()
 
             it("can be passed to a flow operator returning a flow of Strings (non-blocking)") {
@@ -105,7 +101,7 @@ object KrisUsageSpec : Spek({
             }
         }
 
-        describe("converted to a Sequence", skip = Skip.Yes(SKIP_REASON)) {
+        describe("converted to a Sequence") {
             val sequenceOfRisRecords: Sequence<RisRecord> = risRecords.asSequence()
 
             it("can be passed to a sequence operator returning a sequence of Strings (blocking)") {
@@ -116,9 +112,8 @@ object KrisUsageSpec : Spek({
             }
         }
 
-
-        it("can convert risRecord to a string", skip = Skip.No) {
-            JRis.build(records = risRecords) shouldEqual """TY  - JOUR
+        it("can convert risRecord to a string") {
+            risRecords.toRisLines().joinToString(separator = "") shouldEqual """TY  - JOUR
                                 |AU  - Shannon, Claude E.
                                 |EP  - 423
                                 |PY  - 1948/07//

@@ -1,5 +1,8 @@
 package com.gmail.gcolaianni5.jris
 
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
@@ -31,7 +34,7 @@ object KrisParsingSpec : Spek({
         )
 
         describe("representing a single record") {
-            val risRecords by memoized { JRis.process(lines.asSequence()) }
+            val risRecords by memoized { runBlocking { JRis.process(lines.asFlow()).toList() } }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
             it("should have the reference type $type") { risRecords.first().type shouldEqual RisType.JOUR }
@@ -47,7 +50,7 @@ object KrisParsingSpec : Spek({
 
         describe("representing two records") {
             val twoRecordLines = lines + lines
-            it("should be parsed into one single RisRecord") { JRis.process(twoRecordLines.asSequence()) shouldHaveSize 2 }
+            it("should be parsed into one single RisRecord") { runBlocking { JRis.process(twoRecordLines.asFlow()).toList() shouldHaveSize 2 } }
         }
     }
 })

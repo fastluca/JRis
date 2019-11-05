@@ -3,5 +3,6 @@ target/
 jris.iml
 .gradle/
 build/
+out/
 subprojects/kris/build/
 s101plugin.state
