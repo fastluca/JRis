@@ -1,13 +1,20 @@
 import org.kordamp.gradle.plugin.settings.ProjectsExtension
 
-buildscript {
+pluginManagement {
     repositories {
+        mavenLocal()
         jcenter()
         gradlePluginPortal()
+    }
+}
+buildscript {
+    repositories {
         mavenLocal()
+        jcenter()
+        gradlePluginPortal()
     }
     dependencies {
-        classpath("org.kordamp.gradle:settings-gradle-plugin:0.29.0")
+        classpath("org.kordamp.gradle:settings-gradle-plugin:0.30.0-SNAPSHOT")
     }
 }
 
