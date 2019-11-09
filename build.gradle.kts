@@ -3,6 +3,7 @@ import org.sonarqube.gradle.SonarQubeTask
 plugins {
     kotlin("jvm") version "1.3.50"
     id("org.kordamp.gradle.project") version "0.29.0"
+    id("org.kordamp.gradle.integration-test") version "0.29.0" apply false
     java
     id("org.sonarqube") version "2.8"
 //    id("io.gitlab.arturbosch.detekt") version "1.1.1"
