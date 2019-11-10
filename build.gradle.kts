@@ -1,3 +1,4 @@
+import org.kordamp.gradle.plugin.integrationtest.IntegrationTestPlugin
 import org.sonarqube.gradle.SonarQubeTask
 
 plugins {
@@ -60,6 +61,7 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply<JavaPlugin>()
     apply<IdeaPlugin>()
+    apply<IntegrationTestPlugin>()
 
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

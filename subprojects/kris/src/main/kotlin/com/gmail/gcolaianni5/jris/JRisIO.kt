@@ -63,9 +63,11 @@ class JRisIO {
         //region: build -> RisRecords -> RISFile lines
 
         /**
-         * Converts a list of [RisRecord]s into a [String]s in RIS file format, dumping them into the provided [Writer].
-         * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
+         * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, dumping them into the
+         * provided [Writer]. Optionally accepts a list of names of [RisTag]s defining a sort order for
+         * the [RisTag]s in the file.
          */
+        @JvmStatic
         @JvmOverloads
         @ExperimentalCoroutinesApi
         fun build(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
@@ -79,9 +81,10 @@ class JRisIO {
         }
 
         /**
-         * Converts a list of [RisRecord]s into a [String]s in RIS file format, writing them into the provided [File].
+         * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into the provided [File].
          * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
          */
+        @JvmStatic
         @JvmOverloads
         @ExperimentalCoroutinesApi
         fun build(records: List<RisRecord>, sort: List<String> = emptyList(), file: File) {
@@ -91,9 +94,11 @@ class JRisIO {
         }
 
         /**
-         * Converts a list of [RisRecord]s into a [String]s in RIS file format, writing them into the provided [OutputStream].
-         * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
+         * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into
+         * the provided [OutputStream]. Optionally accepts a list of names of [RisTag]s defining a sort order
+         * for the [RisTag]s in the file.
          */
+        @JvmStatic
         @JvmOverloads
         @ExperimentalCoroutinesApi
         fun build(records: List<RisRecord>, sort: List<String> = emptyList(), out: OutputStream) {
@@ -103,10 +108,11 @@ class JRisIO {
         }
 
         /**
-         * Converts a list of [RisRecord]s into a [String]s in RIS file format, writing them into file with
+         * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into file with
          * the specified path if possible.
          * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
          */
+        @JvmStatic
         @JvmOverloads
         @ExperimentalCoroutinesApi
         fun build(records: List<RisRecord>, sort: List<String> = emptyList(), filePath: String) {
@@ -118,3 +124,67 @@ class JRisIO {
         //endregion
     }
 }
+
+//region Kotlin extension functions for importing JRis files
+
+/**
+ * Converts the RISFile lines provided by the reader as receiver into a list of [RisRecord]s.
+ * May throw an [IOException] if the reader fails to deliver lines or a [JRisException]
+ * if the lines cannot be parsed successfully.
+ */
+fun Reader.process() = JRisIO.process(this)
+
+/**
+ * Converts the RISFile lines in the [File] provided as receiver into a list of [RisRecord]s.
+ * May throw an [IOException] if the file cannot be read successfully.
+ * or a [JRisException] if the lines cannot be parsed successfully.
+ */
+fun File.process() = JRisIO.process(this)
+
+/**
+ * Converts the RISFile lines from the file with the path provided as receiver into a list of [RisRecord]s.
+ * May throw an [IOException] if the file cannot be read successfully.
+ * or a [JRisException] if the lines cannot be parsed successfully.
+ */
+fun String.process() = JRisIO.process(this)
+
+/**
+ * Converts the RISFile lines provided by the [InputStream] as receiver  into a list of [RisRecord]s.
+ * May throw an [IOException] if the stream cannot be read successfully.
+ * or a [JRisException] if the lines cannot be parsed successfully.
+ */
+fun InputStream.process() = JRisIO.process(this)
+
+//endregion
+
+//region Kotlin extension functions for exporting JRis files
+
+/**
+ * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, dumping them into the
+ * [Writer] provided as receiver. Optionally accepts a list of names of [RisTag]s defining a sort order for
+ * the [RisTag]s in the file.
+ */
+fun Writer.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+
+/**
+ * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into the [File]
+ * provided as receiver. Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s
+ * in the file.
+ */
+fun File.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+
+/**
+ * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into
+ * the [OutputStream] provided as receiver. Optionally accepts a list of names of [RisTag]s defining a sort order
+ * for the [RisTag]s in the file.
+ */
+fun OutputStream.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+
+/**
+ * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into file with
+ * the path provided as the receiver, if possible.
+ * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
+ */
+fun String.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+
+//endregion
