@@ -81,6 +81,8 @@ fun Sequence<RisRecord>.toRisLines(): Sequence<String> =
             while (!channel.isClosedForReceive) {
                 yield(runBlocking { channel.receive() })
             }
+        } catch (closed: ClosedReceiveChannelException) {
+            // flow is completed -> swallow
         } catch (closed: ClosedChannelException) {
             // flow is completed -> swallow
         } finally {
