@@ -14,7 +14,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath("org.kordamp.gradle:settings-gradle-plugin:0.30.0-SNAPSHOT")
+        classpath("org.kordamp.gradle:settings-gradle-plugin:0.29.0")
     }
 }
 
