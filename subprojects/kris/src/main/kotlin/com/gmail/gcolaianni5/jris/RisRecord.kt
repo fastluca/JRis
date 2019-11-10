@@ -7,7 +7,7 @@ package com.gmail.gcolaianni5.jris
  * @version 1.0
  * @since 22 apr 2017
  */
-@Suppress("ParameterListWrapping", "SpellCheckingInspection")
+@Suppress("ParameterListWrapping", "SpellCheckingInspection", "TooManyFunctions")
 data class RisRecord @JvmOverloads constructor(
 
     /** TY */
@@ -374,10 +374,18 @@ data class RisRecord @JvmOverloads constructor(
         var accessDate: String? = null) {
 
         fun type(type: RisType?) = apply { this.type = type }
-        fun firstAuthors(firstAuthors: MutableList<String>) = apply { this.firstAuthors.clear(); this.firstAuthors.addAll(firstAuthors) }
-        fun secondaryAuthors(secondaryAuthors: MutableList<String>) = apply { this.secondaryAuthors.clear(); this.secondaryAuthors.addAll(secondaryAuthors) }
-        fun tertiaryAuthors(tertiaryAuthors: MutableList<String>) = apply { this.tertiaryAuthors.clear(); this.tertiaryAuthors.addAll(tertiaryAuthors) }
-        fun subsidiaryAuthors(subsidiaryAuthors: MutableList<String>) = apply { this.subsidiaryAuthors.clear(); this.subsidiaryAuthors.addAll(subsidiaryAuthors) }
+        fun firstAuthors(firstAuthors: MutableList<String>) =
+            apply { this.firstAuthors.clear(); this.firstAuthors.addAll(firstAuthors) }
+
+        fun secondaryAuthors(secondaryAuthors: MutableList<String>) =
+            apply { this.secondaryAuthors.clear(); this.secondaryAuthors.addAll(secondaryAuthors) }
+
+        fun tertiaryAuthors(tertiaryAuthors: MutableList<String>) =
+            apply { this.tertiaryAuthors.clear(); this.tertiaryAuthors.addAll(tertiaryAuthors) }
+
+        fun subsidiaryAuthors(subsidiaryAuthors: MutableList<String>) =
+            apply { this.subsidiaryAuthors.clear(); this.subsidiaryAuthors.addAll(subsidiaryAuthors) }
+
         fun authors(authors: MutableList<String>) = apply { this.authors = authors }
         fun abstr(abstr: String?) = apply { this.abstr = abstr }
         fun authorAddress(authorAddress: String?) = apply { this.authorAddress = authorAddress }
@@ -395,7 +403,9 @@ data class RisRecord @JvmOverloads constructor(
         fun caption(caption: String?) = apply { this.caption = caption }
         fun callNumber(callNumber: String?) = apply { this.callNumber = callNumber }
         fun cp(cp: String?) = apply { this.cp = cp }
-        fun unpublishedReferenceTitle(unpublishedReferenceTitle: String?) = apply { this.unpublishedReferenceTitle = unpublishedReferenceTitle }
+        fun unpublishedReferenceTitle(unpublishedReferenceTitle: String?) =
+            apply { this.unpublishedReferenceTitle = unpublishedReferenceTitle }
+
         fun placePublished(placePublished: String?) = apply { this.placePublished = placePublished }
         fun date(date: String?) = apply { this.date = date }
         fun databaseName(databaseName: String?) = apply { this.databaseName = databaseName }
@@ -406,15 +416,27 @@ data class RisRecord @JvmOverloads constructor(
         fun edition(edition: String?) = apply { this.edition = edition }
         fun referenceId(referenceId: String?) = apply { this.referenceId = referenceId }
         fun issue(issue: String?) = apply { this.issue = issue }
-        fun periodicalNameUserAbbrevation(periodicalNameUserAbbrevation: String?) = apply { this.periodicalNameUserAbbrevation = periodicalNameUserAbbrevation }
+        fun periodicalNameUserAbbrevation(periodicalNameUserAbbrevation: String?) =
+            apply { this.periodicalNameUserAbbrevation = periodicalNameUserAbbrevation }
+
         fun alternativeTitle(alternativeTitle: String?) = apply { this.alternativeTitle = alternativeTitle }
-        fun periodicalNameStandardAbbrevation(periodicalNameStandardAbbrevation: String?) = apply { this.periodicalNameStandardAbbrevation = periodicalNameStandardAbbrevation }
-        fun periodicalNameFullFormatJF(periodicalNameFullFormatJF: String?) = apply { this.periodicalNameFullFormatJF = periodicalNameFullFormatJF }
-        fun periodicalNameFullFormatJO(periodicalNameFullFormatJO: String?) = apply { this.periodicalNameFullFormatJO = periodicalNameFullFormatJO }
+        fun periodicalNameStandardAbbrevation(periodicalNameStandardAbbrevation: String?) =
+            apply { this.periodicalNameStandardAbbrevation = periodicalNameStandardAbbrevation }
+
+        fun periodicalNameFullFormatJF(periodicalNameFullFormatJF: String?) =
+            apply { this.periodicalNameFullFormatJF = periodicalNameFullFormatJF }
+
+        fun periodicalNameFullFormatJO(periodicalNameFullFormatJO: String?) =
+            apply { this.periodicalNameFullFormatJO = periodicalNameFullFormatJO }
+
         fun keywords(keywords: MutableList<String>) = apply { this.keywords.clear(); this.keywords.addAll(keywords) }
         fun pdfLinks(pdfLinks: MutableList<String>) = apply { this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks) }
-        fun fullTextLinks(fullTextLinks: MutableList<String>) = apply { this.fullTextLinks.clear(); this.fullTextLinks.addAll(fullTextLinks) }
-        fun relatedRecords(relatedRecords: MutableList<String>) = apply { this.relatedRecords.clear(); this.relatedRecords.addAll(relatedRecords) }
+        fun fullTextLinks(fullTextLinks: MutableList<String>) =
+            apply { this.fullTextLinks.clear(); this.fullTextLinks.addAll(fullTextLinks) }
+
+        fun relatedRecords(relatedRecords: MutableList<String>) =
+            apply { this.relatedRecords.clear(); this.relatedRecords.addAll(relatedRecords) }
+
         fun images(images: MutableList<String>) = apply { this.images.clear(); this.images.addAll(images) }
         fun language(language: String?) = apply { this.language = language }
         fun label(label: String?) = apply { this.label = label }
@@ -425,7 +447,9 @@ data class RisRecord @JvmOverloads constructor(
         fun notes(notes: String?) = apply { this.notes = notes }
         fun abstr2(abstr2: String?) = apply { this.abstr2 = abstr2 }
         fun numberOfVolumes(numberOfVolumes: String?) = apply { this.numberOfVolumes = numberOfVolumes }
-        fun originalPublication(originalPublication: String?) = apply { this.originalPublication = originalPublication }
+        fun originalPublication(originalPublication: String?) =
+            apply { this.originalPublication = originalPublication }
+
         fun publisher(publisher: String?) = apply { this.publisher = publisher }
         fun publishingPlace(publishingPlace: String?) = apply { this.publishingPlace = publishingPlace }
         fun publicationYear(publicationYear: String?) = apply { this.publicationYear = publicationYear }
@@ -449,9 +473,12 @@ data class RisRecord @JvmOverloads constructor(
         fun userDefinable5(userDefinable5: String?) = apply { this.userDefinable5 = userDefinable5 }
         fun url(url: String?) = apply { this.url = url }
         fun volumeNumber(volumeNumber: String?) = apply { this.volumeNumber = volumeNumber }
-        fun publisherStandardNumber(publisherStandardNumber: String?) = apply { this.publisherStandardNumber = publisherStandardNumber }
+        fun publisherStandardNumber(publisherStandardNumber: String?) =
+            apply { this.publisherStandardNumber = publisherStandardNumber }
+
         fun primaryDate(primaryDate: String?) = apply { this.primaryDate = primaryDate }
         fun accessDate(accessDate: String?) = apply { this.accessDate = accessDate }
+        @Suppress("LongMethod")
         fun build() = RisRecord(type,
             firstAuthors,
             secondaryAuthors,
