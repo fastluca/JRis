@@ -3,10 +3,11 @@
 package com.gmail.gcolaianni5.jris
 
 import io.reactivex.Observable
-import kotlinx.coroutines.flow.Flow
-import java.io.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.rx2.asObservable
 import kotlin.math.min
-import kotlin.reflect.KClass
 
 private const val TAG_SEPARATOR = "  - "
 private const val INT_INTERMEDIATE = 1000
@@ -25,14 +26,18 @@ private data class TagAccessor(
 class JRisException(message: String) : Throwable(message)
 
 /**
- * `RIS` format parsers and builder.
- * This is the core class of the module. It is capable to parse a `RIS` file from different source types
- * and to build a well formatted `RIS` format.
+ * `RIS` format processor and builder. It is capable of
+ *
+ * * processing lines of RIS files (Strings), converting them to [RisRecord]s
+ * * building well formatted RIS files from [RisRecord]s.
+ *
+ * The Jris class works in non-blocking manner as default.
+ * Extension functions provide blocking alternatives for ease of use both from Kotlin or Java.
  *
  * @author Gianluca Colaianni -- g.colaianni5@gmail.com
- * @version 1.0
- * @since 22 apr 2017
+ * @author Urs Joss - urs.joss@gmx.ch
  */
+@ExperimentalCoroutinesApi
 object JRis {
 
     @Suppress("MaxLineLength", "MaximumLineLength")
@@ -120,106 +125,117 @@ object JRis {
 
     private val tag2accessor: Map<String, TagAccessor> = tagAccessors.map { it.tag.name to it }.toMap()
 
-//region:import
+//region:process - RISFile lines -> RisRecords
 
     /**
-     * Accepts a sequence of Strings representing lines in a RIS file
-     * to return a list of [RisRecord]s. Throws a [JRisException] if
-     * the lines cannot be parsed appropriately.
+     * Converts a flow of Strings (representing lines in a RIS file) into a flow of [RisRecord]s.
+     * May throw a [JRisException] if the line flow cannot be parsed successfully.
      */
-    fun process(sequence: Sequence<String>): List<RisRecord> {
-        val records = mutableListOf<RisRecord>()
+    fun process(lineFlow: Flow<String>): Flow<RisRecord> = flow {
+        var record = RisRecord()
+        var previousTag: RisTag? = null
 
-        var record: RisRecord = RisRecord()
-        var previousTag: String? = null
-
-        sequence.filterNotNull()
-            .filter { line -> line.isNotEmpty() }
-            .map { line -> line.trim { it <= ' ' } }
-            .forEach { line ->
-                if (line.startsWith(RisTag.ER.name)) {
-                    record.let { records += it }
+        lineFlow.filterNotNull()
+            .filterNot { line -> line.isEmpty() }
+            .collect { line ->
+                if (line.isEndOfRecord()) {
+                    emit(record)
                     record = RisRecord()
                 } else {
-                    previousTag = line.parseInto(record, previousTag)
+                    previousTag = record.fillFrom(line, previousTag)
                 }
             }
-
-        return records
     }
 
-    private fun String.parseInto(record: RisRecord, previousTag: String?): String? {
-        if (isEmpty() || length <= START_INDEX_VALUE + 1)
+    private fun String.isEndOfRecord() = startsWith(RisTag.ER.name)
+
+    /**
+     * Fills the tag and the respective value into the [RisRecord] (receiver).
+     * Returns the tag as context for parsing the next line.
+     */
+    private fun RisRecord.fillFrom(line: String, previousTag: RisTag?): RisTag? {
+        if (line.isEmpty() || line.length <= START_INDEX_VALUE + 1)
             return previousTag
 
-        val tag = parseTag(previousTag)
-        val tagAccessor = tag.getAccessor()
-        val kClass = tagAccessor.tag.kClass
-        val value = parseValueAs(kClass, tagAccessor.tag.maxLength)
-        tagAccessor.setInto(record, value)
-        return tag.name
+        val tagAccessor = line.findTagAccessorGiven(previousTag)
+        val tag = tagAccessor.tag
+        tagAccessor.setInto(this, tag.typeSafeValueFrom(line))
+        return tag
     }
 
-    private fun String.parseTag(lastParsed: String?): RisTag {
+    /**
+     * Try to parse the tag name from the line and return the [TagAccessor] if it is defined.
+     * We try to fall back to [RisTag.AB], especially if the previous tag was [RisTag.AB]
+     */
+    private fun String.findTagAccessorGiven(previousTag: RisTag?): TagAccessor {
         val tagName: String = substring(0, TAG_LENGTH)
-        return if (tagName in tag2accessor) RisTag.valueOf(tagName) else when (lastParsed) {
-            RisTag.AB.name -> RisTag.AB
+        val tag = if (tagName in tag2accessor) RisTag.valueOf(tagName)
+        else when (previousTag) {
+            RisTag.AB -> previousTag
             else -> throw JRisException("Unable to parse tag '$tagName'")
         }
+        return tag2accessor[tag.name] ?: tag2accessor.getValue(RisTag.AB.name)
     }
 
-    @Suppress("RemoveRedundantQualifierName")
-    private fun RisTag.getAccessor(): TagAccessor = tag2accessor[this.name]
-        ?: tag2accessor.getValue(RisTag.AB.name)
-
-    private fun String.parseValueAs(kClass: KClass<*>, maxLength: Int?): Any? {
-        val rawValue: String = substring(START_INDEX_VALUE).trim()
+    private fun RisTag.typeSafeValueFrom(line: String): Any? {
+        val rawValue: String = line.substring(START_INDEX_VALUE).trim()
         return when (kClass) {
             RisType::class -> RisType.valueOf(rawValue)
             Integer::class -> Integer.valueOf(rawValue)
             Long::class -> rawValue.toLong()
-            else -> rawValue.truncateTo(maxLength)
+            else -> rawValue.truncatedTo(maxLength)
         }
     }
 
-    private fun String.truncateTo(maxLength: Int?): String = when {
+    private fun String.truncatedTo(maxLength: Int?): String = when {
         maxLength != null -> substring(0, min(maxLength, length))
         else -> this
     }
 
     /**
-     * Processes as list of Strings (representing single lines in RIS file format)
-     * into a list of [RisRecord]s
+     * Converts an observable of Strings (representing lines in a RIS file) into an observable of [RisRecord]s
+     * in non-blocking manner. May throw [JRisException] if the line flow cannot be parsed successfully.
      */
     @JvmStatic
-    fun processList(risLines: List<String>): List<RisRecord> = TODO()
+    fun processObservables(risLineObservable: Observable<String>): Observable<RisRecord> =
+        process(risLineObservable.asFlow()).asObservable()
 
+    /**
+     * Converts a list of Strings (representing lines in a RIS file) into a list of [RisRecord]s in blocking manner.
+     * May throw a [JRisException] if the line flow cannot be parsed successfully.
+     */
     @JvmStatic
-    fun parseFromObservable(risLineObservable: Observable<String>): Observable<RisRecord> = TODO()
+    fun processList(risLines: List<String>): List<RisRecord> = runBlocking { process(risLines.asFlow()).toList() }
+
 
 //endregion
 
-//region:export
+//region:build - or RisRecords -> RISFile lines
 
     /**
-     * Builds the content of a RIS file and returns it as String.
+     * Converts a flow of [RisRecord]s into a flow of [String]s in RIS file format.
+     * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
      */
-    @Deprecated("Replace with non-blocking calls")
-    fun build(records: List<RisRecord>, sort: List<String> = emptyList()): String {
-        check(records.isNotEmpty()) { throw JRisException("Record list must not be empty.") }
-        return records.asString(sort.withIndex().associate { RisTag.valueOf(it.value) to it.index }.toMap())
-    }
-
-    private fun List<RisRecord>.asString(sort: Map<RisTag, Int>): String {
-        val sb = StringBuilder()
-        forEach { record ->
-            if (sb.isNotEmpty()) sb.append(LINE_SEPARATOR)
-            tagAccessors.sortedWith(sort.toComparator()).forEach { tagAccessor ->
-                sb.collect(record, tagAccessor)
+    fun build(recordFlow: Flow<RisRecord>, sort: List<String> = emptyList()): Flow<String> = flow {
+        fun TagAccessor.withValue(value: Any): String = "$tag$TAG_SEPARATOR$value$LINE_SEPARATOR"
+        val sortMap = sort.withIndex().associate { RisTag.valueOf(it.value) to it.index }.toMap()
+        var firstRecord = true
+        recordFlow.collect { risRecord ->
+            if (!firstRecord) emit(LINE_SEPARATOR)
+            firstRecord = false
+            tagAccessors.sortedWith(sortMap.toComparator()).forEach { tagAccessor ->
+                tagAccessor.getFrom(risRecord)?.let { recordValue: Any ->
+                    when (recordValue) {
+                        is List<*> -> recordValue.forEach { listValue ->
+                            emit(tagAccessor.withValue(listValue as String))
+                        }
+                        is String -> emit(tagAccessor.withValue(recordValue.truncatedTo(tagAccessor.tag.maxLength)))
+                        else -> emit(tagAccessor.withValue(recordValue))
+                    }
+                }
             }
-            sb.append("${RisTag.ER.name}$TAG_SEPARATOR$LINE_SEPARATOR")
+            emit("${RisTag.ER.name}$TAG_SEPARATOR$LINE_SEPARATOR")
         }
-        return sb.toString()
     }
 
     /**
@@ -232,117 +248,24 @@ object JRis {
     private fun Map<RisTag, Int>.toComparator(): Comparator<TagAccessor> =
         compareBy({ it.tag.requiredOrder }, { this[it.tag] ?: INT_INTERMEDIATE }, { it.tag.name })
 
-    private fun StringBuilder.collect(risRecord: RisRecord, tagAccessor: TagAccessor) {
-        fun TagAccessor.withValue(value: Any): String = "$tag$TAG_SEPARATOR$value$LINE_SEPARATOR"
-        tagAccessor.getFrom(risRecord)?.let { recordValue: Any ->
-            when (recordValue) {
-                is List<*> -> recordValue.forEach { listValue ->
-                    append(tagAccessor.withValue(listValue as String))
-                }
-                is String -> append(tagAccessor.withValue(recordValue.truncateTo(tagAccessor.tag.maxLength)))
-                else -> append(tagAccessor.withValue(recordValue))
-            }
-        }
-    }
 
     /**
-     * Transforms a list of [RisRecord]s into a list of Strings.
+     * Converts an observable of [RisRecord]s into an observable of [String]s in RIS file format.
+     * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
      */
     @JvmStatic
-    fun exportList(risRecords: List<RisRecord>): List<String> = TODO()
+    @JvmOverloads
+    fun exportObservable(observable: Observable<RisRecord>, sort: List<String> = emptyList()): Observable<String> =
+        build(observable.asFlow(), sort).asObservable()
 
     /**
-     * Transforms an observable of [RisRecord]s into an observable of Strings.
+     * Converts a list of [RisRecord]s into a list of [String]s in RIS file format in blocking manner.
+     * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
      */
     @JvmStatic
-    fun exportObservable(observable: Observable<RisRecord>): Observable<String> = TODO()
+    @JvmOverloads
+    fun buildFromList(risRecords: List<RisRecord>, sort: List<String> = emptyList()): List<String> =
+        runBlocking { build(risRecords.asFlow(), sort).toList() }
 
 //endregion
 }
-
-//region:helperMethodsForImportingRis
-
-@Throws(IOException::class, JRisException::class)
-fun process(reader: Reader): List<RisRecord> = JRis.process(BufferedReader(reader).readLines().asSequence())
-
-@Throws(IOException::class, JRisException::class)
-fun process(file: File): List<RisRecord> = process(file.bufferedReader())
-
-@Throws(IOException::class, JRisException::class)
-fun process(filePath: String): List<RisRecord> = process(File(filePath).bufferedReader())
-
-@Throws(IOException::class, JRisException::class)
-fun process(inputStream: InputStream): List<RisRecord> = process(inputStream.bufferedReader())
-
-//endregion
-
-//region:helperMethodsForExportingRis
-
-@Throws(IOException::class, JRisException::class)
-fun build(records: List<RisRecord>, writer: Writer): Boolean { // TODO no return value
-    writer.use {
-        it.write(JRis.build(records))
-    }
-    return true
-}
-
-@Throws(IOException::class, JRisException::class)
-fun build(records: List<RisRecord>, file: File): Boolean {
-    FileWriter(file).use {
-        return build(records, it)
-    }
-}
-
-@Throws(IOException::class, JRisException::class)
-fun build(records: List<RisRecord>, out: OutputStream): Boolean {
-    OutputStreamWriter(out).use {
-        return build(records, it)
-    }
-}
-
-@Throws(IOException::class, JRisException::class)
-fun build(records: List<RisRecord>, filePath: String): Boolean {
-    FileOutputStream(filePath).use {
-        return build(records, it)
-    }
-}
-//endregion
-
-//region:todo
-
-/**
- * Processes a list of strings (lines from a RIS formatted file)
- * into a list of [RisRecord]
- */
-fun JRis.process(risLines: List<String>): List<RisRecord> = TODO()
-
-/**
- * Transforms a flow of Strings (lines from a RIS formatted file) as receiver
- * into a flow of [RisRecord]s.
- */
-fun Flow<String>.toRisRecords(): Flow<RisRecord> = TODO()
-
-/**
- * Transforms a sequence of Strings (lines from a RIS formatted file) as receiver
- * into a sequence of [RisRecord]s.
- */
-fun Sequence<String>.toRisRecords(): Sequence<RisRecord> = TODO()
-
-/**
- * Processes a list of RisRecords into a list of Strings compliant with the RIS file format.
- */
-fun JRis.export(risRecords: List<RisRecord>): List<String> = TODO()
-
-/**
- * Processes a flow of [RisRecord]s into a flow of Strings
- * representing lines in RIS file format.
- */
-fun Flow<RisRecord>.toRisLines(): Flow<String> = TODO()
-
-/**
- * Processes a sequence of [RisRecord]s into a sequence of Strings
- * representing lines in RIS file format.
- */
-fun Sequence<RisRecord>.toRisLines(): Sequence<String> = TODO()
-
-//endregion

@@ -11,12 +11,9 @@ import com.gmail.gcolaianni5.jris.JRis;
 import com.gmail.gcolaianni5.jris.RisRecord;
 import com.gmail.gcolaianni5.jris.RisType;
 import io.reactivex.Observable;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class KrisUsageTest {
-
-    private static final String SKIP_REASON = "Function currently lacking implementation";
 
     //@formatter:off
     @SuppressWarnings("SpellCheckingInspection") private final List<String> risLines = Arrays.asList(
@@ -41,14 +38,12 @@ class KrisUsageTest {
     );
     //@formatter:on
 
-    @Disabled(SKIP_REASON)
     @Test
     void whenProcessingRisLinesAsList_willReturnListOfRisRecords() {
         final List<RisRecord> risRecords = JRis.processList(risLines);
         assertThat(risRecords).hasSize(2);
     }
 
-    @Disabled(SKIP_REASON)
     @Test
     void whenProcessingRisLinesAsObservable_willReturnObservableOfRisRecords() {
         final List<RisRecord> risRecords = new ArrayList<>();
@@ -56,7 +51,7 @@ class KrisUsageTest {
         final Observable<String> observable = Observable.fromIterable(risLines);
 
         JRis
-            .parseFromObservable(observable)
+            .processObservables(observable)
             .blockingSubscribe(risRecords::add);
 
         assertThat(risRecords).hasSize(2);
@@ -77,14 +72,12 @@ class KrisUsageTest {
 
     private final int expectedLineCount = 9;
 
-    @Disabled(SKIP_REASON)
     @Test
     void whenProcessingRisRecordsAsList_willReturnListOfRisLines() {
-        final List<String> risLines = JRis.exportList(risRecords);
+        final List<String> risLines = JRis.buildFromList(risRecords);
         assertThat(risLines).hasSize(expectedLineCount);
     }
 
-    @Disabled(SKIP_REASON)
     @Test
     void whenProcessingRisRecordsAsObservable_willReturnObservableOfRisLines() {
         final List<String> risLines = new ArrayList<>();
