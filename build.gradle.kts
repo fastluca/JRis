@@ -55,6 +55,15 @@ allprojects {
         jcenter()
         mavenCentral()
     }
+
+    tasks {
+        val deleteOutFolderTask by registering(Delete::class) {
+            delete("out")
+        }
+        named("clean") {
+            dependsOn(deleteOutFolderTask)
+        }
+    }
 }
 
 subprojects {
