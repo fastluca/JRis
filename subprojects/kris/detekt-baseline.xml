@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist></Blacklist>
+  <Whitelist>
+    <ID>LongMethod:RisRecord.kt$RisRecord.Builder$fun build()</ID>
+    <ID>MaxLineLength:RisRecord.kt$RisRecord.Builder$fun periodicalNameStandardAbbrevation(periodicalNameStandardAbbrevation: String?)</ID>
+    <ID>MaxLineLength:RisRecord.kt$RisRecord.Builder$fun periodicalNameUserAbbrevation(periodicalNameUserAbbrevation: String?)</ID>
+    <ID>MaxLineLength:RisRecord.kt$RisRecord.Builder$fun secondaryAuthors(secondaryAuthors: MutableList&lt;String&gt;)</ID>
+    <ID>MaxLineLength:RisRecord.kt$RisRecord.Builder$fun subsidiaryAuthors(subsidiaryAuthors: MutableList&lt;String&gt;)</ID>
+    <ID>MaxLineLength:RisRecord.kt$RisRecord.Builder$fun tertiaryAuthors(tertiaryAuthors: MutableList&lt;String&gt;)</ID>
+    <ID>NewLineAtEndOfFile:BridgeExtensions.kt$com.gmail.gcolaianni5.jris.BridgeExtensions.kt</ID>
+    <ID>TooManyFunctions:JRis.kt$JRis</ID>
+    <ID>TooManyFunctions:RisRecord.kt$RisRecord$Builder</ID>
+    <ID>WildcardImport:JRis.kt$import kotlinx.coroutines.flow.*</ID>
+    <ID>WildcardImport:JRisIO.kt$import java.io.*</ID>
+  </Whitelist>
+</SmellBaseline>

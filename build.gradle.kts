@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.DetektPlugin
 import org.kordamp.gradle.plugin.integrationtest.IntegrationTestPlugin
 import org.sonarqube.gradle.SonarQubeTask
 
@@ -7,7 +8,7 @@ plugins {
     id("org.kordamp.gradle.integration-test") apply false
     java
     id("org.sonarqube")
-//    id("io.gitlab.arturbosch.detekt")
+    id("io.gitlab.arturbosch.detekt")
     id("org.ajoberstar.reckon")
 }
 
@@ -80,6 +81,7 @@ subprojects {
     apply<IdeaPlugin>()
     apply<IntegrationTestPlugin>()
     apply<JacocoPlugin>()
+    apply<DetektPlugin>()
 
     dependencies {
         implementation(Lib.kotlin("stdlib-jdk8"))
@@ -103,7 +105,6 @@ subprojects {
         }
     }
 
-    /*
     detekt {
         failFast = false
         buildUponDefaultConfig = true
@@ -115,7 +116,6 @@ subprojects {
             html.enabled = true
         }
     }
-    */
 }
 
 //val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
@@ -126,7 +126,7 @@ sonarqube {
         property("sonar.projectKey", "ursjoss_JRis")
         property("sonar.organization", "ursjoss-github")
 //        property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
-        // property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
     }
 }
 
@@ -141,6 +141,6 @@ tasks {
         group = "Verification"
         dependsOn(subprojects.map { it.tasks.getByName("integrationTest") })
         dependsOn(subprojects.map { it.tasks.getByName("jacocoTestReport") })
-        // dependsOn(subprojects.filterNot { it.name.contains("java") }.map { it.tasks.getByName("detekt") })
+        dependsOn(subprojects.filterNot { it.name.contains("java") }.map { it.tasks.getByName("detekt") })
     }
 }

@@ -1,0 +1,13 @@
+style:
+  MaxLineLength:
+    maxLineLength: 150
+
+complexity:
+  LongParameterList:
+    active: true
+    threshold: 7
+    ignoreDefaultParameters: true
+
+formatting:
+  MultiLineIfElse:
+    active: false
