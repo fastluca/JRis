@@ -47,6 +47,14 @@ config {
             }
         }
     }
+
+    jacoco {
+        enabled = true
+        mergeExecFile = File("${project.buildDir}/jacoco/root.exec")
+        mergeReportXmlFile = File("reports/jacoco/root/jacocoTestReport.xml")
+        additionalSourceDirs.setFrom("integration-test")
+    }
+
 }
 
 allprojects {
@@ -71,6 +79,7 @@ subprojects {
     apply<JavaPlugin>()
     apply<IdeaPlugin>()
     apply<IntegrationTestPlugin>()
+    apply<JacocoPlugin>()
 
     dependencies {
         implementation(Lib.kotlin("stdlib-jdk8"))
@@ -109,14 +118,14 @@ subprojects {
     */
 }
 
-val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+//val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 
 sonarqube {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.projectKey", "ursjoss_JRis")
         property("sonar.organization", "ursjoss-github")
-        property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
+//        property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
         // property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
     }
 }
@@ -130,6 +139,7 @@ tasks {
     withType<SonarQubeTask> {
         description = "Push jacoco analysis to sonarcloud."
         group = "Verification"
+        dependsOn(subprojects.map { it.tasks.getByName("integrationTest") })
         dependsOn(subprojects.map { it.tasks.getByName("jacocoTestReport") })
         // dependsOn(subprojects.filterNot { it.name.contains("java") }.map { it.tasks.getByName("detekt") })
     }

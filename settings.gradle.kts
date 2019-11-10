@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import org.kordamp.gradle.plugin.settings.ProjectsExtension
 import org.kordamp.gradle.plugin.settings.SettingsPlugin
 
@@ -13,6 +15,7 @@ pluginManagement {
         val kordampPluginVersion = "0.29.0"
         id("org.kordamp.gradle.project") version kordampPluginVersion
         id("org.kordamp.gradle.integration-test") version kordampPluginVersion
+        id("org.kordamp.gradle.guide") version kordampPluginVersion
         id("org.sonarqube") version "2.8"
         id("io.gitlab.arturbosch.detekt") version "1.1.1"
         id("org.ajoberstar.reckon") version "0.11.0"

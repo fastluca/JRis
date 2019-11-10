@@ -20,7 +20,7 @@ jobs:
         java-version: 1.8
       
     - name: Run sonar task
-      run: ./gradlew sonarqube --no-daemon --no-build-cache
+      run: ./gradlew allTests sonarqube --no-daemon --no-build-cache
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
