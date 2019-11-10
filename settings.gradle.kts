@@ -1,10 +1,21 @@
 import org.kordamp.gradle.plugin.settings.ProjectsExtension
+import org.kordamp.gradle.plugin.settings.SettingsPlugin
 
 pluginManagement {
     repositories {
         mavenLocal()
         jcenter()
         gradlePluginPortal()
+    }
+
+    plugins {
+        kotlin("jvm") version "1.3.50"
+        val kordampPluginVersion = "0.29.0"
+        id("org.kordamp.gradle.project") version kordampPluginVersion
+        id("org.kordamp.gradle.integration-test") version kordampPluginVersion
+        id("org.sonarqube") version "2.8"
+        id("io.gitlab.arturbosch.detekt") version "1.1.1"
+        id("org.ajoberstar.reckon") version "0.11.0"
     }
 }
 buildscript {
@@ -13,12 +24,13 @@ buildscript {
         jcenter()
         gradlePluginPortal()
     }
+    val kordampPluginVersion = "0.29.0"
     dependencies {
-        classpath("org.kordamp.gradle:settings-gradle-plugin:0.29.0")
+        classpath("org.kordamp.gradle:settings-gradle-plugin:$kordampPluginVersion")
     }
 }
 
-apply(plugin = "org.kordamp.gradle.settings")
+apply<SettingsPlugin>()
 
 rootProject.name = "JRis"
 

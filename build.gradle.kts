@@ -2,13 +2,13 @@ import org.kordamp.gradle.plugin.integrationtest.IntegrationTestPlugin
 import org.sonarqube.gradle.SonarQubeTask
 
 plugins {
-    kotlin("jvm") version "1.3.50"
-    id("org.kordamp.gradle.project") version "0.29.0"
-    id("org.kordamp.gradle.integration-test") version "0.29.0" apply false
+    kotlin("jvm")
+    id("org.kordamp.gradle.project")
+    id("org.kordamp.gradle.integration-test") apply false
     java
-    id("org.sonarqube") version "2.8"
-//    id("io.gitlab.arturbosch.detekt") version "1.1.1"
-    id("org.ajoberstar.reckon") version "0.11.0"
+    id("org.sonarqube")
+//    id("io.gitlab.arturbosch.detekt")
+    id("org.ajoberstar.reckon")
 }
 
 config {
@@ -73,17 +73,17 @@ subprojects {
     apply<IntegrationTestPlugin>()
 
     dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
+        implementation(Lib.kotlin("stdlib-jdk8"))
+        implementation(Lib.kotlin("reflect"))
+        implementation(Lib.kotlinx("coroutines-core"))
 
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
-        testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.8")
-        testImplementation("io.mockk:mockk:1.9.3")
-        testImplementation("org.amshove.kluent:kluent:1.55")
+        implementation(Lib.junit5("api"))
+        implementation(Lib.spek("dsl-jvm"))
+        implementation(Lib.mockk())
+        implementation(Lib.kluent())
 
-        testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:2.0.8")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+        testRuntimeOnly(Lib.junit5("engine"))
+        testRuntimeOnly(Lib.spek("runner-junit5"))
     }
 
     tasks {
