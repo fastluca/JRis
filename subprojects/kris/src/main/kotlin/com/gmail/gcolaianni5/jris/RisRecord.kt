@@ -26,7 +26,7 @@ data class RisRecord @JvmOverloads constructor(
     val subsidiaryAuthors: MutableList<String> = mutableListOf(),
 
     /** AU */
-    var authors: MutableList<String> = mutableListOf(),
+    val authors: MutableList<String> = mutableListOf(),
 
     /** AB */
     var abstr: String? = null,
