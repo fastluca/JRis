@@ -12,7 +12,7 @@ pluginManagement {
 
     plugins {
         kotlin("jvm") version "1.3.50"
-        val kordampPluginVersion = "0.29.0"
+        val kordampPluginVersion = "0.30.0-SNAPSHOT"
         id("org.kordamp.gradle.project") version kordampPluginVersion
         id("org.kordamp.gradle.integration-test") version kordampPluginVersion
         id("org.kordamp.gradle.guide") version kordampPluginVersion
@@ -27,7 +27,7 @@ buildscript {
         jcenter()
         gradlePluginPortal()
     }
-    val kordampPluginVersion = "0.29.0"
+    val kordampPluginVersion = "0.30.0-SNAPSHOT"
     dependencies {
         classpath("org.kordamp.gradle:settings-gradle-plugin:$kordampPluginVersion")
     }

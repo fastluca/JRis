@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import org.kordamp.gradle.plugin.integrationtest.IntegrationTestPlugin
 import org.sonarqube.gradle.SonarQubeTask
@@ -5,8 +6,8 @@ import org.sonarqube.gradle.SonarQubeTask
 plugins {
     kotlin("jvm")
     id("org.kordamp.gradle.project")
-    id("org.kordamp.gradle.integration-test") apply false
     java
+    id("org.kordamp.gradle.integration-test") apply false
     id("org.sonarqube")
     id("io.gitlab.arturbosch.detekt")
     id("org.ajoberstar.reckon")
@@ -48,14 +49,6 @@ config {
             }
         }
     }
-
-    jacoco {
-        enabled = true
-        mergeExecFile = File("${project.buildDir}/jacoco/root.exec")
-        mergeReportXmlFile = File("reports/jacoco/root/jacocoTestReport.xml")
-        additionalSourceDirs.setFrom("integration-test")
-    }
-
 }
 
 allprojects {
@@ -88,10 +81,10 @@ subprojects {
         implementation(Lib.kotlin("reflect"))
         implementation(Lib.kotlinx("coroutines-core"))
 
-        implementation(Lib.junit5("api"))
-        implementation(Lib.spek("dsl-jvm"))
-        implementation(Lib.mockk())
-        implementation(Lib.kluent())
+        testImplementation(Lib.junit5("api"))
+        testImplementation(Lib.spek("dsl-jvm"))
+        testImplementation(Lib.mockk())
+        testImplementation(Lib.kluent())
 
         testRuntimeOnly(Lib.junit5("engine"))
         testRuntimeOnly(Lib.spek("runner-junit5"))
@@ -99,35 +92,13 @@ subprojects {
 
     tasks {
         withType<Test> {
+            @Suppress("UnstableApiUsage")
             useJUnitPlatform {
                 includeEngines("junit-jupiter", "spek2")
             }
         }
     }
 
-    detekt {
-        failFast = false
-        buildUponDefaultConfig = true
-        config = files("$rootDir/detekt-config.yml")
-        baseline = file("detekt-baseline.xml")
-
-        reports {
-            xml.enabled = true
-            html.enabled = true
-        }
-    }
-}
-
-//val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
-
-sonarqube {
-    properties {
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.projectKey", "ursjoss_JRis")
-        property("sonar.organization", "ursjoss-github")
-//        property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
-        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
-    }
 }
 
 reckon {
@@ -136,11 +107,44 @@ reckon {
 }
 
 tasks {
+    withType<Detekt> {
+        config.setFrom("${rootProject.projectDir}/detekt-config.yml")
+        baseline.set(File("${rootProject.projectDir}/detekt-baseline.xml"))
+        source = fileTree(rootProject.projectDir)
+        include("**/*.kt")
+        include("**/*.kts")
+        exclude("**/resources/")
+        exclude("**/build/")
+        reports {
+            html {
+                enabled = true
+                destination = file("${rootProject.buildDir}/reports/detekt.html")
+            }
+            xml {
+                enabled = true
+                destination = file("${rootProject.buildDir}/reports/detekt.xml")
+            }
+        }
+    }
     withType<SonarQubeTask> {
         description = "Push jacoco analysis to sonarcloud."
         group = "Verification"
-        dependsOn(subprojects.map { it.tasks.getByName("integrationTest") })
-        dependsOn(subprojects.map { it.tasks.getByName("jacocoTestReport") })
-        dependsOn(subprojects.filterNot { it.name.contains("java") }.map { it.tasks.getByName("detekt") })
+        subprojects.filter { it.name == "kris" }.forEach {
+            dependsOn("${it.path}:integrationTest")
+            dependsOn("${it.path}:jacocoTestReport")
+        }
+        dependsOn("detekt")
+        dependsOn("jacocoRootReport")
+    }
+}
+
+
+sonarqube {
+    properties {
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.projectKey", "ursjoss_JRis")
+        property("sonar.organization", "ursjoss-github")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/root/jacocoTestReport.xml")
+        property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt.xml")
     }
 }
