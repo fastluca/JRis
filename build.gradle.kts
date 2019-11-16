@@ -108,8 +108,14 @@ reckon {
 
 tasks {
     withType<Detekt> {
-        config.setFrom("${rootProject.projectDir}/detekt-config.yml")
-        baseline.set(File("${rootProject.projectDir}/detekt-baseline.xml"))
+        buildUponDefaultConfig = true
+        failFast = false
+        file("${rootProject.projectDir}/detekt-config.yml").takeIf { it.exists() }?.let {
+            config.setFrom(it)
+        }
+        file("${rootProject.projectDir}/detekt-baseline.xml").takeIf { it.exists() }?.let {
+            baseline.set(it)
+        }
         source = fileTree(rootProject.projectDir)
         include("**/*.kt")
         include("**/*.kts")
