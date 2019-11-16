@@ -15,11 +15,11 @@ import java.io.File
 object KrisIoUsageImportSpec : Spek({
 
     describe("importing from file") {
-        val file by memoized { File.createTempFile("kris1", null, null) }
-
-        beforeEachTest {
-            file.build(listOf(RisRecord(type = RisType.JOUR)))
-            file.deleteOnExit()
+        val file by memoized {
+            File.createTempFile("kris1", null, null).also {
+                it.build(listOf(RisRecord(type = RisType.JOUR)))
+                it.deleteOnExit()
+            }
         }
 
         it("can read from File") {
@@ -27,15 +27,18 @@ object KrisIoUsageImportSpec : Spek({
         }
 
         it("can read from Reader") {
-            file.bufferedReader().process() shouldHaveSize 1
+            val bufferedReader = file.bufferedReader()
+            bufferedReader.process() shouldHaveSize 1
         }
 
         it("can read from stream") {
-            file.inputStream().process() shouldHaveSize 1
+            val inputStream = file.inputStream()
+            inputStream.process() shouldHaveSize 1
         }
 
         it("can read from path") {
-            file.path.process() shouldHaveSize 1
+            val path = file.path
+            path.process() shouldHaveSize 1
         }
     }
 })

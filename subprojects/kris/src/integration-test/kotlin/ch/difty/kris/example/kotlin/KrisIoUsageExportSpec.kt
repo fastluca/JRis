@@ -15,31 +15,34 @@ import java.io.File
 object KrisIoUsageExportSpec : Spek({
 
     describe("exporting into file") {
-        val file by memoized { File.createTempFile("kris2", null, null) }
+        val file by memoized { File.createTempFile("kris2", null, null).also { it.deleteOnExit() } }
         val records = listOf(RisRecord(type = RisType.ABST))
-
-        beforeEachTest {
-            file.deleteOnExit()
-        }
 
         it("can write to File") {
             file.build(records)
-            file.path.process() shouldHaveSize records.size
+            records.assertRecordsWereWrittenTo(file)
         }
 
         it("can write to writer") {
-            file.bufferedWriter().build(records)
-            file.path.process() shouldHaveSize records.size
+            val bufferedWriter = file.bufferedWriter()
+            bufferedWriter.build(records)
+            records.assertRecordsWereWrittenTo(file)
         }
 
         it("can write to stream") {
-            file.outputStream().build(records)
-            file.path.process() shouldHaveSize records.size
+            val outputStream = file.outputStream()
+            outputStream.build(records)
+            records.assertRecordsWereWrittenTo(file)
         }
 
         it("can read from path") {
-            file.path.build(records)
-            file.path.process() shouldHaveSize records.size
+            val path = file.path
+            path.build(records)
+            records.assertRecordsWereWrittenTo(file)
         }
     }
 })
+
+private fun List<RisRecord>.assertRecordsWereWrittenTo(file: File) {
+    file.path.process() shouldHaveSize size
+}
