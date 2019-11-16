@@ -196,6 +196,7 @@ object RisRecordSpec : Spek({
     }
 })
 
+@Suppress("LongMethod")
 private fun Suite.assertDefaultValues(record: RisRecord) {
     mapOf(
         "type" to record.type,
@@ -291,6 +292,7 @@ private fun Suite.assertDefaultValues(record: RisRecord) {
     }
 }
 
+@Suppress("LongMethod")
 private fun Suite.assertSpecifiedValues(record: RisRecord) {
     mapOf(
         RisType.ABST.toString() to record.type,
