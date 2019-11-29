@@ -11,14 +11,14 @@ pluginManagement {
     }
 
     plugins {
-        kotlin("jvm") version "1.3.50"
-        val kordampPluginVersion = "0.30.0-SNAPSHOT"
+        kotlin("jvm") version "1.3.61"
+        val kordampPluginVersion = "0.30.2"
         id("org.kordamp.gradle.project") version kordampPluginVersion
         id("org.kordamp.gradle.integration-test") version kordampPluginVersion
         id("org.kordamp.gradle.guide") version kordampPluginVersion
         id("org.sonarqube") version "2.8"
-        id("io.gitlab.arturbosch.detekt") version "1.1.1"
-        id("org.ajoberstar.reckon") version "0.11.0"
+        id("io.gitlab.arturbosch.detekt") version "1.2.0"
+        id("org.ajoberstar.reckon") version "0.12.0"
     }
 }
 buildscript {
@@ -27,7 +27,7 @@ buildscript {
         jcenter()
         gradlePluginPortal()
     }
-    val kordampPluginVersion = "0.30.0-SNAPSHOT"
+    val kordampPluginVersion = "0.30.2"
     dependencies {
         classpath("org.kordamp.gradle:settings-gradle-plugin:$kordampPluginVersion")
     }
