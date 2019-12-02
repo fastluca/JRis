@@ -66,9 +66,11 @@ enum class RisTag(
     JF("Journal/Periodical name: full format.", maxLength = 255),
     JO("Journal/Periodical name: full format.", maxLength = 255),
     KW("Keywords", kClass = List::class),
-    // URL addresses can be entered individually, one per tag or multiple addresses can be entered on one line using a semi-colon as a separator.
+    // URL addresses can be entered individually, one per tag or
+    // multiple addresses can be entered on one line using a semi-colon as a separator.
     L1("Link to PDF.", kClass = List::class),
-    // URL addresses can be entered individually, one per tag or multiple addresses can be entered on one line using a semi-colon as a separator.
+    // URL addresses can be entered individually, one per tag or
+    // multiple addresses can be entered on one line using a semi-colon as a separator.
     L2("Link to Full-text.", kClass = List::class),
     L3("Related Records.", kClass = List::class),
     L4("Image(s).", kClass = List::class),
@@ -79,7 +81,8 @@ enum class RisTag(
     M2("Miscellaneous 2."),
     M3("Type of Work"),
     N1("Notes"),
-    //  This is a free text field and can contain alphanumeric characters. There is no practical length limit to this field.
+    //  This is a free text field and can contain alphanumeric characters.
+    //  There is no practical length limit to this field.
     N2("Abstract."),
     NV("Number of Volumes"),
     OP("Original Publication"),
