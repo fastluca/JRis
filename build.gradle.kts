@@ -103,7 +103,7 @@ subprojects {
 
 reckon {
     scopeFromProp()
-    snapshotFromProp()
+    stageFromProp("beta", "rc", "final")
 }
 
 tasks {
