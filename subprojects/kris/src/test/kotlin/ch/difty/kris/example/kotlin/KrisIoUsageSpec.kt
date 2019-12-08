@@ -3,7 +3,7 @@ package ch.difty.kris.example.kotlin
 import com.gmail.gcolaianni5.jris.JRisIO
 import com.gmail.gcolaianni5.jris.RisRecord
 import com.gmail.gcolaianni5.jris.RisType
-import com.gmail.gcolaianni5.jris.build
+import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.process
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -21,7 +21,7 @@ object KrisIoUsageSpec : Spek({
     describe("importing from file") {
         val file by memoized {
             File.createTempFile("kris1", null, null).apply {
-                build(listOf(RisRecord(type = RisType.JOUR)))
+                accept(listOf(RisRecord(type = RisType.JOUR)))
                 deleteOnExit()
             }
         }
@@ -63,48 +63,48 @@ object KrisIoUsageSpec : Spek({
             val records = listOf(RisRecord(type = RisType.ABST, typeOfWork = "tow", abstr = "abstr", language = "lang", databaseProvider = "dp"))
 
             it("can write to File") {
-                file.build(records)
+                file.accept(records)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can write to File with custom sort") {
-                file.build(records, customSort)
+                file.accept(records, customSort)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can write to writer") {
-                file.bufferedWriter().build(records)
+                file.bufferedWriter().accept(records)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can write to writer with custom sort") {
-                file.bufferedWriter().build(records, customSort)
+                file.bufferedWriter().accept(records, customSort)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can write to stream") {
-                file.outputStream().build(records)
+                file.outputStream().accept(records)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can write to stream with custom sort") {
-                file.outputStream().build(records, customSort)
+                file.outputStream().accept(records, customSort)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can read from path") {
-                file.path.build(records)
+                file.path.accept(records)
                 file.path.process() shouldHaveSize records.size
             }
 
             it("can read from path with custom sort") {
-                file.path.build(records, customSort)
+                file.path.accept(records, customSort)
                 file.path.process() shouldHaveSize records.size
             }
 
             describe("without explicit sort") {
                 it("writes TY first, EL last and remainder alphabetically") {
-                    file.path.build(records)
+                    file.path.accept(records)
                     val fileContent = file.readText()
                     fileContent shouldEqual """TY  - ABST
                     |AB  - abstr
@@ -118,7 +118,7 @@ object KrisIoUsageSpec : Spek({
 
             describe("with explicit sort") {
                 it("writes TY first, EL last, then according to sort and remainder alphabetically") {
-                    file.path.build(records, listOf("M3", "AB"))
+                    file.path.accept(records, listOf("M3", "AB"))
                     val fileContent = file.readText()
                     fileContent shouldEqual """TY  - ABST
                     |M3  - tow

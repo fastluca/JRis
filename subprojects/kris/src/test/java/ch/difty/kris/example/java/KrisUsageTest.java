@@ -79,7 +79,7 @@ class KrisUsageTest {
     }
 
     @Test
-    void whenProcessingRisRecordsAsObservable_willReturnObservableOfRisLines() {
+    void whenProcessingRisRecordsAsObservable_willReturnObservableOfString() {
         final List<String> risLines = new ArrayList<>();
 
         final Observable<RisRecord> observable = Observable.fromIterable(risRecords);

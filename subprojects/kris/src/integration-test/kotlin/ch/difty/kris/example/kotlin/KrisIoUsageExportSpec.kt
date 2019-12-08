@@ -2,7 +2,7 @@ package ch.difty.kris.example.kotlin
 
 import com.gmail.gcolaianni5.jris.RisRecord
 import com.gmail.gcolaianni5.jris.RisType
-import com.gmail.gcolaianni5.jris.build
+import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.process
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.amshove.kluent.shouldHaveSize
@@ -19,25 +19,25 @@ object KrisIoUsageExportSpec : Spek({
         val records = listOf(RisRecord(type = RisType.ABST))
 
         it("can write to File") {
-            file.build(records)
+            file.accept(records)
             records.assertRecordsWereWrittenTo(file)
         }
 
         it("can write to writer") {
             val bufferedWriter = file.bufferedWriter()
-            bufferedWriter.build(records)
+            bufferedWriter.accept(records)
             records.assertRecordsWereWrittenTo(file)
         }
 
         it("can write to stream") {
             val outputStream = file.outputStream()
-            outputStream.build(records)
+            outputStream.accept(records)
             records.assertRecordsWereWrittenTo(file)
         }
 
         it("can read from path") {
             val path = file.path
-            path.build(records)
+            path.accept(records)
             records.assertRecordsWereWrittenTo(file)
         }
     }

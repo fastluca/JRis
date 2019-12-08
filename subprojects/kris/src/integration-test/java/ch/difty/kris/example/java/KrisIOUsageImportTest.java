@@ -25,7 +25,7 @@ class KrisIOUsageImportTest {
         // create sample file to import
         file = File.createTempFile("kris1", null, null);
         file.deleteOnExit();
-        JRisIO.build(records, file);
+        JRisIO.export(records, file);
     }
 
     @Test

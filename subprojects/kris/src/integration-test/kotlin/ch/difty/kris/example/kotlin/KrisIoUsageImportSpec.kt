@@ -2,7 +2,7 @@ package ch.difty.kris.example.kotlin
 
 import com.gmail.gcolaianni5.jris.RisRecord
 import com.gmail.gcolaianni5.jris.RisType
-import com.gmail.gcolaianni5.jris.build
+import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.process
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.amshove.kluent.shouldHaveSize
@@ -17,7 +17,7 @@ object KrisIoUsageImportSpec : Spek({
     describe("importing from file") {
         val file by memoized {
             File.createTempFile("kris1", null, null).also {
-                it.build(listOf(RisRecord(type = RisType.JOUR)))
+                it.accept(listOf(RisRecord(type = RisType.JOUR)))
                 it.deleteOnExit()
             }
         }

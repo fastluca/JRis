@@ -77,7 +77,7 @@ object JRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun build(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
+    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
         writer.use { w ->
             runBlocking(Dispatchers.IO) {
                 JRis.build(records.asFlow(), sort).toList().forEach { line ->
@@ -95,9 +95,9 @@ object JRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun build(records: List<RisRecord>, sort: List<String> = emptyList(), file: File) {
+    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), file: File) {
         FileWriter(file).use { fileWriter ->
-            build(records, sort, fileWriter)
+            export(records, sort, fileWriter)
         }
     }
 
@@ -109,9 +109,9 @@ object JRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun build(records: List<RisRecord>, sort: List<String> = emptyList(), out: OutputStream) {
+    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), out: OutputStream) {
         OutputStreamWriter(out).use { writer ->
-            build(records, sort, writer)
+            export(records, sort, writer)
         }
     }
 
@@ -123,9 +123,9 @@ object JRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun build(records: List<RisRecord>, sort: List<String> = emptyList(), filePath: String) {
+    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), filePath: String) {
         FileOutputStream(filePath).use {
-            build(records, sort, it)
+            export(records, sort, it)
         }
     }
 
@@ -139,6 +139,7 @@ object JRisIO {
  * May throw an [IOException] if the reader fails to deliver lines or a [JRisException]
  * if the lines cannot be parsed successfully.
  */
+@ExperimentalCoroutinesApi
 fun Reader.process() = JRisIO.process(this)
 
 /**
@@ -146,6 +147,7 @@ fun Reader.process() = JRisIO.process(this)
  * May throw an [IOException] if the file cannot be read successfully.
  * or a [JRisException] if the lines cannot be parsed successfully.
  */
+@ExperimentalCoroutinesApi
 fun File.process() = JRisIO.process(this)
 
 /**
@@ -153,6 +155,7 @@ fun File.process() = JRisIO.process(this)
  * May throw an [IOException] if the file cannot be read successfully.
  * or a [JRisException] if the lines cannot be parsed successfully.
  */
+@ExperimentalCoroutinesApi
 fun String.process() = JRisIO.process(this)
 
 /**
@@ -160,6 +163,7 @@ fun String.process() = JRisIO.process(this)
  * May throw an [IOException] if the stream cannot be read successfully.
  * or a [JRisException] if the lines cannot be parsed successfully.
  */
+@ExperimentalCoroutinesApi
 fun InputStream.process() = JRisIO.process(this)
 
 //endregion
@@ -171,27 +175,31 @@ fun InputStream.process() = JRisIO.process(this)
  * [Writer] provided as receiver. Optionally accepts a list of names of [RisTag]s defining a sort order for
  * the [RisTag]s in the file.
  */
-fun Writer.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+@ExperimentalCoroutinesApi
+fun Writer.accept(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.export(records, sort, this)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into the [File]
  * provided as receiver. Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s
  * in the file.
  */
-fun File.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+@ExperimentalCoroutinesApi
+fun File.accept(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.export(records, sort, this)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into
  * the [OutputStream] provided as receiver. Optionally accepts a list of names of [RisTag]s defining a sort order
  * for the [RisTag]s in the file.
  */
-fun OutputStream.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+@ExperimentalCoroutinesApi
+fun OutputStream.accept(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.export(records, sort, this)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into file with
  * the path provided as the receiver, if possible.
  * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
  */
-fun String.build(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.build(records, sort, this)
+@ExperimentalCoroutinesApi
+fun String.accept(records: List<RisRecord>, sort: List<String> = emptyList()) = JRisIO.export(records, sort, this)
 
 //endregion

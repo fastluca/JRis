@@ -20,6 +20,10 @@ import java.nio.channels.ClosedChannelException
 @ExperimentalCoroutinesApi
 fun Flow<String>.toRisRecords(): Flow<RisRecord> = JRis.process(this)
 
+
+@ExperimentalCoroutinesApi
+fun List<String>.toRisRecords(): List<RisRecord> = JRis.processList(this)
+
 /**
  * Converts a sequence of Strings (representing lines in a RIS file) (as receiver) into a sequence of [RisRecord]s
  * in a blocking manner. May throw a [JRisException] if the line flow cannot be parsed successfully.
@@ -45,9 +49,6 @@ fun Sequence<String>.toRisRecords(): Sequence<RisRecord> {
 //endregion
 
 //region:export - RisRecords -> RISFile lines
-
-
-//endregion
 
 /**
  * Converts a flow of [RisRecord]s into a flow of [String]s in RIS file format.

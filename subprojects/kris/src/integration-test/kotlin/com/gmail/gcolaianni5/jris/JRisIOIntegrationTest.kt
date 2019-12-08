@@ -55,7 +55,7 @@ internal class JRisIOIntegrationTest {
     fun `can write to writer`() {
         val tmpFile = File.createTempFile("jris1", null, null)
         tmpFile.deleteOnExit()
-        tmpFile.bufferedWriter().build(records)
+        tmpFile.bufferedWriter().accept(records)
         tmpFile.process() shouldHaveSize records.size
     }
 
@@ -63,7 +63,7 @@ internal class JRisIOIntegrationTest {
     fun `can write to file`() {
         val tmpFile = File.createTempFile("jris2", null, null)
         tmpFile.deleteOnExit()
-        tmpFile.build(records)
+        tmpFile.accept(records)
         tmpFile.process() shouldHaveSize records.size
     }
 
@@ -71,7 +71,7 @@ internal class JRisIOIntegrationTest {
     fun `can write to stream`() {
         val tmpFile = File.createTempFile("jris3", null, null)
         tmpFile.deleteOnExit()
-        tmpFile.outputStream().build(records)
+        tmpFile.outputStream().accept(records)
         tmpFile.process() shouldHaveSize records.size
     }
 
@@ -80,7 +80,7 @@ internal class JRisIOIntegrationTest {
         val tmpFile = File.createTempFile("jris3", null, null)
         val path = tmpFile.path
         tmpFile.delete()
-        path.build(records)
+        path.accept(records)
         tmpFile.process() shouldHaveSize records.size
         tmpFile.delete()
     }

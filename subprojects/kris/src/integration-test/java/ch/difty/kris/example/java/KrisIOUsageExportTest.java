@@ -29,28 +29,28 @@ class KrisIOUsageExportTest {
 
     @Test
     void canExportToFile() throws Exception {
-        JRisIO.build(records, file);
+        JRisIO.export(records, file);
         assertThat(JRisIO.process(file)).hasSize(records.size());
     }
 
     @Test
     void canExportToWriter() throws Exception {
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        JRisIO.build(records, writer);
+        JRisIO.export(records, writer);
         assertThat(JRisIO.process(file)).hasSize(records.size());
     }
 
     @Test
     void canExportToStream() throws Exception {
         OutputStream stream = new FileOutputStream(file);
-        JRisIO.build(records, stream);
+        JRisIO.export(records, stream);
         assertThat(JRisIO.process(file)).hasSize(records.size());
     }
 
     @Test
     void canExportToPath() throws Exception {
         String path = file.getPath();
-        JRisIO.build(records, path);
+        JRisIO.export(records, path);
         assertThat(JRisIO.process(file)).hasSize(records.size());
     }
 }
