@@ -152,5 +152,6 @@ sonarqube {
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/root/jacocoTestReport.xml")
         property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt.xml")
+        property("sonar.exclusions", "**/src/test/**,**/src/integration-test/**")
     }
 }

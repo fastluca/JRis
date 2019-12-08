@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.gmail.gcolaianni5.jris
 
 import org.amshove.kluent.shouldBeEmpty
@@ -8,6 +10,7 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.Suite
 import org.spekframework.spek2.style.specification.describe
 
+@Suppress("unused")
 object RisRecordSpec : Spek({
 
     group("no values specified") {
@@ -23,7 +26,7 @@ object RisRecordSpec : Spek({
         }
     }
 
-    group("all values specified") {
+    group("with all values specified") {
         describe("given record as data class") {
             val record = RisRecord(
                 type = RisType.ABST,

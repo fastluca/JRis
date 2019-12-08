@@ -2,8 +2,9 @@ package com.gmail.gcolaianni5.jris
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.LinkedList
 
+@Suppress("SpellCheckingInspection")
 internal class RisRecordTest {
 
     /* testedClasses: RisRecord */

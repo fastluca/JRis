@@ -1,6 +1,12 @@
 package ch.difty.kris.example.kotlin
 
-import com.gmail.gcolaianni5.jris.*
+import com.gmail.gcolaianni5.jris.JRis
+import com.gmail.gcolaianni5.jris.RisRecord
+import com.gmail.gcolaianni5.jris.RisType
+import com.gmail.gcolaianni5.jris.toRisLines
+import com.gmail.gcolaianni5.jris.toRisRecords
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -11,7 +17,9 @@ import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
-@Suppress("SpellCheckingInspection")
+@ExperimentalCoroutinesApi
+@FlowPreview
+@Suppress("SpellCheckingInspection", "unused")
 @InternalCoroutinesApi
 object KrisUsageSpec : Spek({
 

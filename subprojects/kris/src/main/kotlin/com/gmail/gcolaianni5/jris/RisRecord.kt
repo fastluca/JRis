@@ -8,7 +8,7 @@ package com.gmail.gcolaianni5.jris
  * @since 22 apr 2017
  */
 @Suppress("ParameterListWrapping", "SpellCheckingInspection", "TooManyFunctions")
-data class RisRecord @JvmOverloads constructor(
+data class RisRecord(
 
     /** TY */
     var type: RisType? = null,
@@ -291,7 +291,7 @@ data class RisRecord @JvmOverloads constructor(
     var accessDate: String? = null
 
 ) {
-    // This whole bloating builder is only necessary for Java operatbility.
+    // This whole bloating builder is only necessary for Java inter-operability.
     data class Builder(
         var type: RisType? = null,
         val firstAuthors: MutableList<String> = mutableListOf(),
@@ -374,19 +374,19 @@ data class RisRecord @JvmOverloads constructor(
         var accessDate: String? = null) {
 
         fun type(type: RisType?) = apply { this.type = type }
-        fun firstAuthors(firstAuthors: MutableList<String>) =
+        fun firstAuthors(firstAuthors: List<String>) =
             apply { this.firstAuthors.clear(); this.firstAuthors.addAll(firstAuthors) }
 
-        fun secondaryAuthors(secondaryAuthors: MutableList<String>) =
+        fun secondaryAuthors(secondaryAuthors: List<String>) =
             apply { this.secondaryAuthors.clear(); this.secondaryAuthors.addAll(secondaryAuthors) }
 
-        fun tertiaryAuthors(tertiaryAuthors: MutableList<String>) =
+        fun tertiaryAuthors(tertiaryAuthors: List<String>) =
             apply { this.tertiaryAuthors.clear(); this.tertiaryAuthors.addAll(tertiaryAuthors) }
 
-        fun subsidiaryAuthors(subsidiaryAuthors: MutableList<String>) =
+        fun subsidiaryAuthors(subsidiaryAuthors: List<String>) =
             apply { this.subsidiaryAuthors.clear(); this.subsidiaryAuthors.addAll(subsidiaryAuthors) }
 
-        fun authors(authors: MutableList<String>) = apply { this.authors = authors }
+        fun authors(authors: List<String>) = apply { this.authors.clear(); this.authors.addAll(authors) }
         fun abstr(abstr: String?) = apply { this.abstr = abstr }
         fun authorAddress(authorAddress: String?) = apply { this.authorAddress = authorAddress }
         fun accessionNumber(accessionNumber: String?) = apply { this.accessionNumber = accessionNumber }
@@ -429,15 +429,15 @@ data class RisRecord @JvmOverloads constructor(
         fun periodicalNameFullFormatJO(periodicalNameFullFormatJO: String?) =
             apply { this.periodicalNameFullFormatJO = periodicalNameFullFormatJO }
 
-        fun keywords(keywords: MutableList<String>) = apply { this.keywords.clear(); this.keywords.addAll(keywords) }
-        fun pdfLinks(pdfLinks: MutableList<String>) = apply { this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks) }
-        fun fullTextLinks(fullTextLinks: MutableList<String>) =
+        fun keywords(keywords: List<String>) = apply { this.keywords.clear(); this.keywords.addAll(keywords) }
+        fun pdfLinks(pdfLinks: List<String>) = apply { this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks) }
+        fun fullTextLinks(fullTextLinks: List<String>) =
             apply { this.fullTextLinks.clear(); this.fullTextLinks.addAll(fullTextLinks) }
 
-        fun relatedRecords(relatedRecords: MutableList<String>) =
+        fun relatedRecords(relatedRecords: List<String>) =
             apply { this.relatedRecords.clear(); this.relatedRecords.addAll(relatedRecords) }
 
-        fun images(images: MutableList<String>) = apply { this.images.clear(); this.images.addAll(images) }
+        fun images(images: List<String>) = apply { this.images.clear(); this.images.addAll(images) }
         fun language(language: String?) = apply { this.language = language }
         fun label(label: String?) = apply { this.label = label }
         fun websiteLink(websiteLink: String?) = apply { this.websiteLink = websiteLink }
@@ -479,7 +479,7 @@ data class RisRecord @JvmOverloads constructor(
         fun primaryDate(primaryDate: String?) = apply { this.primaryDate = primaryDate }
         fun accessDate(accessDate: String?) = apply { this.accessDate = accessDate }
         @Suppress("LongMethod")
-        fun build() = RisRecord(type,
+        fun build(): RisRecord = RisRecord(type,
             firstAuthors,
             secondaryAuthors,
             tertiaryAuthors,
