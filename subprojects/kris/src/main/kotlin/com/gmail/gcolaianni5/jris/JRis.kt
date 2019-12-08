@@ -69,7 +69,7 @@ object JRis {
      * Returns the tag as context for parsing the next line.
      */
     private fun RisRecord.fillFrom(line: String, previousTag: RisTag?): RisTag? {
-        if (line.isEmpty() || line.length <= START_INDEX_VALUE + 1)
+        if (line.length <= START_INDEX_VALUE + 1)
             return previousTag
 
         val tagName = line.substring(0, TAG_LENGTH)
