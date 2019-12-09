@@ -12,7 +12,7 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
 @ExperimentalCoroutinesApi
-@Suppress("unused", "SpellCheckingInspection")
+@Suppress("unused", "SpellCheckingInspection", "S1192")
 object KrisParsingSpec : Spek({
 
     describe("with RIS file as list of strings") {

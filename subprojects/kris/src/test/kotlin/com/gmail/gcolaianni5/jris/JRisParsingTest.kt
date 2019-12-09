@@ -184,6 +184,7 @@ class JRisParsingTest {
 
     @ExperimentalCoroutinesApi
     @Test
+    @Suppress("S100")
     fun `can build risRecord with all fields`() {
         val lines = JRis.buildFromList(listOf(risRecord))
         lines.joinToString("") shouldEqual expected

@@ -1,3 +1,5 @@
+@file:Suppress("unused", "SpellCheckingInspection", "UNUSED_VARIABLE", "RedundantExplicitType")
+
 package ch.difty.kris.example.guide
 
 import com.gmail.gcolaianni5.jris.RisRecord
@@ -134,6 +136,7 @@ fun pathAcceptFlow() {
 
 //region file-records
 
+@ExperimentalCoroutinesApi
 @Suppress("UNUSED_VARIABLE")
 fun processReader() {
     // tag::processReader[]
@@ -144,6 +147,7 @@ fun processReader() {
 }
 //endregion
 
+@ExperimentalCoroutinesApi
 @Suppress("UNUSED_VARIABLE")
 fun processFile() {
     // tag::processFile[]
@@ -155,6 +159,7 @@ fun processFile() {
 //endregion
 
 
+@ExperimentalCoroutinesApi
 @Suppress("UNUSED_VARIABLE")
 fun processInputStream() {
     // tag::processInputStream[]
@@ -165,6 +170,7 @@ fun processInputStream() {
 }
 //endregion
 
+@ExperimentalCoroutinesApi
 @Suppress("UNUSED_VARIABLE")
 fun processPath() {
     // tag::processPath[]

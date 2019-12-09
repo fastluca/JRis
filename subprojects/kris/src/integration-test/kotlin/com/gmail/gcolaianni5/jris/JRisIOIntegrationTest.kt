@@ -9,7 +9,7 @@ private const val FILE_PATH = "src/integration-test/resources/sample.ris"
 private const val PAPER_COUNT = 3
 
 
-@Suppress("FunctionName")
+@Suppress("FunctionName", "S100")
 internal class JRisIOIntegrationTest {
 
     //region Importing
