@@ -1,0 +1,35 @@
+plugins {
+    id 'org.kordamp.gradle.guide'
+    id 'org.ajoberstar.git-publish'
+}
+
+configurations {
+    asciidoctorExtensions
+}
+
+guide {
+    groovydocApiDir = 'api'
+}
+
+asciidoctor {
+    configurations 'asciidoctorExtensions'
+    attributes = [
+            'gradle-version'    : project.gradle.gradleVersion,
+            'source-highlighter': 'prettify'
+    ]
+}
+
+afterEvaluate {
+    project.tasks.findByName('createGuide')
+
+    gitPublish {
+        repoUri = rootProject.extensions.findByName('config').info.links.scm
+        branch = 'gh-pages'
+        contents {
+            from project.tasks.findByName('createGuide').outputs.files
+        }
+        commitMessage = "Publish guide for $version"
+    }
+
+    gitPublishCommit.dependsOn(project.tasks.findByName('createGuide'))
+}
