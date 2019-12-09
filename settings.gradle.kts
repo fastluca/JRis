@@ -19,6 +19,7 @@ pluginManagement {
         id("org.sonarqube") version "2.8"
         id("io.gitlab.arturbosch.detekt") version "1.2.2"
         id("org.ajoberstar.reckon") version "0.12.0"
+        id("org.ajoberstar.git-publish") version "2.1.3-rc.1"
     }
 }
 buildscript {
