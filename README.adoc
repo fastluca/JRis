@@ -19,3 +19,6 @@ SpringerLink and Rayyan QCRI can export citations in this format.
 Major reference/citation manager applications, like Zotero, Mendeley, and EndNote can export
 and import citations in this format.
 ====
+
+
+More documentation can be found in the https://ursjoss.github.io/JRis/[Guide].
