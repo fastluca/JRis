@@ -1,0 +1,177 @@
+[[_kotlin_usage]]
+= Using `JRis` from Kotlin
+
+Using JRis from kotlin allows us to profit from syntactic sugar provided by kotlin like data classes with default arguments for creating RisRecords or extension functions with receivers for calling the actual export/import methods.
+
+[[_kotlin_usage_export]]
+== Export: RIS records -> text file
+
+Let's assume we have a number of bibliographic references we want to export them into a file in RIS format:
+We first have to convert each reference into a [RisRecord].
+
+.Instantiating bibliographic references as `RisRecord` [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=risRecords]
+----
+
+[[_kotlin_usage_export_blocking]]
+=== List: Blocking conversion
+
+We can convert the records as a list into a list of strings.
+This happens in a blocking manner and it is up to us what we want to do with the list of lines.
+
+.Converting a list of `RisRecords` in a blocking manner into a list of RIS lines [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=listToRisLines]
+----
+
+We may want to influence how the RIS tags are sorted in the file.
+We can do that by providing a list of RIS tag names (as string) in the order we'd like to have them in the file.
+
+.Converting a list of `RisRecords` applying custom sort in a blocking manner into a list of RIS lines [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=listToRisLinesWithSort]
+----
+
+[NOTE]
+====
+All the subsequent method calls optionally accept a list of RIS tag names, specifying the sort order.
+We will not explicitly mention this optional for the following examples.
+====
+
+If we want to write the list of lines into a file, we can do that manually, e.g.
+
+.Writing the list of lines into a file [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=writingToFileManually]
+----
+
+To make this process easier, JRis offers some extension functions providing some syntactic sugar.
+We can use the `accept` extension function with a writer, a file, an output stream or a path as receiver respectively:
+
+.Writing the list of `RisRecords` in a blocking manner into a buffered writer [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=writerAccept]
+----
+
+.Writing the list of `RisRecords` in a blocking manner into a file [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=fileAccept]
+----
+
+.Writing the list of `RisRecords` in a blocking manner into an output stream [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=streamAccept]
+----
+
+.Writing the list of `RisRecords` in a blocking manner into a path [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=pathAccept]
+----
+
+[[_kotlin_usage_export_nonblocking]]
+=== Flow: Non-Blocking conversion
+
+If you want to work with non-blocking reactive streams, you can work with flows:
+
+.Converting a flow of `RisRecords` in a non-blocking manner into a flow of Strings [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=flowToRisLines]
+----
+
+.Writing flow of RIS lines into file (example) [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=pathAcceptFlow]
+----
+
+[[_kotlin_usage_import]]
+== Import: Text file -> RIS records
+
+Assume we have a text file `import.ris` with one or more RIS records similar to the following example:
+
+.import.ris
+----
+TY  - JOUR
+AU  - Hjortebjerg,D.
+AU  - Nybo Andersen,AM.
+AU  - Ketzel,M.
+AU  - Raaschou-Nielsen,O.
+AU  - Sørensen,M.
+PY  - 2018
+TI  - Exposure to traffic noise and air pollution and risk for febrile seizure: a cohort study.
+JO  - Scand J Work Environ Health. 2018 Mar 25. pii: 3724. doi.
+ID  - 29574476
+DO  - 10.5271/sjweh.3724
+M1  - 9300
+L2  - https://www.ncbi.nlm.nih.gov/pubmed/29574476
+ER  -
+----
+
+[[_kotlin_usage_import_file]]
+=== Reading from File
+
+If we have a reader, file, input stream or simply the path of the file, we can use the method `process` on the receiver.
+We will receive a list of [RisRecord] instances.
+
+.Reading RIS records from BufferedReader [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=processReader]
+----
+
+.Reading RIS records from File [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=processFile]
+----
+
+.Reading RIS records from InputStream [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=processInputStream]
+----
+
+.Reading RIS records from Path [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=processPath]
+----
+
+[[_kotlin_usage_import_memory]]
+=== RIS file lines in memory
+
+[[_kotlin_usage_import_memory_blocking]]
+==== Lists/Sequences: blocking conversion
+
+In case we have the file content already in memory, we can pass it as a list or sequence.
+
+.Processing RIS records as list of strings [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=passRisLinesAsList]
+----
+
+.Processing RIS records as sequence of strings [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=passRisLinesAsSequence]
+----
+
+[[_kotlin_usage_import_memory_nonblocking]]
+==== Flow: non-blocking conversion
+
+.Processing RIS records as flow of strings [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris/src/test/kotlin/ch/difty/kris/example/guide/GuideExamples.kt[tags=passRisLinesAsFlow]
+----

@@ -1,0 +1,157 @@
+[[_java_usage]]
+= Using `JRis` from Java
+
+Building RisRecords in Java is more cumbersome than in kotlin, as we cannot simply use the default arguments of the data class or compfortably use extension functions.
+
+[[_java_export]]
+== Export: RIS records -> text file
+
+We can however use the builder to only specify the fields we actually need.
+
+.Instantiating bibliographic references as `RisRecord` [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=risRecords]
+----
+
+[[_java_export_blocking]]
+=== List: Blocking conversion
+
+We can convert the records as a list into a list of strings.
+This happens in a blocking manner and it is up to us what we want to do with the list of lines.
+
+.Converting a list of `RisRecords` in a blocking manner into a list of RIS lines [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=fromList]
+----
+
+We may want to influence how the RIS tags are sorted in the file.
+We can do that by providing a list of RIS tag names (as string) in the order we'd like to have them in the file.
+
+.Converting a list of `RisRecords` applying custom sort in a blocking manner into a list of RIS lines [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=fromListCustomSort]
+----
+
+[NOTE]
+====
+All the subsequent method calls optionally accept a list of RIS tag names, specifying the sort order.
+We will not explicitly mention this optional for the following examples.
+====
+
+[[_java_export_nonblocking]]
+=== Observable: Non-blocking conversion
+
+Working with JRis in non-blocking manner in Java involves RxJava2.
+
+.Converting an observable of `RisRecords` in non-blocking manner into a file [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=fromObservable]
+----
+
+To make the process of exporting to files easier, JRis offers some dedicated functions in the utility class `JRisIO`.
+We can use the `export` functions with a writer, a file, an output stream or a path as receiver respectively:
+
+.Writing the list of `RisRecords` in a blocking manner into a buffered writer [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=writerExport]
+----
+
+.Writing the list of `RisRecords` in a blocking manner into a file [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=fileExport]
+----
+
+.Writing the list of `RisRecords` in a blocking manner into an output stream [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=streamExport]
+----
+
+.Writing the list of `RisRecords` in a blocking manner into a path [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=pathExport]
+----
+
+[[_java_import]]
+== Import: Text file -> RIS records
+
+Assume we have a text file `import.ris` with one or more RIS records similar to the following example:
+
+.import.ris
+----
+TY  - JOUR
+AU  - Hjortebjerg,D.
+AU  - Nybo Andersen,AM.
+AU  - Ketzel,M.
+AU  - Raaschou-Nielsen,O.
+AU  - Sørensen,M.
+PY  - 2018
+TI  - Exposure to traffic noise and air pollution and risk for febrile seizure: a cohort study.
+JO  - Scand J Work Environ Health. 2018 Mar 25. pii: 3724. doi.
+ID  - 29574476
+DO  - 10.5271/sjweh.3724
+M1  - 9300
+L2  - https://www.ncbi.nlm.nih.gov/pubmed/29574476
+ER  -
+----
+
+
+[[_java_import_file]]
+=== Reading from File
+
+If we have a reader, file, input stream or simply the path of the file, we can use the method `process` on `JRisIO`.
+We will receive a list of [RisRecord] instances.
+
+.Reading RIS records from BufferedReader [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=processReader]
+----
+
+.Reading RIS records from File [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=processFile]
+----
+
+.Reading RIS records from InputStream [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=processInputStream]
+----
+
+.Reading RIS records from Path [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=processPath]
+----
+
+[[_java_import_memory]]
+=== RIS file lines in memory
+
+[[_java_import_memory_blocking]]
+==== Lists: Blocking conversion
+
+In case we have the file content already in memory, we can pass it as a list.
+
+.Processing RIS records as list of strings [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=passRisLinesAsList]
+----
+
+[[_java_import_memory_nonblocking]]
+==== Observable : Non-blocking conversion
+
+.Converting an observable of ris line strings in non-blocking manner into RisRecords [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris/src/test/java/ch/difty/kris/example/guide/GuideExamples.java[tags=processObservables]
+----
