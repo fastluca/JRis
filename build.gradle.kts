@@ -29,13 +29,13 @@ config {
         }
         people {
             person {
-                id = "ursjoss"
-                name = "Urs Joss"
+                id = "fastluca"
+                name = "Gianluca Colaianni"
                 roles = listOf("developer")
             }
             person {
-                id = "fastluca"
-                name = "Gianluca Colaianni"
+                id = "ursjoss"
+                name = "Urs Joss"
                 roles = listOf("developer")
             }
         }
@@ -135,7 +135,7 @@ tasks {
     withType<SonarQubeTask> {
         description = "Push jacoco analysis to sonarcloud."
         group = "Verification"
-        subprojects.filter { it.name == "kris" }.forEach {
+        subprojects.forEach {
             dependsOn("${it.path}:integrationTest")
             dependsOn("${it.path}:jacocoTestReport")
         }
