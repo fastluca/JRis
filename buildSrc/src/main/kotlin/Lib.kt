@@ -15,7 +15,7 @@ object Lib {
     fun junit5(module: String = "") =
         Dep("org.junit.jupiter", "junit-jupiter${if (module.isNotBlank()) "-$module" else ""}", "5.5.2")
 
-    fun spek(module: String) = Dep("org.spekframework.spek2", "spek-$module", "2.0.8")
+    fun spek(module: String) = Dep("org.spekframework.spek2", "spek-$module", "2.0.9")
     fun mockk() = Dep("io.mockk", "mockk", "1.9.3")
     fun kluent() = Dep("org.amshove.kluent", "kluent", "1.58")
     fun assertJ() = Dep("org.assertj", "assertj-core", "3.14.0")
