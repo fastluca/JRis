@@ -7,7 +7,7 @@ object Lib {
     private const val kotlinVersion = "1.3.61"
 
     fun kotlin(module: String) = Dep("org.jetbrains.kotlin:kotlin-$module", kotlinVersion)
-    fun kotlinx(module: String) = Dep("org.jetbrains.kotlinx:kotlinx-$module", "1.3.2")
+    fun kotlinx(module: String) = Dep("org.jetbrains.kotlinx:kotlinx-$module", "1.3.3")
 
     fun rxjava2() = Dep("io.reactivex.rxjava2:rxjava", "2.2.15")
     fun rxkotlin() = Dep("io.reactivex.rxjava2:rxkotlin", "2.4.0")
