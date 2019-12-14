@@ -1,4 +1,4 @@
-package com.gmail.gcolaiann5.jris.example.guide;
+package com.gmail.gcolaianni5.jris.example.guide;
 
 import java.io.*;
 import java.util.ArrayList;
