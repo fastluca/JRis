@@ -479,7 +479,8 @@ data class RisRecord(
         fun primaryDate(primaryDate: String?) = apply { this.primaryDate = primaryDate }
         fun accessDate(accessDate: String?) = apply { this.accessDate = accessDate }
         @Suppress("LongMethod")
-        fun build(): RisRecord = RisRecord(type,
+        fun build(): RisRecord = RisRecord(
+            type,
             firstAuthors,
             secondaryAuthors,
             tertiaryAuthors,
