@@ -1,6 +1,6 @@
 @file:Suppress("unused", "SpellCheckingInspection", "UNUSED_VARIABLE", "RedundantExplicitType")
 
-package com.gmail.gcolaiann5.jris.example.guide
+package com.gmail.gcolaianni5.jris.example.guide
 
 import com.gmail.gcolaianni5.jris.RisRecord
 import com.gmail.gcolaianni5.jris.RisType

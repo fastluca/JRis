@@ -1,15 +1,17 @@
-package com.gmail.gcolaiann5.jris.example.kotlin
+package com.gmail.gcolaianni5.jris.example.kotlin
 
 import com.gmail.gcolaianni5.jris.RisRecord
 import com.gmail.gcolaianni5.jris.RisType
 import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.process
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
+@ExperimentalCoroutinesApi
 @Suppress("SpellCheckingInspection")
 @InternalCoroutinesApi
 object JRisIoUsageExportSpec : Spek({
@@ -43,6 +45,7 @@ object JRisIoUsageExportSpec : Spek({
     }
 })
 
+@ExperimentalCoroutinesApi
 private fun List<RisRecord>.assertRecordsWereWrittenTo(file: File) {
     file.path.process() shouldHaveSize size
 }

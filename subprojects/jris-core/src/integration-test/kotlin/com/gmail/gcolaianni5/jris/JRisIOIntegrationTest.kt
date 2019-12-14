@@ -1,5 +1,6 @@
 package com.gmail.gcolaianni5.jris
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.amshove.kluent.shouldContainAll
 import org.amshove.kluent.shouldHaveSize
 import org.junit.jupiter.api.Test
@@ -8,8 +9,8 @@ import java.io.File
 private const val FILE_PATH = "src/integration-test/resources/sample.ris"
 private const val PAPER_COUNT = 3
 
-
-@Suppress("FunctionName", "S100")
+@ExperimentalCoroutinesApi
+@Suppress("FunctionName", "S100", "SpellCheckingInspection")
 internal class JRisIOIntegrationTest {
 
     //region Importing
@@ -77,7 +78,7 @@ internal class JRisIOIntegrationTest {
 
     @Test
     fun `can write to path`() {
-        val tmpFile = File.createTempFile("jris3", null, null)
+        val tmpFile = File.createTempFile("jris4", null, null)
         val path = tmpFile.path
         tmpFile.delete()
         path.accept(records)
