@@ -86,7 +86,7 @@ object JRisUsageSpec : Spek({
             secondaryTitle = "Bell System Technical Journal",
             startPage = "379",
             endPage = "423",
-            volumeNumber = " 27"
+            volumeNumber = "27"
         )
         val expectedLinesInFile = 9 // including ER (End of Record)
 
@@ -128,8 +128,8 @@ object JRisUsageSpec : Spek({
                                 |SP  - 379
                                 |T2  - Bell System Technical Journal
                                 |TI  - A Mathematical Theory of Communication
-                                |VL  -  27
-                                |ER  -
+                                |VL  - 27
+                                |ER  - 
                                 |""".trimMargin()
         }
     }
