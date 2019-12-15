@@ -72,7 +72,6 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply<JavaPlugin>()
     apply<IdeaPlugin>()
-    apply<IntegrationTestPlugin>()
     apply<JacocoPlugin>()
     apply<DetektPlugin>()
 
@@ -137,7 +136,7 @@ tasks {
         description = "Push jacoco analysis to sonarcloud."
         group = "Verification"
         subprojects.forEach {
-            dependsOn("${it.path}:integrationTest")
+            dependsOn("${it.path}:allTests")
             dependsOn("${it.path}:jacocoTestReport")
         }
         dependsOn("detekt")
@@ -153,6 +152,5 @@ sonarqube {
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/root/jacocoTestReport.xml")
         property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt.xml")
-        property("sonar.exclusions", "**/src/test/**,**/src/integration-test/**")
     }
 }

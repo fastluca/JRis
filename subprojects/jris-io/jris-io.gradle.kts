@@ -1,6 +1,4 @@
-plugins {
-    id("org.kordamp.gradle.integration-test")
-}
+apply<org.kordamp.gradle.plugin.integrationtest.IntegrationTestPlugin>()
 
 dependencies {
     api(project(":jris-core"))
