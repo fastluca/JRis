@@ -1,6 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
-import org.kordamp.gradle.plugin.integrationtest.IntegrationTestPlugin
 import org.sonarqube.gradle.SonarQubeTask
 
 plugins {
@@ -106,6 +105,10 @@ reckon {
     stageFromProp("beta", "rc", "final")
 }
 
+private val detektReportRoot = "${rootProject.buildDir}/reports/detekt"
+val detektXml = "$detektReportRoot/detekt.xml"
+val detektHtml = "$detektReportRoot/detekt.html"
+
 tasks {
     withType<Detekt> {
         buildUponDefaultConfig = true
@@ -124,11 +127,11 @@ tasks {
         reports {
             html {
                 enabled = true
-                destination = file("${rootProject.buildDir}/reports/detekt.html")
+                destination = file(detektHtml)
             }
             xml {
                 enabled = true
-                destination = file("${rootProject.buildDir}/reports/detekt.xml")
+                destination = file(detektXml)
             }
         }
     }
@@ -150,7 +153,6 @@ sonarqube {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.projectKey", "ursjoss_JRis")
         property("sonar.organization", "ursjoss-github")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/root/jacocoTestReport.xml")
-        property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt.xml")
+        property("sonar.kotlin.detekt.reportPaths", detektXml)
     }
 }

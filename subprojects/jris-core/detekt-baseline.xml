@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
   <Blacklist></Blacklist>
-  <Whitelist>
-    <ID>WildcardImport:JRis.kt$import kotlinx.coroutines.flow.*</ID>
-    <ID>WildcardImport:JRisIO.kt$import java.io.*</ID>
-  </Whitelist>
+  <Whitelist></Whitelist>
 </SmellBaseline>
