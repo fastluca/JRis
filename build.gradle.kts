@@ -5,7 +5,7 @@ import org.sonarqube.gradle.SonarQubeTask
 
 plugins {
     kotlin("jvm")
-    id("org.kordamp.gradle.project")
+    id("org.kordamp.gradle.kotlin-project")
     java
     id("org.kordamp.gradle.integration-test") apply false
     id("org.sonarqube")
@@ -85,6 +85,7 @@ subprojects {
         testImplementation(Lib.spek("dsl-jvm"))
         testImplementation(Lib.mockk())
         testImplementation(Lib.kluent())
+        testImplementation(Lib.assertJ())
 
         testRuntimeOnly(Lib.junit5("engine"))
         testRuntimeOnly(Lib.spek("runner-junit5"))

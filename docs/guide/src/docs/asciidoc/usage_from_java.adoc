@@ -11,7 +11,7 @@ We can however use the builder to only specify the fields we actually need.
 .Instantiating bibliographic references as `RisRecord` [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=risRecords]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide/GuideExamples.java[tags=risRecords]
 ----
 
 [[_java_export_blocking]]
@@ -23,7 +23,7 @@ This happens in a blocking manner and it is up to us what we want to do with the
 .Converting a list of `RisRecords` in a blocking manner into a list of RIS lines [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=fromList]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide/GuideExamples.java[tags=fromList]
 ----
 
 We may want to influence how the RIS tags are sorted in the file.
@@ -32,7 +32,7 @@ We can do that by providing a list of RIS tag names (as string) in the order we'
 .Converting a list of `RisRecords` applying custom sort in a blocking manner into a list of RIS lines [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=fromListCustomSort]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=fromListCustomSort]
 ----
 
 [NOTE]
@@ -49,7 +49,7 @@ Working with JRis in non-blocking manner in Java involves RxJava2.
 .Converting an observable of `RisRecords` in non-blocking manner into a file [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=fromObservable]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=fromObservable]
 ----
 
 To make the process of exporting to files easier, JRis offers some dedicated functions in the utility class `JRisIO`.
@@ -58,25 +58,25 @@ We can use the `export` functions with a writer, a file, an output stream or a p
 .Writing the list of `RisRecords` in a blocking manner into a buffered writer [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=writerExport]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=writerExport]
 ----
 
 .Writing the list of `RisRecords` in a blocking manner into a file [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=fileExport]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=fileExport]
 ----
 
 .Writing the list of `RisRecords` in a blocking manner into an output stream [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=streamExport]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=streamExport]
 ----
 
 .Writing the list of `RisRecords` in a blocking manner into a path [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=pathExport]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=pathExport]
 ----
 
 [[_java_import]]
@@ -111,25 +111,25 @@ We will receive a list of [RisRecord] instances.
 .Reading RIS records from BufferedReader [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=processReader]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=processReader]
 ----
 
 .Reading RIS records from File [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=processFile]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=processFile]
 ----
 
 .Reading RIS records from InputStream [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=processInputStream]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=processInputStream]
 ----
 
 .Reading RIS records from Path [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=processPath]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=processPath]
 ----
 
 [[_java_import_memory]]
@@ -143,7 +143,7 @@ In case we have the file content already in memory, we can pass it as a list.
 .Processing RIS records as list of strings [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=passRisLinesAsList]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=passRisLinesAsList]
 ----
 
 [[_java_import_memory_nonblocking]]
@@ -152,5 +152,5 @@ include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni
 .Converting an observable of ris line strings in non-blocking manner into RisRecords [Java]
 [subs=attributes+,source,java]
 ----
-include::../../../../../subprojects/jris-core/src/test/java/com/gmail/gcolaianni5/jris/example/guide/GuideExamples.java[tags=processObservables]
+include::../../../../../subprojects/jris-guide/src/test/java/com/gmail/gcolaianni5/jris/guide//GuideExamples.java[tags=processObservables]
 ----

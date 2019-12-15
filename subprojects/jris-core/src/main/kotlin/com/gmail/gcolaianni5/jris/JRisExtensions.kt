@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.gmail.gcolaianni5.jris
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi

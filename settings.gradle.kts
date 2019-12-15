@@ -13,7 +13,7 @@ pluginManagement {
     plugins {
         kotlin("jvm") version "1.3.61"
         val kordampPluginVersion = "0.30.4"
-        id("org.kordamp.gradle.project") version kordampPluginVersion
+        id("org.kordamp.gradle.kotlin-project") version kordampPluginVersion
         id("org.kordamp.gradle.integration-test") version kordampPluginVersion
         id("org.kordamp.gradle.guide") version kordampPluginVersion
         id("org.sonarqube") version "2.8"
