@@ -2,8 +2,8 @@
 
 package com.gmail.gcolaianni5.jris.guide
 
-import com.gmail.gcolaianni5.jris.RisRecord
-import com.gmail.gcolaianni5.jris.RisType
+import com.gmail.gcolaianni5.jris.domain.RisRecord
+import com.gmail.gcolaianni5.jris.domain.RisType
 import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.process
 import com.gmail.gcolaianni5.jris.toRisLines

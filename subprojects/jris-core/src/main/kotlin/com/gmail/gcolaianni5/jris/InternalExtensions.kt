@@ -1,5 +1,3 @@
-@file:Suppress("SpellCheckingInspection")
-
 package com.gmail.gcolaianni5.jris
 
 import io.reactivex.Observable
@@ -21,4 +19,9 @@ internal fun <T> Observable<out T>.asFlow(): Flow<T> = callbackFlow {
         { close() }
     )
     awaitClose { disposable.dispose() }
+}
+
+internal fun String.truncatedTo(maxLength: Int?): String = when {
+    maxLength != null -> substring(0, kotlin.math.min(maxLength, length))
+    else -> this
 }

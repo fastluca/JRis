@@ -2,6 +2,7 @@
 
 package com.gmail.gcolaianni5.jris
 
+import com.gmail.gcolaianni5.jris.domain.RisRecord
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
@@ -94,4 +95,3 @@ fun Sequence<RisRecord>.toRisLines(): Sequence<String> =
     }
 
 //endregion
-

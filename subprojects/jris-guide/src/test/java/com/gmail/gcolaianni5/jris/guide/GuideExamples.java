@@ -7,8 +7,8 @@ import java.util.List;
 
 import com.gmail.gcolaianni5.jris.JRis;
 import com.gmail.gcolaianni5.jris.JRisIO;
-import com.gmail.gcolaianni5.jris.RisRecord;
-import com.gmail.gcolaianni5.jris.RisType;
+import com.gmail.gcolaianni5.jris.domain.RisRecord;
+import com.gmail.gcolaianni5.jris.domain.RisType;
 import io.reactivex.Observable;
 
 @SuppressWarnings("ALL")

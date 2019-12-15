@@ -2,6 +2,8 @@
 
 package com.gmail.gcolaianni5.jris
 
+import com.gmail.gcolaianni5.jris.domain.RisRecord
+import com.gmail.gcolaianni5.jris.domain.RisType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.amshove.kluent.shouldEqual
 import org.junit.jupiter.api.Test

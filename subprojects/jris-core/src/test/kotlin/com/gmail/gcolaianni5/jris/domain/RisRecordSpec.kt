@@ -1,6 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
-package com.gmail.gcolaianni5.jris
+package com.gmail.gcolaianni5.jris.domain
 
 import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldBeNull

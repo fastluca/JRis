@@ -1,5 +1,6 @@
 package com.gmail.gcolaianni5.jris
 
+import com.gmail.gcolaianni5.jris.domain.RisType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList

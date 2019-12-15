@@ -1,4 +1,4 @@
-package com.gmail.gcolaianni5.jris
+package com.gmail.gcolaianni5.jris.domain
 
 /**
  * A single RIS record. It contains all the allowed tag from RIS format.

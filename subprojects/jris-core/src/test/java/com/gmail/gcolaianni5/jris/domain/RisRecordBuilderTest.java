@@ -1,9 +1,9 @@
-package com.gmail.gcolaianni5.jris;
+package com.gmail.gcolaianni5.jris.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.gmail.gcolaianni5.jris.RisRecord;
-import com.gmail.gcolaianni5.jris.RisType;
+import com.gmail.gcolaianni5.jris.domain.RisRecord;
+import com.gmail.gcolaianni5.jris.domain.RisType;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 

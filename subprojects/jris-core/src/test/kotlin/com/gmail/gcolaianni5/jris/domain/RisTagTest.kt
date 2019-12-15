@@ -1,4 +1,4 @@
-package com.gmail.gcolaianni5.jris
+package com.gmail.gcolaianni5.jris.domain
 
 import org.junit.jupiter.api.Test
 
