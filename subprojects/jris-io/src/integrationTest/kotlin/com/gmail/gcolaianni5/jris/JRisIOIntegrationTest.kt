@@ -8,7 +8,7 @@ import org.amshove.kluent.shouldHaveSize
 import org.junit.jupiter.api.Test
 import java.io.File
 
-private const val FILE_PATH = "src/integration-test/resources/sample.ris"
+private const val FILE_PATH = "src/integrationTest/resources/sample.ris"
 private const val PAPER_COUNT = 3
 
 @ExperimentalCoroutinesApi
