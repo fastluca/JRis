@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.invoking
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
 import org.amshove.kluent.shouldThrow
 import org.spekframework.spek2.Spek
@@ -42,15 +42,15 @@ object JRisProcessingSpec : Spek({
             val risRecords by memoized { runBlocking { JRis.process(lines.asFlow()).toList() } }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
-            it("should have the reference type $type") { risRecords.first().type shouldEqual RisType.JOUR }
+            it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }
             it("should have single author") { risRecords.first().authors shouldHaveSize 1 }
-            it("should have author $author") { risRecords.first().authors.first() shouldEqual author }
-            it("should have publication year $pubYear") { risRecords.first().publicationYear shouldEqual pubYear }
-            it("should have title $title") { risRecords.first().title shouldEqual title }
-            it("should have secondary/journal title $journalTitle") { risRecords.first().secondaryTitle shouldEqual journalTitle }
-            it("should have start page $startPage") { risRecords.first().startPage shouldEqual startPage }
-            it("should have end page $endPage") { risRecords.first().endPage shouldEqual endPage }
-            it("should have volume $volume") { risRecords.first().volumeNumber shouldEqual volume }
+            it("should have author $author") { risRecords.first().authors.first() shouldBeEqualTo author }
+            it("should have publication year $pubYear") { risRecords.first().publicationYear shouldBeEqualTo pubYear }
+            it("should have title $title") { risRecords.first().title shouldBeEqualTo title }
+            it("should have secondary/journal title $journalTitle") { risRecords.first().secondaryTitle shouldBeEqualTo journalTitle }
+            it("should have start page $startPage") { risRecords.first().startPage shouldBeEqualTo startPage }
+            it("should have end page $endPage") { risRecords.first().endPage shouldBeEqualTo endPage }
+            it("should have volume $volume") { risRecords.first().volumeNumber shouldBeEqualTo volume }
 
         }
 
@@ -90,9 +90,9 @@ object JRisProcessingSpec : Spek({
             val risRecords by memoized { runBlocking { JRis.process(lines.asFlow()).toList() } }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
-            it("should have the reference type $type") { risRecords.first().type shouldEqual RisType.JOUR }
-            it("should have number $number") { risRecords.first().number shouldEqual number }
-            it("should have abstract $abstract") { risRecords.first().abstr shouldEqual abstract }
+            it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }
+            it("should have number $number") { risRecords.first().number shouldBeEqualTo number }
+            it("should have abstract $abstract") { risRecords.first().abstr shouldBeEqualTo abstract }
         }
 
         describe("with number, abstract and some invalid tag thereafter") {
@@ -107,8 +107,8 @@ object JRisProcessingSpec : Spek({
             val risRecords by memoized { runBlocking { JRis.process(lines.asFlow()).toList() } }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
-            it("should have the reference type $type") { risRecords.first().type shouldEqual RisType.JOUR }
-            it("should have abstract $abstract2") { risRecords.first().abstr shouldEqual abstract2 }
+            it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }
+            it("should have abstract $abstract2") { risRecords.first().abstr shouldBeEqualTo abstract2 }
         }
     }
 })
