@@ -3,9 +3,9 @@
 package com.gmail.gcolaianni5.jris.domain
 
 import org.amshove.kluent.shouldBeEmpty
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldBeNull
 import org.amshove.kluent.shouldContainAll
-import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.Suite
 import org.spekframework.spek2.style.specification.describe
@@ -369,7 +369,7 @@ private fun Suite.assertSpecifiedValues(record: RisRecord) {
         "accessDate" to record.accessDate
     ).forEach { (value, field) ->
         it("should be $value") {
-            field.toString() shouldEqual value
+            field.toString() shouldBeEqualTo value
         }
     }
 

@@ -1,13 +1,13 @@
 package com.gmail.gcolaianni5.jris.usage
 
 import com.gmail.gcolaianni5.jris.JRisIO
+import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.domain.RisRecord
 import com.gmail.gcolaianni5.jris.domain.RisType
-import com.gmail.gcolaianni5.jris.accept
 import com.gmail.gcolaianni5.jris.process
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -106,7 +106,7 @@ object JRisIoUsageSpec : Spek({
                 it("writes TY first, EL last and remainder alphabetically") {
                     file.path.accept(records)
                     val fileContent = file.readText()
-                    fileContent shouldEqual """TY  - ABST
+                    fileContent shouldBeEqualTo """TY  - ABST
                     |AB  - abstr
                     |DP  - dp
                     |LA  - lang
@@ -120,7 +120,7 @@ object JRisIoUsageSpec : Spek({
                 it("writes TY first, EL last, then according to sort and remainder alphabetically") {
                     file.path.accept(records, listOf("M3", "AB"))
                     val fileContent = file.readText()
-                    fileContent shouldEqual """TY  - ABST
+                    fileContent shouldBeEqualTo """TY  - ABST
                     |M3  - tow
                     |AB  - abstr
                     |DP  - dp

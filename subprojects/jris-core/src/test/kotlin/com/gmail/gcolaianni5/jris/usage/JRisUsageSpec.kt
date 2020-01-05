@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -124,7 +124,7 @@ object JRisUsageSpec : Spek({
         }
 
         it("can convert risRecord to a string") {
-            risRecords.toRisLines().joinToString(separator = "") shouldEqual """TY  - JOUR
+            risRecords.toRisLines().joinToString(separator = "") shouldBeEqualTo """TY  - JOUR
                                 |AU  - Shannon, Claude E.
                                 |EP  - 423
                                 |PY  - 1948/07//

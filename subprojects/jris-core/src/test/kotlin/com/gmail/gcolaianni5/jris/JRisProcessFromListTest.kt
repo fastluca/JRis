@@ -5,7 +5,7 @@ package com.gmail.gcolaianni5.jris
 import com.gmail.gcolaianni5.jris.domain.RisRecord
 import com.gmail.gcolaianni5.jris.domain.RisType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 class JRisProcessFromListTest {
@@ -189,6 +189,6 @@ class JRisProcessFromListTest {
     @Suppress("S100")
     fun `can build risRecord with all fields`() {
         val lines = JRis.buildFromList(listOf(risRecord))
-        lines.joinToString("") shouldEqual expected
+        lines.joinToString("") shouldBeEqualTo expected
     }
 }
