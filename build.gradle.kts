@@ -1,14 +1,10 @@
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektPlugin
-import org.sonarqube.gradle.SonarQubeTask
-
 plugins {
     kotlin("jvm")
-    id("org.kordamp.gradle.kotlin-project")
     java
+    id("org.kordamp.gradle.kotlin-project")
     id("org.kordamp.gradle.integration-test") apply false
-    id("org.sonarqube")
-    id("io.gitlab.arturbosch.detekt")
+    id("org.kordamp.gradle.detekt")
+//    id("org.kordamp.gradle.sonar") // TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
     id("org.ajoberstar.reckon")
 }
 
@@ -24,7 +20,14 @@ config {
             url = "https://github.com/ursjoss/JRis.git"
         }
         links {
+            website = "https://ursjoss.github.io/JRis"
             scm = "https://github.com/ursjoss/JRis.git"
+        }
+        ciManagement {
+            url = "https://github.com/ursjoss/JRis/actions"
+        }
+        issueManagement {
+            url = "https://github.com/ursjoss/JRis/issues"
         }
         people {
             person {
@@ -48,6 +51,22 @@ config {
             }
         }
     }
+
+    quality {
+        detekt {
+            buildUponDefaultConfig = true
+            failFast = true
+        }
+// TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
+//        sonar {
+//            username = "ursjoss"
+//        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 allprojects {
@@ -68,91 +87,47 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply<JavaPlugin>()
-    apply<IdeaPlugin>()
-    apply<JacocoPlugin>()
-    apply<DetektPlugin>()
+    if (project.name != "guide") {
+        apply(plugin = "org.jetbrains.kotlin.jvm")
+        apply<JavaPlugin>()
+        apply<IdeaPlugin>()
+        apply<JacocoPlugin>()
 
-    dependencies {
-        implementation(Lib.kotlin("stdlib-jdk8"))
-        implementation(Lib.kotlin("reflect"))
-        implementation(Lib.kotlinx("coroutines-core"))
+        val assertjVersion : String by project
+        val coroutinesVersion : String by project
+        val junitJupiterVersion : String by project
+        val kluentVersion : String by project
+        val kotlinVersion : String by project
+        val mockkVersion : String by project
+        val spekVersion : String by project
 
-        testImplementation(Lib.junit5("api"))
-        testImplementation(Lib.spek("dsl-jvm"))
-        testImplementation(Lib.mockk())
-        testImplementation(Lib.kluent())
-        testImplementation(Lib.assertJ())
+        dependencies {
+            implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+            implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 
-        testRuntimeOnly(Lib.junit5("engine"))
-        testRuntimeOnly(Lib.spek("runner-junit5"))
-    }
+            testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+            testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
+            testImplementation("io.mockk:mockk:$mockkVersion")
+            testImplementation("org.amshove.kluent:kluent:$kluentVersion")
+            testImplementation("org.assertj:assertj-core:$assertjVersion")
 
-    tasks {
-        withType<Test> {
-            @Suppress("UnstableApiUsage")
-            useJUnitPlatform {
-                includeEngines("junit-jupiter", "spek2")
+            testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+            testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
+        }
+
+        tasks {
+            withType<Test> {
+                @Suppress("UnstableApiUsage")
+                useJUnitPlatform {
+                    includeEngines("junit-jupiter", "spek2")
+                }
             }
         }
     }
-
 }
 
 reckon {
     scopeFromProp()
     stageFromProp("beta", "rc", "final")
-}
-
-private val detektReportRoot = "${rootProject.buildDir}/reports/detekt"
-val detektXml = "$detektReportRoot/detekt.xml"
-val detektHtml = "$detektReportRoot/detekt.html"
-
-tasks {
-    withType<Detekt> {
-        buildUponDefaultConfig = true
-        failFast = false
-        file("${rootProject.projectDir}/detekt-config.yml").takeIf { it.exists() }?.let {
-            config.setFrom(it)
-        }
-        file("${rootProject.projectDir}/detekt-baseline.xml").takeIf { it.exists() }?.let {
-            baseline.set(it)
-        }
-        source = fileTree(rootProject.projectDir)
-        include("**/*.kt")
-        include("**/*.kts")
-        exclude("**/resources/")
-        exclude("**/build/")
-        reports {
-            html {
-                enabled = true
-                destination = file(detektHtml)
-            }
-            xml {
-                enabled = true
-                destination = file(detektXml)
-            }
-        }
-    }
-    withType<SonarQubeTask> {
-        description = "Push jacoco analysis to sonarcloud."
-        group = "Verification"
-        subprojects.forEach {
-            dependsOn("${it.path}:allTests")
-            dependsOn("${it.path}:jacocoTestReport")
-        }
-        dependsOn("detekt")
-        dependsOn("jacocoRootReport")
-    }
-}
-
-
-sonarqube {
-    properties {
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.projectKey", "ursjoss_JRis")
-        property("sonar.organization", "ursjoss-github")
-        property("sonar.kotlin.detekt.reportPaths", detektXml)
-    }
 }

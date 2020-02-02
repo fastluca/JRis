@@ -1,5 +1,6 @@
+val rxjavaVersion: String by project
+
 dependencies {
     testImplementation(project(":jris-io"))
-
-    testImplementation(Lib.rxjava2())
+    testImplementation("io.reactivex.rxjava2:rxjava:$rxjavaVersion")
 }
