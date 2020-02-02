@@ -22,13 +22,13 @@ jobs:
       - name: Cache global .gradle folder
         uses: actions/cache@v1
         with:
-          path: ~/.gradle/caches
-          key: global-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.kt*') }}-${{ hashFiles('**/*.java') }}
+          path: ~/.gradle
+          key: gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.kt*') }}-${{ hashFiles('**/*.java') }}
           restore-keys: |
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Run sonar task
-        run: ./gradlew allTests sonarqube --no-daemon --no-build-cache
+        run: ./gradlew allTests sonarqube --no-daemon
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

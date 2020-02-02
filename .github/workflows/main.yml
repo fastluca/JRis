@@ -28,10 +28,10 @@ jobs:
       - name: Cache global .gradle folder
         uses: actions/cache@v1
         with:
-          path: ~/.gradle/caches
-          key: global-gradle-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.kt*') }}-${{ hashFiles('**/*.java') }}
+          path: ~/.gradle
+          key: gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/*.kt*') }}-${{ hashFiles('**/*.java') }}
           restore-keys: |
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Check with Gradle
-        run: ./gradlew allTests --no-daemon --no-build-cache
+        run: ./gradlew allTests --no-daemon
