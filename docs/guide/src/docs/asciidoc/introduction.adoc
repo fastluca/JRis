@@ -10,7 +10,3 @@ are e.g. Zotero or EndNote. For more details about the RIS file
 format and it's history, refer to the respective 
 https://en.wikipedia.org/wiki/RIS_(file_format)[Wikipedia article].
 
-JRis was initially developed by Gianluca Colaianni (fastluca) and
-is available on github: https://github.com/fastluca/JRis. It was
-ported to kotlin by Urs Joss (ursjoss) in a fork and is currently
-in the process of being merged again with the original project.

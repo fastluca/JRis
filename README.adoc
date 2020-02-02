@@ -1,11 +1,10 @@
-image:https://img.shields.io/github/license/ursjoss/JRis.svg[LICENSE, link=https://github.com/ursjoss/scipamato/blob/master/LICENSE]
-image:https://github.com/ursjoss/JRis/workflows/Check/badge.svg?branch=master[LICENSE, link=https://github.com/ursjoss/JRis]
-image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_JRis&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=ursjoss_JRis]
+image:https://img.shields.io/github/license/fastluca/JRis.svg[LICENSE, link=https://github.com/fastluca/JRis/blob/master/LICENSE]
+image:https://github.com/fastluca/JRis/workflows/Check/badge.svg?branch=master[LICENSE, link=https://github.com/fastluca/JRis]
+//image:https://sonarcloud.io/api/project_badges/measure?project=fastluca_JRis&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=fastluca_JRis]
 
 == JRis
 
-JRis is a Kotlin implementation of RIS Format - currently forked from fastlucas Java implementation
-available on https://github.com/fastluca/JRis[Github].
+JRis is a kotlin implementation of RIS Format.
 JRis has the goal to give an easy way to parse RIS format stream and to build them.
 
 From https://en.wikipedia.org/wiki/RIS_(file_format)[Wikipiedia]:
@@ -20,5 +19,4 @@ Major reference/citation manager applications, like Zotero, Mendeley, and EndNot
 and import citations in this format.
 ====
 
-
-More documentation can be found in the https://ursjoss.github.io/JRis/[Guide].
+More documentation can be found in the https://fastluca.github.io/JRis/[Guide].

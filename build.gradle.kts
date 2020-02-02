@@ -17,17 +17,17 @@ config {
         description = "Library for reading/writing RIS files"
         inceptionYear = "2017"
         organization {
-            url = "https://github.com/ursjoss/JRis.git"
+            url = "https://github.com/fastluca/JRis.git"
         }
         links {
-            website = "https://ursjoss.github.io/JRis"
-            scm = "https://github.com/ursjoss/JRis.git"
+            website = "https://fastluca.github.io/JRis"
+            scm = "https://github.com/fastluca/JRis.git"
         }
         ciManagement {
-            url = "https://github.com/ursjoss/JRis/actions"
+            url = "https://github.com/fastluca/JRis/actions"
         }
         issueManagement {
-            url = "https://github.com/ursjoss/JRis/issues"
+            url = "https://github.com/fastluca/JRis/issues"
         }
         people {
             person {
@@ -59,7 +59,7 @@ config {
         }
 // TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
 //        sonar {
-//            username = "ursjoss"
+//            username = "fastluca"
 //        }
     }
 }
