@@ -20,3 +20,4 @@ and import citations in this format.
 ====
 
 More documentation can be found in the https://fastluca.github.io/JRis/[Guide].
+
