@@ -4,6 +4,7 @@ plugins {
     id("org.kordamp.gradle.kotlin-project")
     id("org.kordamp.gradle.integration-test") apply false
     id("org.kordamp.gradle.detekt")
+    id("org.kordamp.gradle.bintray")
 //    id("org.kordamp.gradle.sonar") // TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
     id("org.ajoberstar.reckon")
 }
@@ -22,6 +23,7 @@ config {
         links {
             website = "https://ursjoss.github.io/KRis"
             scm = "https://github.com/ursjoss/KRis.git"
+            issueTracker = "https://github.com/ursjoss/KRis/issues"
         }
         ciManagement {
             url = "https://github.com/ursjoss/KRis/actions"
@@ -62,6 +64,18 @@ config {
 //            username = "ursjoss"
 //        }
     }
+
+    bintray {
+        enabled = true
+        credentials {
+            username = System.getenv("BINTRAY_USER")
+            password = System.getenv("BINTRAY_KEY")
+        }
+        userOrg = "difty"
+        githubRepo = "ursjoss/KRis"
+        publish = true
+        skipMavenSync = true
+    }
 }
 
 java {
@@ -93,13 +107,13 @@ subprojects {
         apply<IdeaPlugin>()
         apply<JacocoPlugin>()
 
-        val assertjVersion : String by project
-        val coroutinesVersion : String by project
-        val junitJupiterVersion : String by project
-        val kluentVersion : String by project
-        val kotlinVersion : String by project
-        val mockkVersion : String by project
-        val spekVersion : String by project
+        val assertjVersion: String by project
+        val coroutinesVersion: String by project
+        val junitJupiterVersion: String by project
+        val kluentVersion: String by project
+        val kotlinVersion: String by project
+        val mockkVersion: String by project
+        val spekVersion: String by project
 
         dependencies {
             implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")

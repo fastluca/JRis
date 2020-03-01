@@ -15,9 +15,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch tags
-        run: git fetch --tags
-
       - name: Validate gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
@@ -34,8 +31,10 @@ jobs:
           restore-keys: |
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
-      - name: Publish github pages
-        run: ./gradlew allTests :guide:gitPublishPush --no-daemon
+      - name: Publish to Bintray and github pages
+        run: ./gradlew  -Prelease=true allTests :guide:gitPublishPush :kris-core:bintrayUpload :kris-io:bintrayUpload --no-daemon
         env:
           GRGIT_USER: ursjoss
           GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}

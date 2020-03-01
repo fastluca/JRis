@@ -1,11 +1,9 @@
-name: Check
+name: Build
 
 on:
   push:
     branches:
       - master
-    tags:
-      - '*'
 
   pull_request:
     branches:
@@ -23,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Fetch tags
-        run: git fetch --tags
+        run: git fetch --tags --force
 
       - name: Validate gradle wrapper
         uses: gradle/wrapper-validation-action@v1
@@ -43,3 +41,6 @@ jobs:
 
       - name: Run all tests with Gradle
         run: ./gradlew allTests --no-daemon
+        env:
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
