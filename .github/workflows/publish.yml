@@ -1,19 +1,12 @@
-name: Check
+name: Publish
 
 on:
   push:
-    branches:
-      - master
     tags:
       - '*'
 
-  pull_request:
-    branches:
-      - master
-
 jobs:
-  build:
-
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,5 +34,8 @@ jobs:
           restore-keys: |
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
-      - name: Run all tests with Gradle
-        run: ./gradlew allTests --no-daemon
+      - name: Publish github pages
+        run: ./gradlew allTests :guide:gitPublishPush --no-daemon
+        env:
+          GRGIT_USER: ursjoss
+          GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
