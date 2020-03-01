@@ -1,7 +1,7 @@
 [[_kotlin_usage]]
-= Using `JRis` from Kotlin
+= Using `KRis` from Kotlin
 
-Using JRis from kotlin allows us to profit from syntactic sugar provided by kotlin like data classes with default arguments for creating RisRecords or extension functions with receivers for calling the actual export/import methods.
+Using KRis from kotlin allows us to profit from syntactic sugar provided by kotlin like data classes with default arguments for creating RisRecords or extension functions with receivers for calling the actual export/import methods.
 
 [[_kotlin_usage_export]]
 == Export: RIS records -> text file
@@ -12,7 +12,7 @@ We first have to convert each reference into a [RisRecord].
 .Instantiating bibliographic references as `RisRecord` [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=risRecords]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=risRecords]
 ----
 
 [[_kotlin_usage_export_blocking]]
@@ -24,7 +24,7 @@ This happens in a blocking manner and it is up to us what we want to do with the
 .Converting a list of `RisRecords` in a blocking manner into a list of RIS lines [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=listToRisLines]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=listToRisLines]
 ----
 
 We may want to influence how the RIS tags are sorted in the file.
@@ -33,7 +33,7 @@ We can do that by providing a list of RIS tag names (as string) in the order we'
 .Converting a list of `RisRecords` applying custom sort in a blocking manner into a list of RIS lines [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=listToRisLinesWithSort]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=listToRisLinesWithSort]
 ----
 
 [NOTE]
@@ -47,34 +47,34 @@ If we want to write the list of lines into a file, we can do that manually, e.g.
 .Writing the list of lines into a file [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=writingToFileManually]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=writingToFileManually]
 ----
 
-To make this process easier, JRis offers some extension functions providing some syntactic sugar.
+To make this process easier, KRis offers some extension functions providing some syntactic sugar.
 We can use the `accept` extension function with a writer, a file, an output stream or a path as receiver respectively:
 
 .Writing the list of `RisRecords` in a blocking manner into a buffered writer [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=writerAccept]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=writerAccept]
 ----
 
 .Writing the list of `RisRecords` in a blocking manner into a file [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=fileAccept]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=fileAccept]
 ----
 
 .Writing the list of `RisRecords` in a blocking manner into an output stream [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=streamAccept]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=streamAccept]
 ----
 
 .Writing the list of `RisRecords` in a blocking manner into a path [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=pathAccept]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=pathAccept]
 ----
 
 [[_kotlin_usage_export_nonblocking]]
@@ -85,13 +85,13 @@ If you want to work with non-blocking reactive streams, you can work with flows:
 .Converting a flow of `RisRecords` in a non-blocking manner into a flow of Strings [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=flowToRisLines]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=flowToRisLines]
 ----
 
 .Writing flow of RIS lines into file (example) [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=pathAcceptFlow]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=pathAcceptFlow]
 ----
 
 [[_kotlin_usage_import]]
@@ -126,25 +126,25 @@ We will receive a list of [RisRecord] instances.
 .Reading RIS records from BufferedReader [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=processReader]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=processReader]
 ----
 
 .Reading RIS records from File [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=processFile]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=processFile]
 ----
 
 .Reading RIS records from InputStream [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=processInputStream]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=processInputStream]
 ----
 
 .Reading RIS records from Path [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=processPath]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=processPath]
 ----
 
 [[_kotlin_usage_import_memory]]
@@ -158,13 +158,13 @@ In case we have the file content already in memory, we can pass it as a list or 
 .Processing RIS records as list of strings [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=passRisLinesAsList]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=passRisLinesAsList]
 ----
 
 .Processing RIS records as sequence of strings [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=passRisLinesAsSequence]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=passRisLinesAsSequence]
 ----
 
 [[_kotlin_usage_import_memory_nonblocking]]
@@ -173,5 +173,5 @@ include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaia
 .Processing RIS records as flow of strings [kotlin]
 [subs=attributes+,source,kotlin]
 ----
-include::../../../../../subprojects/jris-guide/src/test/kotlin/com/gmail/gcolaianni5/jris/guide/GuideExamples.kt[tags=passRisLinesAsFlow]
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=passRisLinesAsFlow]
 ----

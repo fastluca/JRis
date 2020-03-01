@@ -1,15 +1,15 @@
 [[_usage]]
 = Usage
 
-`JRis` can be used
+`KRis` can be used
 
 * to export instances of `RisRecord` to a text file conforming with the RIS format
 * to import RIS records from a text file and convert each of them to a `RisRecord`.
 
-`JRis` offers an API that should be usable both from Kotlin and from Java.
+`KRis` offers an API that should be usable both from Kotlin and from Java.
 It offers a number of utility functions that allow you to easily handle your use case.
 
-`JRis` offers methods to process RIS records in a non-blocking or blocking way.
+`KRis` offers methods to process RIS records in a non-blocking or blocking way.
 
 :leveloffset: 1
 include::{includedir}/usage_from_java.adoc[]

@@ -12,32 +12,32 @@ config {
     release = rootProject.findProperty("release").toString().toBoolean()
 
     info {
-        name = "JRis"
+        name = "KRis"
         vendor = "Private"
         description = "Library for reading/writing RIS files"
         inceptionYear = "2017"
         organization {
-            url = "https://github.com/ursjoss/JRis.git"
+            url = "https://github.com/ursjoss/KRis.git"
         }
         links {
-            website = "https://ursjoss.github.io/JRis"
-            scm = "https://github.com/ursjoss/JRis.git"
+            website = "https://ursjoss.github.io/KRis"
+            scm = "https://github.com/ursjoss/KRis.git"
         }
         ciManagement {
-            url = "https://github.com/ursjoss/JRis/actions"
+            url = "https://github.com/ursjoss/KRis/actions"
         }
         issueManagement {
-            url = "https://github.com/ursjoss/JRis/issues"
+            url = "https://github.com/ursjoss/KRis/issues"
         }
         people {
             person {
-                id = "fastluca"
-                name = "Gianluca Colaianni"
+                id = "ursjoss"
+                name = "Urs Joss"
                 roles = listOf("developer")
             }
             person {
-                id = "ursjoss"
-                name = "Urs Joss"
+                id = "fastluca"
+                name = "Gianluca Colaianni"
                 roles = listOf("developer")
             }
         }

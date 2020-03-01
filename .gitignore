@@ -1,8 +1,7 @@
 .idea/
 target/
-jris.iml
+kris.iml
 .gradle/
 build/
 out/
-subprojects/kris/build/
 s101plugin.state

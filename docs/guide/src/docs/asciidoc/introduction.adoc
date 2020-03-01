@@ -2,15 +2,12 @@
 [[_introduction]]
 = Introduction
 
-The RIS file format is one of the common formats used to exchange
-date between citation managers. It was initially developed by the
-commercial company Research Information Systems (RIS). It is used
-by numerous citation managers and digital libraries, some of which
-are e.g. Zotero or EndNote. For more details about the RIS file
-format and it's history, refer to the respective 
+The RIS file format is one of the common formats used to exchange date between citation managers.
+It was initially developed by the commercial company Research Information Systems (RIS).
+It is used by numerous citation managers and digital libraries, some of which are e.g. Zotero or EndNote.
+For more details about the RIS file format and it's history, refer to the respective 
 https://en.wikipedia.org/wiki/RIS_(file_format)[Wikipedia article].
 
-JRis was initially developed by Gianluca Colaianni (fastluca) and
-is available on github: https://github.com/fastluca/JRis. It was
-ported to kotlin by Urs Joss (ursjoss) in a fork and is currently
-in the process of being merged again with the original project.
+KRis is a kotlin implementation that aims to be used as a library for Kotlin and Java projects.
+It is available on https://github.com/ursjoss/KRis[Github] and can be used via gradle or maven dependency management.
+KRis started as a fork of https://github.com/fastluca/JRis[JRis], which was developed by Gianluca Colaianni (fastluca).

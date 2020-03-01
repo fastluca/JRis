@@ -40,7 +40,7 @@ buildscript {
 
 apply<SettingsPlugin>()
 
-rootProject.name = "JRis"
+rootProject.name = "KRis"
 
 configure<ProjectsExtension> {
     layout = "two-level"

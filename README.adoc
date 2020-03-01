@@ -1,12 +1,11 @@
-image:https://img.shields.io/github/license/ursjoss/JRis.svg[LICENSE, link=https://github.com/ursjoss/scipamato/blob/master/LICENSE]
-image:https://github.com/ursjoss/JRis/workflows/Check/badge.svg?branch=master[LICENSE, link=https://github.com/ursjoss/JRis]
-image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_JRis&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=ursjoss_JRis]
+image:https://img.shields.io/github/license/ursjoss/KRis.svg[LICENSE, link=https://github.com/ursjoss/KRis/blob/master/LICENSE]
+image:https://github.com/ursjoss/KRis/workflows/Check/badge.svg?branch=master[LICENSE, link=https://github.com/ursjoss/KRis]
+image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_KRis&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=ursjoss_KRis]
 
-== JRis
+== KRis
 
-JRis is a Kotlin implementation of RIS Format - currently forked from fastlucas Java implementation
-available on https://github.com/fastluca/JRis[Github].
-JRis has the goal to give an easy way to parse RIS format stream and to build them.
+KRis is a Kotlin implementation of RIS Format -- forked from fastlucas Java implementation https://github.com/fastluca/JRis[JRis].
+KRis has the goal to give an easy way to parse RIS format stream and to build them.
 
 From https://en.wikipedia.org/wiki/RIS_(file_format)[Wikipiedia]:
 
@@ -21,4 +20,4 @@ and import citations in this format.
 ====
 
 
-More documentation can be found in the https://ursjoss.github.io/JRis/[Guide].
+More documentation can be found in the https://ursjoss.github.io/KRis/[Guide].
