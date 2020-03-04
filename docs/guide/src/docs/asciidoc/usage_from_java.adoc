@@ -37,8 +37,8 @@ include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide
 
 [NOTE]
 ====
-All the subsequent method calls optionally accept a list of RIS tag names, specifying the sort order.
-We will not explicitly mention this optional for the following examples.
+All the subsequent method calls optionally accept a list of RIS tag names, specifying the tag sort order.
+We will not explicitly mention this option in the subsequent examples.
 ====
 
 [[_java_export_nonblocking]]

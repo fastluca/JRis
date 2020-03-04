@@ -38,8 +38,8 @@ include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/gui
 
 [NOTE]
 ====
-All the subsequent method calls optionally accept a list of RIS tag names, specifying the sort order.
-We will not explicitly mention this optional for the following examples.
+All the subsequent method calls optionally accept a list of RIS tag names, specifying the tag sort order.
+We will not explicitly mention this option in the subsequent examples.
 ====
 
 If we want to write the list of lines into a file, we can do that manually, e.g.
