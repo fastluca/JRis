@@ -66,7 +66,6 @@ config {
     }
 
     bintray {
-        enabled = true
         credentials {
             username = System.getenv("BINTRAY_USER")
             password = System.getenv("BINTRAY_KEY")
