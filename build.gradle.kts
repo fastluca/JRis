@@ -7,6 +7,7 @@ plugins {
     id("org.kordamp.gradle.bintray")
 //    id("org.kordamp.gradle.sonar") // TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
     id("org.ajoberstar.reckon")
+    idea
 }
 
 config {
