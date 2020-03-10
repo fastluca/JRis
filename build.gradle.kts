@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 plugins {
     kotlin("jvm")
     java
@@ -67,6 +69,7 @@ config {
     }
 
     bintray {
+        enabled = true
         credentials {
             username = System.getenv("BINTRAY_USER")
             password = System.getenv("BINTRAY_KEY")
