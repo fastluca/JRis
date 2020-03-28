@@ -92,7 +92,7 @@ First version of KRis (initially forked from https://github.com/fastluca/JRis[JR
 - {url-issues}2[#2] Added Github Actions
 - {url-issues}3[#3] Static code analysis on SonarQube
 - {url-issues}5[#5] Integrate Detekt (static analysis for kotlin files)
-- {url-issues}7[#7] Configure to push code coverage into sonarcloud
+- {url-issues}7[#7] Configure to push code coverage into https://sonarcloud.io/dashboard?id=ursjoss_KRis[sonarcloud]
 - Publish KRis to https://bintray.com/beta/#/difty/maven?tab=packages[bintray]
 
 .Changed
