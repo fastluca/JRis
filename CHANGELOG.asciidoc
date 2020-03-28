@@ -1,0 +1,111 @@
+= Changelog
+Urs Joss <urs.joss@gmx.ch>
+:icons: font
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+// Refs:
+:url-issues: https://github.com/ursjoss/KRis/issues/
+
+
+All notable changes to this project will be documented in this file.
+
+== Format and Versioning Scheme
+
+The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
+
+////
+
+[[v0.0.0]]
+== [0.0.0] -- 2020-00-00
+
+.Added
+
+.Changed
+
+.Deprecated
+
+.Removed
+
+.Fixed
+
+.Security
+
+////
+
+[[unreleased]]
+== [unreleased]
+
+.Added
+
+.Changed
+
+.Deprecated
+
+.Removed
+
+.Fixed
+
+.Security
+
+[[v0.2.1]]
+== [0.2.1] -- 2020-03-28
+
+.Added
+- kotlindoc
+- Changelog
+
+.Changed
+- Bumped kotlin, coroutines, rxjava, kordamp-gradle-plugins, junit-jupiter, gradle-wrapper
+- leverage kordamp-gradle-plugins to push static code analysis and coverage to sonarcloud
+
+.Deprecated
+
+.Removed
+
+.Fixed
+- {url-issues}27[#27] Enabling bintray plugin with kordamp breaks IntelliJ project configuration
+
+.Security
+
+
+[[v0.2.0]]
+== [0.2.0] -- 2020-03-10
+
+.Changed
+- Bumped kotlin, coroutines, spekframework, rxjava, gradle-wrapper
+- Improved guide
+
+
+[[v0.1.0]]
+== [0.1.0] -- 2020-03-01
+
+First version of KRis (initially forked from https://github.com/fastluca/JRis[JRis])
+
+.Added
+- https://ursjoss.github.io/KRis/[Guide]
+- {url-issues}2[#2] Added Github Actions
+- {url-issues}3[#3] Static code analysis on SonarQube
+- {url-issues}5[#5] Integrate Detekt (static analysis for kotlin files)
+- {url-issues}7[#7] Configure to push code coverage into sonarcloud
+- Publish KRis to https://bintray.com/beta/#/difty/maven?tab=packages[bintray]
+
+.Changed
+- Migrated from Java to Kotlin
+- Migrated from maven to gradle, using kordamp-gradle-plugins
+- {url-issues}4[#4] Define API convenient both for code using JRis written in Kotlin and Java
+- {url-issues}9[#9] Implement API
+- {url-issues}18[#18] Upgrade kordamp-gradle-plugins to 0.31.0
+- {url-issues}24[#24] Migrate Repo into KRis
+- {url-issues}26[#26] Guide: Fix Javadoc and Source links in Section 5
+- use reckon for version management
+- Github action to publish guide
+- Bumped kotlin, gradle-wrapper, kordamp-gradle-plugins, coroutines, rxjava, reckon, git-publish plugin, spekframework, detekt, kluent, assertj
+
+.Security
+- github actions: validate gradle-wrapper
+
