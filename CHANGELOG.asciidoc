@@ -49,6 +49,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Removed
 
 .Fixed
+- Guide: Fixed link to kotlindoc
 
 .Security
 
