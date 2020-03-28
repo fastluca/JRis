@@ -55,6 +55,10 @@ object KRisUsageSpec : Spek({
             KRis.processList(risLines) shouldHaveSize 2
         }
 
+        it("can be converted using an extension function (blocking)") {
+            risLines.toRisRecords() shouldHaveSize 2
+        }
+
         describe("converted to Flow") {
             val flowOfRisLines: Flow<String> = risLines.asFlow()
 

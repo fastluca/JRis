@@ -6,11 +6,14 @@ plugins {
     id("org.kordamp.gradle.kotlin-project")
     id("org.kordamp.gradle.integration-test") apply false
     id("org.kordamp.gradle.detekt")
+    id("org.kordamp.gradle.kotlindoc")
     id("org.kordamp.gradle.bintray")
-//    id("org.kordamp.gradle.sonar") // TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
+    id("org.kordamp.gradle.sonar")
     id("org.ajoberstar.reckon")
-    idea
 }
+
+val kotlinSrcSet = "/src/main/kotlin"
+val srcLinkSuffix = "#L"
 
 config {
     release = rootProject.findProperty("release").toString().toBoolean()
@@ -21,7 +24,7 @@ config {
         description = "Library for reading/writing RIS files"
         inceptionYear = "2017"
         organization {
-            url = "https://github.com/ursjoss/KRis.git"
+            url = "https://github.com/ursjoss/KRis"
         }
         links {
             website = "https://ursjoss.github.io/KRis"
@@ -39,11 +42,14 @@ config {
                 id = "ursjoss"
                 name = "Urs Joss"
                 roles = listOf("developer")
+                properties["github"] = "ursjoss"
+                properties["twitter"] = "urs_j_o_s_s"
             }
             person {
                 id = "fastluca"
                 name = "Gianluca Colaianni"
                 roles = listOf("developer")
+                properties["github"] = "fastluca"
             }
         }
     }
@@ -62,10 +68,9 @@ config {
             buildUponDefaultConfig = true
             failFast = true
         }
-// TODO wait for org.kordamp.gradle.sonar (0.32.1 ?)
-//        sonar {
-//            username = "ursjoss"
-//        }
+        sonar {
+            username = "ursjoss"
+        }
     }
 
     bintray {
@@ -79,6 +84,33 @@ config {
         publish = true
         skipMavenSync = true
     }
+
+    docs {
+        javadoc {
+            enabled = false
+        }
+
+        kotlindoc {
+            enabled = true
+            replaceJavadoc = true
+            jdkVersion = 8
+
+            aggregate {
+                enabled = true
+                fast = false
+                replaceJavadoc = true
+            }
+            project.subprojects.forEach { subProject ->
+                sourceLinks {
+                    sourceLink {
+                        path = "${subProject.projectDir}/$kotlinSrcSet"
+                        url = subProject.projectRelativSourceLink()
+                        suffix = srcLinkSuffix
+                    }
+                }
+            }
+        }
+    }
 }
 
 java {
@@ -87,6 +119,8 @@ java {
 }
 
 allprojects {
+    apply<IdeaPlugin>()
+
     repositories {
         mavenLocal()
         jcenter()
@@ -100,6 +134,11 @@ allprojects {
         named("clean") {
             dependsOn(deleteOutFolderTask)
         }
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+            kotlinOptions.apiVersion = "1.3"
+            kotlinOptions.languageVersion = "1.3"
+            kotlinOptions.jvmTarget = "1.8"
+        }
     }
 }
 
@@ -107,7 +146,6 @@ subprojects {
     if (project.name != "guide") {
         apply(plugin = "org.jetbrains.kotlin.jvm")
         apply<JavaPlugin>()
-        apply<IdeaPlugin>()
         apply<JacocoPlugin>()
 
         val assertjVersion: String by project
@@ -141,10 +179,28 @@ subprojects {
                 }
             }
         }
+
+        config {
+            docs {
+                kotlindoc {
+                    sourceLinks {
+                        sourceLink {
+                            path = "$projectDir/$kotlinSrcSet"
+                            url = project.projectRelativSourceLink()
+                            suffix = srcLinkSuffix
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 reckon {
     scopeFromProp()
     stageFromProp("beta", "rc", "final")
+}
+
+fun Project.projectRelativSourceLink(branch: String = "master", srcSet: String = kotlinSrcSet) = rootProject.config.info.links.scm?.let { scmUrl ->
+    "${scmUrl.substringBefore(".git")}/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
 }

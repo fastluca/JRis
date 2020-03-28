@@ -1,3 +1,10 @@
+ifndef::imagesdir[]
+:imagesdir: ../resources/images
+endif::[]
+ifndef::includedir[]
+:includedir: .
+endif::[]
+
 [[_usage]]
 = Usage
 

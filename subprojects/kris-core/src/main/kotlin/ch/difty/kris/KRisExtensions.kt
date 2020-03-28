@@ -24,6 +24,10 @@ import java.nio.channels.ClosedChannelException
 fun Flow<String>.toRisRecords(): Flow<RisRecord> = KRis.process(this)
 
 
+/**
+ * Converts a list of Strings (representing lines in a RIS file) (as receiver) itno a list of [RisRecord]s.
+ * May throw a [KRisException] if the line list of Strings cannot be parsed successfully.
+ */
 @ExperimentalCoroutinesApi
 fun List<String>.toRisRecords(): List<RisRecord> = KRis.processList(this)
 
