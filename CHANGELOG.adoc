@@ -49,7 +49,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Removed
 
 .Fixed
-- Guide: Fixed link to kotlindoc
+- Guide: Fixed link to https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[kotlindoc]
 
 .Security
 
@@ -57,7 +57,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 == [0.2.1] -- 2020-03-28
 
 .Added
-- kotlindoc
+- https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[kotlindoc]
 - Changelog
 
 .Changed
