@@ -40,7 +40,7 @@ jobs:
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Run all tests with Gradle
-        run: ./gradlew allTests detekt sonar --no-daemon
+        run: ./gradlew allTests detekt sonarqube --no-daemon -Dsonar.organization=ursjoss-github
         env:
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
