@@ -73,8 +73,8 @@ object KRisIO {
 
     /**
      * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, dumping them into the
-     * provided [Writer]. Optionally accepts a list of names of [RisTag]s defining a sort order for
-     * the [RisTag]s in the file.
+     * provided [Writer]. Optionally accepts a list of names of RisTags defining a sort order for
+     * the RisTags in the file.
      */
     @JvmStatic
     @JvmOverloads
@@ -91,8 +91,8 @@ object KRisIO {
 
     /**
      * Converts a list of [RisRecord]s into a list of [String]s in RIS file format,
-     * writing them into the provided [File]. Optionally accepts a list of names of [RisTag]s defining
-     * a sort order for the [RisTag]s in the file.
+     * writing them into the provided [File]. Optionally accepts a list of names of RisTags defining
+     * a sort order for the RisTags in the file.
      */
     @JvmStatic
     @JvmOverloads
@@ -105,8 +105,8 @@ object KRisIO {
 
     /**
      * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into
-     * the provided [OutputStream]. Optionally accepts a list of names of [RisTag]s defining a sort order
-     * for the [RisTag]s in the file.
+     * the provided [OutputStream]. Optionally accepts a list of names of RisTags defining a sort order
+     * for the RisTags in the file.
      */
     @JvmStatic
     @JvmOverloads
@@ -120,7 +120,7 @@ object KRisIO {
     /**
      * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into file with
      * the specified path if possible.
-     * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
+     * Optionally accepts a list of names of RisTags defining a sort order for the RisTags in the file.
      */
     @JvmStatic
     @JvmOverloads

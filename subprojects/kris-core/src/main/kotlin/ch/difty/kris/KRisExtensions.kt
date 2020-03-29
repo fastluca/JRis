@@ -59,7 +59,7 @@ fun Sequence<String>.toRisRecords(): Sequence<RisRecord> {
 
 /**
  * Converts a flow of [RisRecord]s into a flow of [String]s in RIS file format.
- * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
+ * Optionally accepts a list of names of RisTags defining a sort order for the RisTags in the file.
  */
 @JvmOverloads
 @ExperimentalCoroutinesApi
@@ -67,7 +67,7 @@ fun Flow<RisRecord>.toRisLines(sort: List<String> = emptyList()): Flow<String> =
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format.
- * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
+ * Optionally accepts a list of names of RisTags defining a sort order for the RisTags in the file.
  */
 @JvmOverloads
 @ExperimentalCoroutinesApi

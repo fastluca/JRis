@@ -50,6 +50,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 .Fixed
 - Guide: Fixed link to https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[kotlindoc]
+- {url-issues}17[#17] Restore test coverage for integration-tests in jrio-io
 
 .Security
 

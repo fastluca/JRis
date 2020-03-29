@@ -139,5 +139,18 @@ object KRisUsageSpec : Spek({
                                 |ER  - 
                                 |""".trimMargin()
         }
+
+        it("can convert risRecord to a string - applying a sort") {
+            risRecords.toRisLines(listOf("TI", "EP")).joinToString(separator = "") shouldBeEqualTo """TY  - JOUR
+                                |TI  - A Mathematical Theory of Communication
+                                |EP  - 423
+                                |AU  - Shannon, Claude E.
+                                |PY  - 1948/07//
+                                |SP  - 379
+                                |T2  - Bell System Technical Journal
+                                |VL  - 27
+                                |ER  - 
+                                |""".trimMargin()
+        }
     }
 })

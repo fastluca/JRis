@@ -118,6 +118,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+tasks {
+    named("sonarqube") {
+        dependsOn(named("detekt"))
+    }
+}
+
 allprojects {
     apply<IdeaPlugin>()
 
