@@ -70,6 +70,7 @@ config {
         }
         sonar {
             username = "ursjoss"
+            configProperties["sonar.organization"] = "ursjoss-github"
         }
     }
 
