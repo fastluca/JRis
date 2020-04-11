@@ -1,6 +1,10 @@
 # Module kris-guide
 
-This module contains code samples sourced by the guide.
+## Module kris-guide
 
-As those code blocks are executable code and are actually unit tested, it is guaranteed that
-the samples in the guide both compile and work as expected.
+This module contains code samples sourced by the guide.
+The compiler ensures the code is not outdated.
+
+# Package ch.difty.kris.guide
+
+THe code samples used in the guide.

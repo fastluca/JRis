@@ -94,7 +94,9 @@ config {
         kotlindoc {
             enabled = true
             replaceJavadoc = true
-            includes = listOf("module.md")
+            includes = project.subprojects.filterNot { it.name == "guide" }.map { sp ->
+                "${sp.projectDir}/module.md"
+            }.toList()
             jdkVersion = 8
 
             aggregate {
@@ -209,6 +211,7 @@ reckon {
     stageFromProp("beta", "rc", "final")
 }
 
-fun Project.projectRelativSourceLink(branch: String = "master", srcSet: String = kotlinSrcSet) = rootProject.config.info.links.scm?.let { scmUrl ->
-    "${scmUrl.substringBefore(".git")}/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
-}
+fun Project.projectRelativSourceLink(branch: String = "master", srcSet: String = kotlinSrcSet) =
+    rootProject.config.info.links.scm?.let { scmUrl ->
+        "${scmUrl.substringBefore(".git")}/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
+    }
