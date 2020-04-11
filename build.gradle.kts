@@ -94,6 +94,7 @@ config {
         kotlindoc {
             enabled = true
             replaceJavadoc = true
+            includes = listOf("module.md")
             jdkVersion = 8
 
             aggregate {

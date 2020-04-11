@@ -16,6 +16,10 @@ private val TAG_LENGTH = RisTag.ER.name.length
 private val START_INDEX_VALUE = TAG_LENGTH + TAG_SEPARATOR.length
 
 internal object RisImport {
+
+    /**
+     * Converts a flow of [String]s, conforming to the RIS format into a flow of [RisRecord]s.
+     */
     internal fun process(lineFlow: Flow<String>): Flow<RisRecord> = flow {
         var record = RisRecord()
         var previousTag: RisTag? = null
