@@ -20,4 +20,5 @@ and import citations in this format.
 ====
 
 
-More documentation can be found in the https://ursjoss.github.io/KRis/[Guide].
+More documentation can be found in the https://ursjoss.github.io/KRis/[Guide]
+and https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[KDoc].
