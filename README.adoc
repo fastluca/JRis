@@ -1,3 +1,5 @@
+:krisVersion: 0.2.4
+
 image:https://img.shields.io/github/license/ursjoss/KRis.svg[LICENSE, link=https://github.com/ursjoss/KRis/blob/master/LICENSE]
 image:https://github.com/ursjoss/KRis/workflows/Check/badge.svg?branch=master[LICENSE, link=https://github.com/ursjoss/KRis]
 image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_KRis&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=ursjoss_KRis] image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_KRis&metric=coverage[Coverage, link=https://sonarcloud.io/dashboard?id=ursjoss_KRis]
@@ -22,3 +24,35 @@ and import citations in this format.
 
 More documentation can be found in the https://ursjoss.github.io/KRis/[Guide]
 and https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[KDoc].
+
+== Setup
+
+.Gradle depending on KRisc-core and - optionally - KRis-io
+[code,kotlin]
+----
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation("ch.difty.kris:kris-core:{krisVersion}")
+    implementation("ch.difty.kris:kris-io:{krisVersion}")
+}
+----
+
+.Maven depenency on KRis-core and - optionally - KRis-io
+[code,xml]
+----
+<dependency>
+	<groupId>ch.difty.kris</groupId>
+	<artifactId>kris-io</artifactId>
+	<version>{krisVersion}</version>
+	<type>pom</type>
+</dependency>
+<dependency>
+	<groupId>ch.difty.kris</groupId>
+	<artifactId>kris-core</artifactId>
+	<version>{krisVersion}</version>
+	<type>pom</type>
+</dependency>
+----
