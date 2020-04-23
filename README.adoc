@@ -42,15 +42,15 @@ dependencies {
 [code,xml]
 ----
 <dependency>
-	<groupId>ch.difty.kris</groupId>
-	<artifactId>kris-io</artifactId>
-	<version>${krisVersion}</version>
-	<type>pom</type>
+    <groupId>ch.difty.kris</groupId>
+    <artifactId>kris-io</artifactId>
+    <version>${krisVersion}</version>
+    <type>pom</type>
 </dependency>
 <dependency>
-	<groupId>ch.difty.kris</groupId>
-	<artifactId>kris-core</artifactId>
-	<version>${krisVersion}</version>
-	<type>pom</type>
+    <groupId>ch.difty.kris</groupId>
+    <artifactId>kris-core</artifactId>
+    <version>${krisVersion}</version>
+    <type>pom</type>
 </dependency>
 ----
