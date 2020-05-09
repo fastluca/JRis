@@ -1,14 +1,8 @@
 @file:Suppress("SpellCheckingInspection")
 
+import org.kordamp.gradle.plugin.base.ProjectsExtension
+
 plugins {
-    kotlin("jvm")
-    java
-    id("org.kordamp.gradle.kotlin-project")
-    id("org.kordamp.gradle.integration-test") apply false
-    id("org.kordamp.gradle.detekt")
-    id("org.kordamp.gradle.kotlindoc")
-    id("org.kordamp.gradle.bintray")
-    id("org.kordamp.gradle.sonar")
     id("org.ajoberstar.reckon")
 }
 
@@ -66,8 +60,9 @@ config {
     quality {
         detekt {
             buildUponDefaultConfig = true
-            failFast = true
+            failFast = false
         }
+
         sonar {
             username = "ursjoss"
             configProperties["sonar.organization"] = "ursjoss-github"
@@ -117,98 +112,108 @@ config {
     }
 }
 
+reckon {
+    scopeFromProp()
+    stageFromProp("beta", "rc", "final")
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-tasks {
-    named("sonarqube") {
-        dependsOn(named("detekt"))
-    }
-}
+configure<ProjectsExtension> {
+    all {
+        path("*") {
+            apply<IdeaPlugin>()
 
-allprojects {
-    apply<IdeaPlugin>()
+            repositories {
+                mavenLocal()
+                jcenter()
+                mavenCentral()
+            }
 
-    repositories {
-        mavenLocal()
-        jcenter()
-        mavenCentral()
-    }
-
-    tasks {
-        val deleteOutFolderTask by registering(Delete::class) {
-            delete("out")
-        }
-        named("clean") {
-            dependsOn(deleteOutFolderTask)
-        }
-        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-            kotlinOptions.apiVersion = "1.3"
-            kotlinOptions.languageVersion = "1.3"
-            kotlinOptions.jvmTarget = "1.8"
-        }
-    }
-}
-
-subprojects {
-    if (project.name != "guide") {
-        apply(plugin = "org.jetbrains.kotlin.jvm")
-        apply<JavaPlugin>()
-        apply<JacocoPlugin>()
-
-        val assertjVersion: String by project
-        val coroutinesVersion: String by project
-        val junitJupiterVersion: String by project
-        val kluentVersion: String by project
-        val kotlinVersion: String by project
-        val mockkVersion: String by project
-        val spekVersion: String by project
-
-        dependencies {
-            implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-            implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-
-            testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-            testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
-            testImplementation("io.mockk:mockk:$mockkVersion")
-            testImplementation("org.amshove.kluent:kluent:$kluentVersion")
-            testImplementation("org.assertj:assertj-core:$assertjVersion")
-
-            testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
-            testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
-        }
-
-        tasks {
-            withType<Test> {
-                @Suppress("UnstableApiUsage")
-                useJUnitPlatform {
-                    includeEngines("junit-jupiter", "spek2")
+            tasks {
+                val deleteOutFolderTask by registering(Delete::class) {
+                    delete("out")
                 }
+                named("clean") {
+                    dependsOn(deleteOutFolderTask)
+                }
+                withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+                    kotlinOptions.apiVersion = "1.3"
+                    kotlinOptions.languageVersion = "1.3"
+                    kotlinOptions.jvmTarget = "1.8"
+                }
+//                named("sonarqube") {
+//                    dependsOn(named("detekt"))
+//                }
             }
         }
+        dir("subprojects") {
+            val assertjVersion: String by project
+            val coroutinesVersion: String by project
+            val junitJupiterVersion: String by project
+            val kluentVersion: String by project
+            val kotlinVersion: String by project
+            val mockkVersion: String by project
+            val spekVersion: String by project
 
-        config {
-            docs {
-                kotlindoc {
-                    sourceLinks {
-                        sourceLink {
-                            path = "$projectDir/$kotlinSrcSet"
-                            url = project.projectRelativSourceLink()
-                            suffix = srcLinkSuffix
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+                implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+
+                testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+                testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
+                testImplementation("io.mockk:mockk:$mockkVersion")
+                testImplementation("org.amshove.kluent:kluent:$kluentVersion")
+                testImplementation("org.assertj:assertj-core:$assertjVersion")
+
+                testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+                testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
+            }
+
+            tasks {
+                withType<Test> {
+                    @Suppress("UnstableApiUsage")
+                    useJUnitPlatform {
+                        includeEngines("junit-jupiter", "spek2")
+                    }
+                }
+            }
+
+            config {
+                docs {
+                    kotlindoc {
+                        sourceLinks {
+                            sourceLink {
+                                path = "$projectDir/$kotlinSrcSet"
+                                url = project.projectRelativSourceLink()
+                                suffix = srcLinkSuffix
+                            }
                         }
                     }
                 }
             }
         }
-    }
-}
 
-reckon {
-    scopeFromProp()
-    stageFromProp("beta", "rc", "final")
+        val rxjavaVersion: String by project
+
+        path(":kris-core") {
+            val coroutinesVersion: String by project
+            dependencies {
+                implementation("io.reactivex.rxjava2:rxjava:$rxjavaVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutinesVersion")
+            }
+        }
+
+        path(":kris-guide") {
+            dependencies {
+                testImplementation("io.reactivex.rxjava2:rxjava:$rxjavaVersion")
+            }
+        }
+    }
 }
 
 fun Project.projectRelativSourceLink(branch: String = "master", srcSet: String = kotlinSrcSet) =
