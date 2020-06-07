@@ -20,10 +20,10 @@ buildscript {
 
         classpath("org.kordamp.gradle:kotlin-project-gradle-plugin:$kordampPluginVersion")
         classpath("org.kordamp.gradle:guide-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:detekt-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:sonar-gradle-plugin:$kordampPluginVersion")
         classpath("org.kordamp.gradle:kotlindoc-gradle-plugin:$kordampPluginVersion")
         classpath("org.kordamp.gradle:integrationtest-gradle-plugin:$kordampPluginVersion")
+        classpath("org.kordamp.gradle:detekt-gradle-plugin:$kordampPluginVersion")
+        classpath("org.kordamp.gradle:sonar-gradle-plugin:$kordampPluginVersion")
         classpath("org.kordamp.gradle:bintray-gradle-plugin:$kordampPluginVersion")
 
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
@@ -44,7 +44,6 @@ configure<ProjectsExtension> {
         path(":") {
             id("java")
             id("org.kordamp.gradle.kotlin-project")
-            id("jacoco")
             id("org.kordamp.gradle.sonar")
             id("org.kordamp.gradle.detekt")
             id("org.kordamp.gradle.bintray")

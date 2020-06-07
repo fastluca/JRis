@@ -57,6 +57,12 @@ config {
         }
     }
 
+    coverage {
+        jacoco {
+            includeProjectDependencies = true
+        }
+    }
+
     quality {
         detekt {
             buildUponDefaultConfig = true
@@ -137,7 +143,7 @@ configure<ProjectsExtension> {
                 val deleteOutFolderTask by registering(Delete::class) {
                     delete("out")
                 }
-                named("clean") {
+                named("clean").configure {
                     dependsOn(deleteOutFolderTask)
                 }
                 withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -145,19 +151,28 @@ configure<ProjectsExtension> {
                     kotlinOptions.languageVersion = "1.3"
                     kotlinOptions.jvmTarget = "1.8"
                 }
-//                named("sonarqube") {
-//                    dependsOn(named("detekt"))
-//                }
             }
         }
+
+        path(":") {
+            tasks {
+                val aggregateDetekt by existing {
+                    dependsOn(subprojects.map { it.tasks.getByName("detekt") })
+                }
+                named("sonarqube").configure {
+                    dependsOn(aggregateDetekt)
+                }
+            }
+        }
+
         dir("subprojects") {
             val assertjVersion: String by project
             val coroutinesVersion: String by project
-            val junitJupiterVersion: String by project
             val kluentVersion: String by project
             val kotlinVersion: String by project
-            val mockkVersion: String by project
+            val junitJupiterVersion: String by project
             val spekVersion: String by project
+            val mockkVersion: String by project
 
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
