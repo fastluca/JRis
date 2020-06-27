@@ -83,6 +83,7 @@ enum class RisTag(
         setInto = { r, v -> r.archivesLocation = v as String? },
         getFrom = { r: RisRecord -> r.archivesLocation }
     ),
+
     // This field maps to T2 for all reference types except for Whole Book and Unpublished Work references.
     BT(
         description =
@@ -206,12 +207,14 @@ enum class RisTag(
         getFrom = { r: RisRecord -> r.periodicalNameUserAbbrevation },
         maxLength = 255
     ),
+
     // (this field is used for the abbreviated title of a book or journal name, the latter mapped to T2)
     J2(
         description = "Alternate Title",
         setInto = { r, v -> r.alternativeTitle = v as String? },
         getFrom = { r: RisRecord -> r.alternativeTitle }
     ),
+
     // This is the periodical in which the article was (or is to be, in the case of in-press references) published.
     JA(
         description = "Periodical name: standard abbreviation.",
@@ -237,6 +240,7 @@ enum class RisTag(
         getFrom = { r: RisRecord -> r.keywords },
         kClass = List::class
     ),
+
     // URL addresses can be entered individually, one per tag or
     // multiple addresses can be entered on one line using a semi-colon as a separator.
     L1(
@@ -245,6 +249,7 @@ enum class RisTag(
         getFrom = { r: RisRecord -> r.pdfLinks },
         kClass = List::class
     ),
+
     // URL addresses can be entered individually, one per tag or
     // multiple addresses can be entered on one line using a semi-colon as a separator.
     L2(
@@ -301,6 +306,7 @@ enum class RisTag(
         setInto = { r, v -> r.notes = v as String? },
         getFrom = { r: RisRecord -> r.notes }
     ),
+
     //  This is a free text field and can contain alphanumeric characters.
     //  There is no practical length limit to this field.
     N2(
