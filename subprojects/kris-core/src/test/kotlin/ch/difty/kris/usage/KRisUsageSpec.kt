@@ -50,7 +50,6 @@ object KRisUsageSpec : Spek({
             "ER  - "
         )
 
-
         it("can be passed to a static method returning a list of RisRecords (blocking)") {
             KRis.processList(risLines) shouldHaveSize 2
         }

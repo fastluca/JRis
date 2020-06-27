@@ -51,7 +51,6 @@ object KRisProcessingSpec : Spek({
             it("should have start page $startPage") { risRecords.first().startPage shouldBeEqualTo startPage }
             it("should have end page $endPage") { risRecords.first().endPage shouldBeEqualTo endPage }
             it("should have volume $volume") { risRecords.first().volumeNumber shouldBeEqualTo volume }
-
         }
 
         describe("representing two records") {
@@ -78,7 +77,6 @@ object KRisProcessingSpec : Spek({
         val number = 1999L
         val abstract = "abstr line 1"
         val abstract2 = "abstr line 2"
-
 
         describe("with number and abstract") {
             val lines = listOf(

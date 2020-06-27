@@ -38,7 +38,6 @@ internal class KRisIOIntegrationTest {
         FILE_PATH.process() shouldHaveSize PAPER_COUNT
     }
 
-
     @Test
     fun `can read from file stream`() {
         File(FILE_PATH).inputStream().process() shouldHaveSize PAPER_COUNT

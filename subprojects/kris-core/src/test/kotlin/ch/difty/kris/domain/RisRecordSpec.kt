@@ -109,7 +109,6 @@ object RisRecordSpec : Spek({
             )
             assertDefaultValues(record)
         }
-
     }
 
     group("with all values specified") {

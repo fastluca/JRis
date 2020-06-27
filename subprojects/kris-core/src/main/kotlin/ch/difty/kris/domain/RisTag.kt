@@ -87,7 +87,7 @@ enum class RisTag(
     // This field maps to T2 for all reference types except for Whole Book and Unpublished Work references.
     BT(
         description =
-        "This field maps to T2 for all reference types except for Whole Book and Unpublished Work references.",
+            "This field maps to T2 for all reference types except for Whole Book and Unpublished Work references.",
         setInto = { r, v -> r.bt = v as String? },
         getFrom = { r: RisRecord -> r.bt }
     ),

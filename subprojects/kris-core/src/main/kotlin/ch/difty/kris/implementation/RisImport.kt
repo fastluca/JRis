@@ -36,7 +36,6 @@ internal object RisImport {
             }
     }
 
-
     private fun String.isEndOfRecord() = startsWith(RisTag.ER.name)
 
     /**

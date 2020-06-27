@@ -6,7 +6,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.Reader
 
-
 /**
  * Converts the RISFile lines provided by the reader as receiver into a list of RisRecords.
  * May throw an [IOException] if the reader fails to deliver lines or a [KRisException]

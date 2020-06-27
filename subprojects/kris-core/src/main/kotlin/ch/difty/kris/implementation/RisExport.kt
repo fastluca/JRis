@@ -48,5 +48,4 @@ internal object RisExport {
      */
     private fun Map<RisTag, Int>.toComparator(): Comparator<RisTag> =
         compareBy({ it.requiredOrder }, { this[it] ?: INT_INTERMEDIATE }, { it.name })
-
 }

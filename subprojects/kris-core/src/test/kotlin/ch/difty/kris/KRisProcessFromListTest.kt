@@ -92,7 +92,8 @@ class KRisProcessFromListTest {
         accessDate = "2019-01-01"
     )
 
-    private val expected = """TY  - BOOK
+    private val expected =
+        """TY  - BOOK
         |A1  - firstAuthor1
         |A1  - firstAuthor2
         |A2  - secondaryAuthor1

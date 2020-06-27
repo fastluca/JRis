@@ -62,7 +62,6 @@ fun listToRisLinesWithSort() {
     // end::listToRisLinesWithSort[]
 }
 
-
 @ExperimentalCoroutinesApi
 fun writingToFileManually() {
     // tag::writingToFileManually[]
@@ -73,7 +72,6 @@ fun writingToFileManually() {
     File("export.ris").writeText(content)
     // end::writingToFileManually[]
 }
-
 
 @ExperimentalCoroutinesApi
 fun writerAccept() {
@@ -108,7 +106,6 @@ fun pathAccept() {
     "export.ris".accept(listOf(record1, record2))
     // end::pathAccept[]
 }
-
 
 @Suppress("UNUSED_VARIABLE")
 @ExperimentalCoroutinesApi
@@ -158,7 +155,6 @@ fun processFile() {
 }
 //endregion
 
-
 @ExperimentalCoroutinesApi
 @Suppress("UNUSED_VARIABLE")
 fun processInputStream() {
@@ -177,7 +173,6 @@ fun processPath() {
     val records: List<RisRecord> = "import.ris".process()
     // end::processPath[]
 }
-
 
 @ExperimentalCoroutinesApi
 @FlowPreview
