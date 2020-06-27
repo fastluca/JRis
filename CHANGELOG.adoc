@@ -9,7 +9,10 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 // Refs:
-:url-issues: https://github.com/ursjoss/KRis/issues/
+:url-repo: https://github.com/ursjoss/KRis/
+:url-issues: {url-repo}issues/
+:url-tree: {url-repo}tree/
+:url-cl: {url-repo}compare/
 
 
 All notable changes to this project will be documented in this file.
@@ -40,13 +43,40 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
+{url-cl}0.2.5$$...$$master[Full Changelog]
+
+
+[[v0.2.5]]
+== [0.2.5] -- 2020-06-07
+
+{url-cl}0.2.3$$...$$0.2.5[Full Changelog]
+
 .Added
 
 .Changed
+- {url-issues}35[#35] Bumped kordamp-gradle-plugins, mockk, kluent
+- {url-issues}36[#36] Bumped kordamp-gradle-plugins, assertj, coroutines
+- {url-issues}37[#37] Use kordamp plugin and project DSL
+- {url-issues}38[#38] Bump gradle-wrapper
+- {url-issues}39[#39] Bump coroutines
+- {url-issues}40[#40] Bump github action cache
+- {url-issues}41[#41] Bumped kordamp-gradle-plugins
 
-.Deprecated
+.Fixed
+- Dokka guide, Readme
+- {url-issues}42[#42] Fix sonar setup, bumpt gradle-wrapper, spek, kordamp-gradle-plugins
 
-.Removed
+
+[[v0.2.3]]
+== [0.2.3] -- 2020-04-11
+
+{url-cl}0.2.1$$...$$0.2.3[Full Changelog]
+
+.Added
+- {url-issues}31[#31] Added module.md and include link from README to dokka guide
+
+.Changed
+- Bumped junit-jupiter
 
 .Fixed
 - Guide: Fixed link to https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[kotlindoc]
@@ -56,6 +86,8 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 [[v0.2.1]]
 == [0.2.1] -- 2020-03-28
+
+{url-cl}0.2.0$$...$$0.2.1[Full Changelog]
 
 .Added
 - https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[kotlindoc]
@@ -77,6 +109,8 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 [[v0.2.0]]
 == [0.2.0] -- 2020-03-10
+
+{url-cl}0.1.0$$...$$0.2.0[Full Changelog]
 
 .Changed
 - Bumped kotlin, coroutines, spekframework, rxjava, gradle-wrapper
