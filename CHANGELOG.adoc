@@ -45,6 +45,9 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 {url-cl}0.2.5$$...$$master[Full Changelog]
 
+.Changed
+- Bumped kordamp-gradle-plugins
+
 
 [[v0.2.5]]
 == [0.2.5] -- 2020-06-07
