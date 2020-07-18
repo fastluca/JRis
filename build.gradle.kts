@@ -231,7 +231,7 @@ configure<ProjectsExtension> {
     }
 }
 
-fun Project.projectRelativSourceLink(branch: String = "master", srcSet: String = kotlinSrcSet) =
+fun Project.projectRelativSourceLink(branch: String = "main", srcSet: String = kotlinSrcSet) =
     rootProject.config.info.links.scm?.let { scmUrl ->
         "${scmUrl.substringBefore(".git")}/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
     }
