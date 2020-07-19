@@ -1,5 +1,5 @@
 image:https://img.shields.io/github/license/ursjoss/KRis.svg[LICENSE, link=https://github.com/ursjoss/KRis/blob/main/LICENSE.adoc]
-image:https://github.com/ursjoss/KRis/workflows/Check/badge.svg?branch=main[LICENSE, link=https://github.com/ursjoss/KRis]
+image:https://github.com/ursjoss/KRis/workflows/Build/badge.svg?branch=main[Build Status, link=https://github.com/ursjoss/KRis/actions]
 image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_KRis&metric=alert_status[Quality Gate, link=https://sonarcloud.io/dashboard?id=ursjoss_KRis] image:https://sonarcloud.io/api/project_badges/measure?project=ursjoss_KRis&metric=coverage[Coverage, link=https://sonarcloud.io/dashboard?id=ursjoss_KRis]
 
 == KRis
