@@ -196,6 +196,10 @@ configure<ProjectsExtension> {
                         includeEngines("junit-jupiter", "spek2")
                     }
                 }
+
+                val check by existing {
+                    dependsOn("allTests")
+                }
             }
 
             config {
