@@ -98,7 +98,7 @@ config {
             includes = project.subprojects.filterNot { it.name == "guide" }.map { sp ->
                 "${sp.projectDir}/module.md"
             }.toList()
-            jdkVersion = 8
+            jdkVersion = 11
 
             aggregate {
                 enabled = true
@@ -124,8 +124,8 @@ reckon {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 configure<ProjectsExtension> {
@@ -149,7 +149,7 @@ configure<ProjectsExtension> {
                 withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
                     kotlinOptions.apiVersion = "1.3"
                     kotlinOptions.languageVersion = "1.3"
-                    kotlinOptions.jvmTarget = "1.8"
+                    kotlinOptions.jvmTarget = "11"
                 }
             }
         }
