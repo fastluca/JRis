@@ -11,3 +11,5 @@ https://en.wikipedia.org/wiki/RIS_(file_format)[Wikipedia article].
 KRis is a kotlin implementation that aims to be used as a library for Kotlin and Java projects.
 It is available on https://github.com/ursjoss/KRis[Github] and can be used via gradle or maven dependency management.
 KRis started as a fork of https://github.com/fastluca/JRis[JRis], which was developed by Gianluca Colaianni (fastluca).
+
+KRis requires Java Platform 11 or later.

@@ -19,5 +19,5 @@ It offers a number of utility functions that allow you to easily handle your use
 `KRis` offers methods to process RIS records in a non-blocking or blocking way.
 
 :leveloffset: 1
-include::{includedir}/usage_from_java.adoc[]
 include::{includedir}/usage_from_kotlin.adoc[]
+include::{includedir}/usage_from_java.adoc[]
