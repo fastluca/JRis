@@ -26,7 +26,7 @@ Requires JDK 11.
 
 == Setup
 
-.Gradle depending on KRisc-core and - optionally - KRis-io
+.Gradle depending on KRisc-core and -- optionally -- KRis-io
 [code,kotlin]
 ----
 repositories {
@@ -39,7 +39,7 @@ dependencies {
 }
 ----
 
-.Maven depenency on KRis-core and - optionally - KRis-io
+.Maven dependency on KRis-core and -- optionally -- KRis-io
 [code,xml]
 ----
 <dependency>
