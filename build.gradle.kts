@@ -205,6 +205,7 @@ configure<ProjectsExtension> {
             config {
                 docs {
                     kotlindoc {
+                        enabled = false
                         sourceLinks {
                             sourceLink {
                                 localDirectory = "$projectDir/$kotlinSrcSet"
