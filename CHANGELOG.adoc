@@ -70,6 +70,9 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 - Bumped gradle, kotlin, kordamp-gradle-plugins, gradle-wrapper, coroutines, junit, spekframework, assertj, mockk
 - {url-issues}45[#45] Compile to Java 11
 
+.Fixed
+- Github action for publication
+
 
 [[v0.2.5]]
 == [0.2.5] -- 2020-06-07
