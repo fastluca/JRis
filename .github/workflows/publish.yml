@@ -32,7 +32,7 @@ jobs:
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Publish to Bintray and github pages
-        run: ./gradlew  -Prelease=true allTests :guide:gitPublishPush :aggregateKotlindocHtml :kris-core:bintrayUpload :kris-io:bintrayUpload --no-daemon
+        run: ./gradlew  -Prelease=true allTests :guide:gitPublishPush :dokkaHtmlCollector :kris-core:bintrayUpload :kris-io:bintrayUpload --no-daemon
         env:
           GRGIT_USER: ursjoss
           GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
