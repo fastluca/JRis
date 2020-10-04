@@ -108,9 +108,9 @@ config {
             project.subprojects.forEach { subProject ->
                 sourceLinks {
                     sourceLink {
-                        path = "${subProject.projectDir}/$kotlinSrcSet"
-                        url = subProject.projectRelativSourceLink()
-                        suffix = srcLinkSuffix
+                        localDirectory = "${subProject.projectDir}/$kotlinSrcSet"
+                        remoteUrl = subProject.projectRelativSourceLink()
+                        remoteLineSuffix = srcLinkSuffix
                     }
                 }
             }
@@ -207,9 +207,9 @@ configure<ProjectsExtension> {
                     kotlindoc {
                         sourceLinks {
                             sourceLink {
-                                path = "$projectDir/$kotlinSrcSet"
-                                url = project.projectRelativSourceLink()
-                                suffix = srcLinkSuffix
+                                localDirectory = "$projectDir/$kotlinSrcSet"
+                                remoteUrl = project.projectRelativSourceLink()
+                                remoteLineSuffix = srcLinkSuffix
                             }
                         }
                     }
