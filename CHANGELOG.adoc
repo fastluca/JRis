@@ -43,7 +43,28 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.2.5$$...$$main[Full Changelog]
+{url-cl}0.2.6$$...$$main[Full Changelog]
+
+////
+.Added
+
+.Changed
+
+.Deprecated
+
+.Removed
+
+.Fixed
+
+.Security
+
+////
+
+
+[[v0.2.6]]
+== [0.2.6] -- 2020-10-04
+
+{url-cl}0.2.5$$...$$0.2.6[Full Changelog]
 
 .Changed
 - Bumped gradle, kotlin, kordamp-gradle-plugins, gradle-wrapper, coroutines, junit, spekframework, assertj, mockk
