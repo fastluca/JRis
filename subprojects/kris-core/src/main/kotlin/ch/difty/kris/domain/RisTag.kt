@@ -24,8 +24,7 @@ enum class RisTag(
     val setInto: (RisRecord, Any?) -> Unit,
     val getFrom: (RisRecord) -> Any?,
     internal val kClass: KClass<*> = String::class,
-    internal val requiredOrder: Int = 1000,
-
+    internal val requiredOrder: Int = 1000
     ) {
     /** Type of reference (must be the first tag) */
     TY(
