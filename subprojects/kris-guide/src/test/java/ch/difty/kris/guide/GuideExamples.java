@@ -2,7 +2,6 @@ package ch.difty.kris.guide;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ch.difty.kris.KRis;
@@ -19,7 +18,7 @@ public class GuideExamples {
     // tag::risRecords[]
     private final RisRecord record1 = new RisRecord.Builder()
         .type(RisType.JOUR)
-        .authors(Arrays.asList("Shannon, Claude E."))
+        .authors(List.of("Shannon, Claude E."))
         .publicationYear("1948/07//")
         .title("A Mathematical Theory of Communication")
         .secondaryTitle("Bell System Technical Journal")
@@ -30,7 +29,7 @@ public class GuideExamples {
 
     private final RisRecord record2 = new RisRecord.Builder()
         .type(RisType.JOUR)
-        .authors(Arrays.asList("Turing, Alan Mathison"))
+        .authors(List.of("Turing, Alan Mathison"))
         .publicationYear("1948/07//")
         .periodicalNameFullFormatJO("Proc. of London Mathematical Society")
         .title("On computable numbers, with an application to the Entscheidungsproblem")
@@ -45,7 +44,7 @@ public class GuideExamples {
 
     void fromList() {
         // tag::fromList[]
-        final List<RisRecord> records = Arrays.asList(record1, record2);
+        final List<RisRecord> records = List.of(record1, record2);
 
         List<String> lines = KRis.buildFromList(records);
         // end::fromList[]
@@ -53,8 +52,8 @@ public class GuideExamples {
 
     void fromListCustomSort() {
         // tag::fromListCustomSort[]
-        final List<RisRecord> records = Arrays.asList(record1, record2);
-        final List<String> sort = Arrays.asList("SP", "EP", "T1");
+        final List<RisRecord> records = List.of(record1, record2);
+        final List<String> sort = List.of("SP", "EP", "T1");
 
         List<String> lines = KRis.buildFromList(records, sort);
         // end::fromListCustomSort[]
@@ -62,7 +61,7 @@ public class GuideExamples {
 
     // tag::fromObservable[]
     void fromObservable() throws IOException {
-        final List<RisRecord> records = Arrays.asList(record1, record2);
+        final List<RisRecord> records = List.of(record1, record2);
         final Observable<RisRecord> observable = Observable.fromIterable(records);
 
         final BufferedWriter writer = new BufferedWriter(new FileWriter("export.ris"));
@@ -83,7 +82,7 @@ public class GuideExamples {
 
     void writerExport() throws IOException {
         // tag::writerExport[]
-        final List<RisRecord> records = Arrays.asList(record1, record2);
+        final List<RisRecord> records = List.of(record1, record2);
 
         try (final BufferedWriter writer = new BufferedWriter(new FileWriter("export.ris"))) {
             KRisIO.export(records, writer);
@@ -93,7 +92,7 @@ public class GuideExamples {
 
     void fileExport() throws IOException {
         // tag::fileExport[]
-        final List<RisRecord> records = Arrays.asList(record1, record2);
+        final List<RisRecord> records = List.of(record1, record2);
 
         final File file = new File("export.ris");
 
@@ -103,7 +102,7 @@ public class GuideExamples {
 
     void streamExport() throws IOException {
         // tag::streamExport[]
-        final List<RisRecord> records = Arrays.asList(record1, record2);
+        final List<RisRecord> records = List.of(record1, record2);
 
         try (OutputStream s = new BufferedOutputStream(new FileOutputStream("export.ris"))) {
             KRisIO.export(records, s);
@@ -113,7 +112,7 @@ public class GuideExamples {
 
     void pathExport() throws IOException {
         // tag::pathExport[]
-        final List<RisRecord> records = Arrays.asList(record1, record2);
+        final List<RisRecord> records = List.of(record1, record2);
 
         KRisIO.export(records, "export.ris");
         // end::pathExport[]
@@ -153,7 +152,7 @@ public class GuideExamples {
 
     void passRisLinesAsList() throws IOException {
         // tag::passRisLinesAsList[]
-        final List<String> lines = Arrays.asList(); // TODO
+        final List<String> lines = List.of(); // TODO
         List<RisRecord> records = KRis.processList(lines);
         // end::passRisLinesAsList[]
     }
