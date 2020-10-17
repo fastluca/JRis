@@ -6,7 +6,7 @@ plugins {
     id("org.ajoberstar.reckon")
 }
 
-val kotlinVersion = "1.3"
+val kotlinVersion = "1.4"
 val javaVersion = JavaVersion.VERSION_11
 val kotlinSrcSet = "/src/main/kotlin"
 val srcLinkSuffix = "#L"
