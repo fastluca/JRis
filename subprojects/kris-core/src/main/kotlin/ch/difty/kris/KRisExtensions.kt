@@ -3,6 +3,7 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
+import ch.difty.kris.domain.RisTag
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
@@ -98,3 +99,8 @@ fun Sequence<RisRecord>.toRisLines(): Sequence<String> =
     }
 
 //endregion
+
+/**
+ * List of the names of all [RisTag]s.
+ */
+public val risTagNames: List<String> get() = RisTag.values().map { it.name }

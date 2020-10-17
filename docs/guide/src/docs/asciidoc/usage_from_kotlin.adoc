@@ -42,6 +42,14 @@ All the subsequent method calls optionally accept a list of RIS tag names, speci
 We will not explicitly mention this option in the subsequent examples.
 ====
 
+You can get get a complete list of the RisTags available:
+
+.Getting a list of all RisTags (list of strings) [kotlin]
+[subs=attributes+,source,kotlin]
+----
+include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/guide/GuideExamples.kt[tags=getListOfRisTagsAsString]
+----
+
 If we want to write the list of lines into a file, we can do that manually, e.g.
 
 .Writing the list of lines into a file [kotlin]

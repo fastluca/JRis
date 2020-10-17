@@ -171,4 +171,10 @@ public class GuideExamples {
     }
 
     //endregion
+
+    void getListOfRisTagsAsString() {
+        // tag::getListOfRisTagsAsString[]
+        List<String> namesOfAllRisTags = KRis.risTagNames();
+        // end::getListOfRisTagsAsString[]
+    }
 }

@@ -86,4 +86,11 @@ object KRis {
         build(observable.asFlow(), sort).asObservable()
 
 //endregion
+
+    /**
+     * Returns a list of the names of all available [RisTag]s
+     */
+    @JvmStatic
+    public fun risTagNames(): List<String> = risTagNames
+
 }

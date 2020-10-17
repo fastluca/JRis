@@ -6,6 +6,7 @@ import ch.difty.kris.accept
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import ch.difty.kris.process
+import ch.difty.kris.risTagNames
 import ch.difty.kris.toRisLines
 import ch.difty.kris.toRisRecords
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -60,6 +61,13 @@ fun listToRisLinesWithSort() {
     val sort: List<String> = listOf("SP", "EP", "T1")
     val lines: List<String> = listOf(record1, record2).toRisLines(sort)
     // end::listToRisLinesWithSort[]
+}
+
+fun getListOfRisTagsAsString() {
+    // tag::getListOfRisTagsAsString[]
+    // import ch.difty.kris.risTags
+    val namesOfAllRisTags = risTagNames
+    // end::getListOfRisTagsAsString[]
 }
 
 @ExperimentalCoroutinesApi
