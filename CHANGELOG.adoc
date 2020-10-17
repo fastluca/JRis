@@ -45,12 +45,11 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 {url-cl}0.2.6$$...$$main[Full Changelog]
 
-////
 .Added
-////
+- {url-issues}55[#45] Activated explicit api mode
 
 .Changed
-- Bumped gradle
+- Bumped gradle, rxjava2, rxjava2
 
 ////
 .Deprecated
