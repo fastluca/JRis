@@ -1,5 +1,6 @@
 package ch.difty.kris
 
+import ch.difty.kris.domain.RisRecord
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.io.File
 import java.io.IOException
@@ -12,7 +13,7 @@ import java.io.Reader
  * if the lines cannot be parsed successfully.
  */
 @ExperimentalCoroutinesApi
-fun Reader.process() = KRisIO.process(this)
+public fun Reader.process(): List<RisRecord> = KRisIO.process(this)
 
 /**
  * Converts the RISFile lines in the [File] provided as receiver into a list of RisRecords.
@@ -20,7 +21,7 @@ fun Reader.process() = KRisIO.process(this)
  * or a [KRisException] if the lines cannot be parsed successfully.
  */
 @ExperimentalCoroutinesApi
-fun File.process() = KRisIO.process(this)
+public fun File.process(): List<RisRecord> = KRisIO.process(this)
 
 /**
  * Converts the RISFile lines from the file with the path provided as receiver into a list of RisRecords.
@@ -28,7 +29,7 @@ fun File.process() = KRisIO.process(this)
  * or a [KRisException] if the lines cannot be parsed successfully.
  */
 @ExperimentalCoroutinesApi
-fun String.process() = KRisIO.process(this)
+public fun String.process(): List<RisRecord> = KRisIO.process(this)
 
 /**
  * Converts the RISFile lines provided by the [InputStream] as receiver  into a list of RisRecords.
@@ -36,4 +37,4 @@ fun String.process() = KRisIO.process(this)
  * or a [KRisException] if the lines cannot be parsed successfully.
  */
 @ExperimentalCoroutinesApi
-fun InputStream.process() = KRisIO.process(this)
+public fun InputStream.process(): List<RisRecord> = KRisIO.process(this)

@@ -18,11 +18,11 @@ import kotlin.reflect.KClass
  * [Wikipedia](https://en.wikipedia.org/wiki/RIS_(file_format)).
  */
 @Suppress("unused", "SpellCheckingInspection")
-enum class RisTag(
-    val description: String,
-    val maxLength: Int? = null,
-    val setInto: (RisRecord, Any?) -> Unit,
-    val getFrom: (RisRecord) -> Any?,
+internal enum class RisTag(
+    internal val description: String,
+    internal val maxLength: Int? = null,
+    internal val setInto: (RisRecord, Any?) -> Unit,
+    internal val getFrom: (RisRecord) -> Any?,
     internal val kClass: KClass<*> = String::class,
     internal val requiredOrder: Int = 1000
     ) {
