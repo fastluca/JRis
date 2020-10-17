@@ -148,6 +148,13 @@ configure<ProjectsExtension> {
                 explicitApi()
             }
 
+            // workaround until resolution of https://github.com/kordamp/kordamp-gradle-plugins/issues/331
+            config {
+                licensing {
+                    enabled = false
+                }
+            }
+
             tasks {
                 val deleteOutFolderTask by registering(Delete::class) {
                     delete("out")
