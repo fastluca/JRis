@@ -20,7 +20,7 @@ import java.io.Writer
 /**
  * Convenience methods offering to directly work with IO methods.
  */
-object KRisIO {
+public object KRisIO {
 
     //region:process -> RISFile lines -> RisRecords
 
@@ -32,7 +32,7 @@ object KRisIO {
     @JvmStatic
     @ExperimentalCoroutinesApi
     @Throws(IOException::class)
-    fun process(reader: Reader): List<RisRecord> = runBlocking(Dispatchers.IO) {
+    public fun process(reader: Reader): List<RisRecord> = runBlocking(Dispatchers.IO) {
         val lineFlow = BufferedReader(reader).readLines().asFlow()
         KRis.process(lineFlow).toList()
     }
@@ -45,7 +45,7 @@ object KRisIO {
     @JvmStatic
     @ExperimentalCoroutinesApi
     @Throws(IOException::class)
-    fun process(file: File): List<RisRecord> = process(file.bufferedReader())
+    public fun process(file: File): List<RisRecord> = process(file.bufferedReader())
 
     /**
      * Converts the RISFile lines from the file with the provided path into a list of [RisRecord]s.
@@ -55,7 +55,7 @@ object KRisIO {
     @JvmStatic
     @ExperimentalCoroutinesApi
     @Throws(IOException::class)
-    fun process(filePath: String): List<RisRecord> = process(File(filePath).bufferedReader())
+    public fun process(filePath: String): List<RisRecord> = process(File(filePath).bufferedReader())
 
     /**
      * Converts the RISFile lines provided by the [InputStream] into a list of [RisRecord]s.
@@ -65,7 +65,7 @@ object KRisIO {
     @JvmStatic
     @ExperimentalCoroutinesApi
     @Throws(IOException::class)
-    fun process(inputStream: InputStream): List<RisRecord> = process(inputStream.bufferedReader())
+    public fun process(inputStream: InputStream): List<RisRecord> = process(inputStream.bufferedReader())
 
     //endregion
 
@@ -79,7 +79,7 @@ object KRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
+    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
         writer.use { w ->
             runBlocking(Dispatchers.IO) {
                 KRis.build(records.asFlow(), sort).toList().forEach { line ->
@@ -97,7 +97,7 @@ object KRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), file: File) {
+    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), file: File) {
         FileWriter(file).use { fileWriter ->
             export(records, sort, fileWriter)
         }
@@ -111,7 +111,7 @@ object KRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), out: OutputStream) {
+    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), out: OutputStream) {
         OutputStreamWriter(out).use { writer ->
             export(records, sort, writer)
         }
@@ -125,7 +125,7 @@ object KRisIO {
     @JvmStatic
     @JvmOverloads
     @ExperimentalCoroutinesApi
-    fun export(records: List<RisRecord>, sort: List<String> = emptyList(), filePath: String) {
+    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), filePath: String) {
         FileOutputStream(filePath).use {
             export(records, sort, it)
         }

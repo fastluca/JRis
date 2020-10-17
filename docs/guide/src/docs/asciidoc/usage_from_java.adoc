@@ -41,6 +41,14 @@ All the subsequent method calls optionally accept a list of RIS tag names, speci
 We will not explicitly mention this option in the subsequent examples.
 ====
 
+You can get get a complete list of the RisTags available:
+
+.Getting a list of all RisTags (list of strings) [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide//GuideExamples.java[tags=getListOfRisTagsAsString]
+----
+
 [[_java_export_nonblocking]]
 === Observable: Non-blocking conversion
 

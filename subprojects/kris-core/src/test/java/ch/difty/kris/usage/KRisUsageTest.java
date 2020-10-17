@@ -3,7 +3,6 @@ package ch.difty.kris.usage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class KRisUsageTest {
 
     //@formatter:off
-    @SuppressWarnings("SpellCheckingInspection") private final List<String> risLines = Arrays.asList(
+    @SuppressWarnings("SpellCheckingInspection") private final List<String> risLines = List.of(
         "TY  - JOUR",
         "AU  - Shannon, Claude E.",
         "PY  - 1948/07//",

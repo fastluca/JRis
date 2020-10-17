@@ -14,7 +14,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.rx2.asFlow
 import kotlinx.coroutines.rx2.asObservable
 
-class KRisException(message: String) : Throwable(message)
+public class KRisException(message: String) : Throwable(message)
 
 internal const val TAG_SEPARATOR = "  - "
 
@@ -32,7 +32,7 @@ internal const val TAG_SEPARATOR = "  - "
  */
 @Suppress("KDocUnresolvedReference")
 @ExperimentalCoroutinesApi
-object KRis {
+public object KRis {
 
 //region:process - RISFile lines -> RisRecords
 
@@ -40,14 +40,14 @@ object KRis {
      * Converts a flow of Strings (representing lines in a RIS file) into a flow of [RisRecord]s.
      * May throw a [KRisException] if the line flow cannot be parsed successfully.
      */
-    fun process(lineFlow: Flow<String>): Flow<RisRecord> = RisImport.process(lineFlow)
+    public fun process(lineFlow: Flow<String>): Flow<RisRecord> = RisImport.process(lineFlow)
 
     /**
      * Converts an observable of Strings (representing lines in a RIS file) into an observable of [RisRecord]s
      * in non-blocking manner. May throw [KRisException] if the line flow cannot be parsed successfully.
      */
     @JvmStatic
-    fun processObservables(risLineObservable: Observable<String>): Observable<RisRecord> =
+    public fun processObservables(risLineObservable: Observable<String>): Observable<RisRecord> =
         process(risLineObservable.asFlow()).asObservable()
 
     /**
@@ -55,7 +55,7 @@ object KRis {
      * May throw a [KRisException] if the line flow cannot be parsed successfully.
      */
     @JvmStatic
-    fun processList(risLines: List<String>): List<RisRecord> = runBlocking { process(risLines.asFlow()).toList() }
+    public fun processList(risLines: List<String>): List<RisRecord> = runBlocking { process(risLines.asFlow()).toList() }
 
 //endregion
 
@@ -65,7 +65,7 @@ object KRis {
      * Converts a flow of [RisRecord]s into a flow of [String]s in RIS file format.
      * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
      */
-    fun build(recordFlow: Flow<RisRecord>, sort: List<String> = emptyList()): Flow<String> = RisExport.build(recordFlow, sort)
+    public fun build(recordFlow: Flow<RisRecord>, sort: List<String> = emptyList()): Flow<String> = RisExport.build(recordFlow, sort)
 
     /**
      * Converts a list of [RisRecord]s into a list of [String]s in RIS file format in blocking manner.
@@ -73,7 +73,7 @@ object KRis {
      */
     @JvmStatic
     @JvmOverloads
-    fun buildFromList(risRecords: List<RisRecord>, sort: List<String> = emptyList()): List<String> =
+    public fun buildFromList(risRecords: List<RisRecord>, sort: List<String> = emptyList()): List<String> =
         runBlocking { build(risRecords.asFlow(), sort).toList() }
 
     /**
@@ -82,8 +82,15 @@ object KRis {
      */
     @JvmStatic
     @JvmOverloads
-    fun exportObservable(observable: Observable<RisRecord>, sort: List<String> = emptyList()): Observable<String> =
+    public fun exportObservable(observable: Observable<RisRecord>, sort: List<String> = emptyList()): Observable<String> =
         build(observable.asFlow(), sort).asObservable()
 
 //endregion
+
+    /**
+     * Returns a list of the names of all available [RisTag]s
+     */
+    @JvmStatic
+    public fun risTagNames(): List<String> = risTagNames
+
 }

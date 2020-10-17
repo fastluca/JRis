@@ -1,11 +1,15 @@
 @file:Suppress("SpellCheckingInspection")
 
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
 import org.kordamp.gradle.plugin.base.ProjectsExtension
 
 plugins {
+    kotlin
     id("org.ajoberstar.reckon")
 }
 
+val kotlinVersion = "1.4"
+val javaVersion = JavaVersion.VERSION_11
 val kotlinSrcSet = "/src/main/kotlin"
 val srcLinkSuffix = "#L"
 
@@ -98,7 +102,7 @@ config {
             includes = project.subprojects.filterNot { it.name == "guide" }.map { sp ->
                 "${sp.projectDir}/module.md"
             }.toList()
-            jdkVersion = 11
+            jdkVersion = javaVersion.majorVersion.toInt()
 
             aggregate {
                 enabled = true
@@ -124,19 +128,31 @@ reckon {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
 }
 
 configure<ProjectsExtension> {
     all {
         path("*") {
             apply<IdeaPlugin>()
+            apply<KotlinPlatformJvmPlugin>()
 
             repositories {
                 mavenLocal()
                 jcenter()
                 mavenCentral()
+            }
+
+            kotlin {
+                explicitApi()
+            }
+
+            // workaround until resolution of https://github.com/kordamp/kordamp-gradle-plugins/issues/331
+            config {
+                licensing {
+                    enabled = false
+                }
             }
 
             tasks {
@@ -147,9 +163,11 @@ configure<ProjectsExtension> {
                     dependsOn(deleteOutFolderTask)
                 }
                 withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-                    kotlinOptions.apiVersion = "1.3"
-                    kotlinOptions.languageVersion = "1.3"
-                    kotlinOptions.jvmTarget = "11"
+                    kotlinOptions {
+                        apiVersion = kotlinVersion
+                        languageVersion = kotlinVersion
+                        jvmTarget = javaVersion.majorVersion
+                    }
                 }
             }
         }

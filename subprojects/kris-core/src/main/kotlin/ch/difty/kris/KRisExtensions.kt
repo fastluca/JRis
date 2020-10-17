@@ -3,6 +3,7 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
+import ch.difty.kris.domain.RisTag
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
@@ -21,14 +22,14 @@ import java.nio.channels.ClosedChannelException
  * May throw a [KRisException] if the line flow cannot be parsed successfully.
  */
 @ExperimentalCoroutinesApi
-fun Flow<String>.toRisRecords(): Flow<RisRecord> = KRis.process(this)
+public fun Flow<String>.toRisRecords(): Flow<RisRecord> = KRis.process(this)
 
 /**
  * Converts a list of Strings (representing lines in a RIS file) (as receiver) itno a list of [RisRecord]s.
  * May throw a [KRisException] if the line list of Strings cannot be parsed successfully.
  */
 @ExperimentalCoroutinesApi
-fun List<String>.toRisRecords(): List<RisRecord> = KRis.processList(this)
+public fun List<String>.toRisRecords(): List<RisRecord> = KRis.processList(this)
 
 /**
  * Converts a sequence of Strings (representing lines in a RIS file) (as receiver) into a sequence of [RisRecord]s
@@ -36,7 +37,7 @@ fun List<String>.toRisRecords(): List<RisRecord> = KRis.processList(this)
  */
 @FlowPreview
 @ExperimentalCoroutinesApi
-fun Sequence<String>.toRisRecords(): Sequence<RisRecord> {
+public fun Sequence<String>.toRisRecords(): Sequence<RisRecord> {
     val lineFlow = this.asFlow()
     return sequence {
         val channel = KRis.process(lineFlow).produceIn(GlobalScope)
@@ -62,7 +63,7 @@ fun Sequence<String>.toRisRecords(): Sequence<RisRecord> {
  */
 @JvmOverloads
 @ExperimentalCoroutinesApi
-fun Flow<RisRecord>.toRisLines(sort: List<String> = emptyList()): Flow<String> = KRis.build(this, sort)
+public fun Flow<RisRecord>.toRisLines(sort: List<String> = emptyList()): Flow<String> = KRis.build(this, sort)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format.
@@ -70,7 +71,7 @@ fun Flow<RisRecord>.toRisLines(sort: List<String> = emptyList()): Flow<String> =
  */
 @JvmOverloads
 @ExperimentalCoroutinesApi
-fun List<RisRecord>.toRisLines(sort: List<String> = emptyList()): List<String> =
+public fun List<RisRecord>.toRisLines(sort: List<String> = emptyList()): List<String> =
     runBlocking { asFlow().toRisLines(sort).toList() }
 
 /**
@@ -80,7 +81,7 @@ fun List<RisRecord>.toRisLines(sort: List<String> = emptyList()): List<String> =
  */
 @FlowPreview
 @ExperimentalCoroutinesApi
-fun Sequence<RisRecord>.toRisLines(): Sequence<String> =
+public fun Sequence<RisRecord>.toRisLines(): Sequence<String> =
     sequence {
         val channel = KRis.build(asFlow()).produceIn(GlobalScope)
 
@@ -98,3 +99,8 @@ fun Sequence<RisRecord>.toRisLines(): Sequence<String> =
     }
 
 //endregion
+
+/**
+ * List of the names of all [RisTag]s.
+ */
+public val risTagNames: List<String> get() = RisTag.values().map { it.name }

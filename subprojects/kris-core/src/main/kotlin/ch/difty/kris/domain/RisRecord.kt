@@ -8,291 +8,291 @@ package ch.difty.kris.domain
  * @since 22 apr 2017
  */
 @Suppress("ParameterListWrapping", "SpellCheckingInspection", "TooManyFunctions")
-data class RisRecord(
+public data class RisRecord(
 
     /** TY */
-    var type: RisType? = null,
+    public var type: RisType? = null,
 
     /** A1 */
-    val firstAuthors: MutableList<String> = mutableListOf(),
+    public val firstAuthors: MutableList<String> = mutableListOf(),
 
     /** A2 */
-    val secondaryAuthors: MutableList<String> = mutableListOf(),
+    public val secondaryAuthors: MutableList<String> = mutableListOf(),
 
     /** A3 */
-    val tertiaryAuthors: MutableList<String> = mutableListOf(),
+    public val tertiaryAuthors: MutableList<String> = mutableListOf(),
 
     /** A4 */
-    val subsidiaryAuthors: MutableList<String> = mutableListOf(),
+    public val subsidiaryAuthors: MutableList<String> = mutableListOf(),
 
     /** AU */
-    val authors: MutableList<String> = mutableListOf(),
+    public val authors: MutableList<String> = mutableListOf(),
 
     /** AB */
-    var abstr: String? = null,
+    public var abstr: String? = null,
 
     /** AD */
-    var authorAddress: String? = null,
+    public var authorAddress: String? = null,
 
     /** AN */
-    var accessionNumber: String? = null,
+    public var accessionNumber: String? = null,
 
     /** AV */
-    var archivesLocation: String? = null,
+    public var archivesLocation: String? = null,
 
     /** BT */
-    var bt: String? = null,
+    public var bt: String? = null,
 
     /** C1 */
-    var custom1: String? = null,
+    public var custom1: String? = null,
 
     /** C2 */
-    var custom2: String? = null,
+    public var custom2: String? = null,
 
     /** C3 */
-    var custom3: String? = null,
+    public var custom3: String? = null,
 
     /** C4 */
-    var custom4: String? = null,
+    public var custom4: String? = null,
 
     /** C5 */
-    var custom5: String? = null,
+    public var custom5: String? = null,
 
     /** C6 */
-    var custom6: String? = null,
+    public var custom6: String? = null,
 
     /** C7 */
-    var custom7: String? = null,
+    public var custom7: String? = null,
 
     /** C8 */
-    var custom8: String? = null,
+    public var custom8: String? = null,
 
     /** CA */
-    var caption: String? = null,
+    public var caption: String? = null,
 
     /** CN */
-    var callNumber: String? = null,
+    public var callNumber: String? = null,
 
     /** CP */
-    var cp: String? = null,
+    public var cp: String? = null,
 
     /** CT */
-    var unpublishedReferenceTitle: String? = null,
+    public var unpublishedReferenceTitle: String? = null,
 
     /** CY */
-    var placePublished: String? = null,
+    public var placePublished: String? = null,
 
     /** DA */
-    var date: String? = null,
+    public var date: String? = null,
 
     /** DB */
-    var databaseName: String? = null,
+    public var databaseName: String? = null,
 
     /** DO */
-    var doi: String? = null,
+    public var doi: String? = null,
 
     /** DP */
-    var databaseProvider: String? = null,
+    public var databaseProvider: String? = null,
 
     /** ED */
-    var editor: String? = null,
+    public var editor: String? = null,
 
     /** EP */
-    var endPage: String? = null,
+    public var endPage: String? = null,
 
     /** ED */
-    var edition: String? = null,
+    public var edition: String? = null,
 
     /** ID */
-    var referenceId: String? = null,
+    public var referenceId: String? = null,
 
     /** IS */
-    var issue: String? = null,
+    public var issue: String? = null,
 
     /**
      * J1. Max 255 characters.
      */
-    var periodicalNameUserAbbrevation: String? = null,
+    public var periodicalNameUserAbbrevation: String? = null,
 
     /**
      * J2. This field is used for the abbreviated title of a book or journal name, the latter mapped to T2.
      */
-    var alternativeTitle: String? = null,
+    public var alternativeTitle: String? = null,
 
     /**
      * JA. This is the periodical in which the article was (or is to be, in the case of in-press references) published.
      *     This is an alphanumeric field of up to 255 characters.
      */
-    var periodicalNameStandardAbbrevation: String? = null,
+    public var periodicalNameStandardAbbrevation: String? = null,
 
     /**
      * JF. Journal/Periodical name: full format. This is an alphanumeric field of up to 255 characters.
      */
-    var periodicalNameFullFormatJF: String? = null,
+    public var periodicalNameFullFormatJF: String? = null,
 
     /**
      * JO. Journal/Periodical name: full format. This is an alphanumeric field of up to 255 characters.
      */
-    var periodicalNameFullFormatJO: String? = null,
+    public var periodicalNameFullFormatJO: String? = null,
 
     /**
      * KW
      */
-    val keywords: MutableList<String> = mutableListOf(),
+    public val keywords: MutableList<String> = mutableListOf(),
 
     /**
      * L1. There is no practical limit to the length of this field. URL addresses can be entered individually,
      *     one per tag or multiple addresses can be entered on one line using a semi-colon as a separator.
      */
-    val pdfLinks: MutableList<String> = mutableListOf(),
+    public val pdfLinks: MutableList<String> = mutableListOf(),
 
     /**
      * L2. Link to Full-text. There is no practical limit to the length of this field.
      *     URL addresses can be entered individually, one per tag or multiple addresses
      *     can be entered on one line using a semi-colon as a separator.
      */
-    val fullTextLinks: MutableList<String> = mutableListOf(),
+    public val fullTextLinks: MutableList<String> = mutableListOf(),
 
     /**
      * L3. Related Records. There is no practical limit to the length of this field.
      */
-    val relatedRecords: MutableList<String> = mutableListOf(),
+    public val relatedRecords: MutableList<String> = mutableListOf(),
 
     /**
      * L4. Image(s). There is no practical limit to the length of this field.
      */
-    val images: MutableList<String> = mutableListOf(),
+    public val images: MutableList<String> = mutableListOf(),
 
     /** LA */
-    var language: String? = null,
+    public var language: String? = null,
 
     /** LB */
-    var label: String? = null,
+    public var label: String? = null,
 
     /** LK */
-    var websiteLink: String? = null,
+    public var websiteLink: String? = null,
 
     /** M1 */
-    var number: Long? = null,
+    public var number: Long? = null,
 
     /**
      * M2. This is an alphanumeric field and there is no practical limit to the length of this field.
      */
-    var miscellaneous2: String? = null,
+    public var miscellaneous2: String? = null,
 
     /** M3 */
-    var typeOfWork: String? = null,
+    public var typeOfWork: String? = null,
 
     /** N1 */
-    var notes: String? = null,
+    public var notes: String? = null,
 
     /**
      * N2. Abstract. This is a free text field and can contain alphanumeric characters.
      *     There is no practical length limit to this field.
      */
-    var abstr2: String? = null,
+    public var abstr2: String? = null,
 
     /**
      * NV.
      */
-    var numberOfVolumes: String? = null,
+    public var numberOfVolumes: String? = null,
 
     /** OP */
-    var originalPublication: String? = null,
+    public var originalPublication: String? = null,
 
     /** PB */
-    var publisher: String? = null,
+    public var publisher: String? = null,
 
     /** PP */
-    var publishingPlace: String? = null,
+    public var publishingPlace: String? = null,
 
     /**
      * PY. Publication year (YYYY/MM/DD).
      */
-    var publicationYear: String? = null,
+    public var publicationYear: String? = null,
 
     /** RI */
-    var reviewedItem: String? = null,
+    public var reviewedItem: String? = null,
 
     /** RN */
-    var researchNotes: String? = null,
+    public var researchNotes: String? = null,
 
     /** RP */
-    var reprintEdition: String? = null,
+    public var reprintEdition: String? = null,
 
     /** SE */
-    var section: String? = null,
+    public var section: String? = null,
 
     /** SN */
-    var isbnIssn: String? = null,
+    public var isbnIssn: String? = null,
 
     /** SP - String? instead of Int? for DistillerSr format */
-    var startPage: String? = null,
+    public var startPage: String? = null,
 
     /** ST */
-    var shortTitle: String? = null,
+    public var shortTitle: String? = null,
 
     /** T1 */
-    var primaryTitle: String? = null,
+    public var primaryTitle: String? = null,
 
     /** T2 */
-    var secondaryTitle: String? = null,
+    public var secondaryTitle: String? = null,
 
     /** T3 */
-    var tertiaryTitle: String? = null,
+    public var tertiaryTitle: String? = null,
 
     /** TA */
-    var translatedAuthor: String? = null,
+    public var translatedAuthor: String? = null,
 
     /** TI */
-    var title: String? = null,
+    public var title: String? = null,
 
     /** TT */
-    var translatedTitle: String? = null,
+    public var translatedTitle: String? = null,
 
     /**
      * U1. User definable 1. This is an alphanumeric field and there is no practical limit to the length of this field.
      */
-    var userDefinable1: String? = null,
+    public var userDefinable1: String? = null,
 
     /**
      * U. User definable 2. This is an alphanumeric field and there is no practical limit to the length of this field.
      */
-    var userDefinable2: String? = null,
+    public var userDefinable2: String? = null,
 
     /**
      * U3. User definable 3. This is an alphanumeric field and there is no practical limit to the length of this field.
      */
-    var userDefinable3: String? = null,
+    public var userDefinable3: String? = null,
 
     /**
      * U4. User definable 4. This is an alphanumeric field and there is no practical limit to the length of this field.
      */
-    var userDefinable4: String? = null,
+    public var userDefinable4: String? = null,
 
     /**
      * U5. User definable 5. This is an alphanumeric field and there is no practical limit to the length of this field.
      */
-    var userDefinable5: String? = null,
+    public var userDefinable5: String? = null,
 
     /** UR */
-    var url: String? = null,
+    public var url: String? = null,
 
     /** VL */
-    var volumeNumber: String? = null,
+    public var volumeNumber: String? = null,
 
     /** VO */
-    var publisherStandardNumber: String? = null,
+    public var publisherStandardNumber: String? = null,
 
     /** Y1 */
-    var primaryDate: String? = null,
+    public var primaryDate: String? = null,
 
     /** Y2 */
-    var accessDate: String? = null
+    public var accessDate: String? = null,
 
-) {
+    ) {
     // This whole bloating builder is only necessary for Java inter-operability.
-    class Builder {
+    public class Builder {
         private var type: RisType? = null
         private val firstAuthors: MutableList<String> = mutableListOf()
         private val secondaryAuthors: MutableList<String> = mutableListOf()
@@ -373,114 +373,114 @@ data class RisRecord(
         private var primaryDate: String? = null
         private var accessDate: String? = null
 
-        fun type(type: RisType?) = apply { this.type = type }
-        fun firstAuthors(firstAuthors: List<String>) =
+        public fun type(type: RisType?): Builder = apply { this.type = type }
+        public fun firstAuthors(firstAuthors: List<String>): Builder =
             apply { this.firstAuthors.clear(); this.firstAuthors.addAll(firstAuthors) }
 
-        fun secondaryAuthors(secondaryAuthors: List<String>) =
+        public fun secondaryAuthors(secondaryAuthors: List<String>): Builder =
             apply { this.secondaryAuthors.clear(); this.secondaryAuthors.addAll(secondaryAuthors) }
 
-        fun tertiaryAuthors(tertiaryAuthors: List<String>) =
+        public fun tertiaryAuthors(tertiaryAuthors: List<String>): Builder =
             apply { this.tertiaryAuthors.clear(); this.tertiaryAuthors.addAll(tertiaryAuthors) }
 
-        fun subsidiaryAuthors(subsidiaryAuthors: List<String>) =
+        public fun subsidiaryAuthors(subsidiaryAuthors: List<String>): Builder =
             apply { this.subsidiaryAuthors.clear(); this.subsidiaryAuthors.addAll(subsidiaryAuthors) }
 
-        fun authors(authors: List<String>) = apply { this.authors.clear(); this.authors.addAll(authors) }
-        fun abstr(abstr: String?) = apply { this.abstr = abstr }
-        fun authorAddress(authorAddress: String?) = apply { this.authorAddress = authorAddress }
-        fun accessionNumber(accessionNumber: String?) = apply { this.accessionNumber = accessionNumber }
-        fun archivesLocation(archivesLocation: String?) = apply { this.archivesLocation = archivesLocation }
-        fun bt(bt: String?) = apply { this.bt = bt }
-        fun custom1(custom1: String?) = apply { this.custom1 = custom1 }
-        fun custom2(custom2: String?) = apply { this.custom2 = custom2 }
-        fun custom3(custom3: String?) = apply { this.custom3 = custom3 }
-        fun custom4(custom4: String?) = apply { this.custom4 = custom4 }
-        fun custom5(custom5: String?) = apply { this.custom5 = custom5 }
-        fun custom6(custom6: String?) = apply { this.custom6 = custom6 }
-        fun custom7(custom7: String?) = apply { this.custom7 = custom7 }
-        fun custom8(custom8: String?) = apply { this.custom8 = custom8 }
-        fun caption(caption: String?) = apply { this.caption = caption }
-        fun callNumber(callNumber: String?) = apply { this.callNumber = callNumber }
-        fun cp(cp: String?) = apply { this.cp = cp }
-        fun unpublishedReferenceTitle(unpublishedReferenceTitle: String?) =
+        public fun authors(authors: List<String>): Builder = apply { this.authors.clear(); this.authors.addAll(authors) }
+        public fun abstr(abstr: String?): Builder = apply { this.abstr = abstr }
+        public fun authorAddress(authorAddress: String?): Builder = apply { this.authorAddress = authorAddress }
+        public fun accessionNumber(accessionNumber: String?): Builder = apply { this.accessionNumber = accessionNumber }
+        public fun archivesLocation(archivesLocation: String?): Builder = apply { this.archivesLocation = archivesLocation }
+        public fun bt(bt: String?): Builder = apply { this.bt = bt }
+        public fun custom1(custom1: String?): Builder = apply { this.custom1 = custom1 }
+        public fun custom2(custom2: String?): Builder = apply { this.custom2 = custom2 }
+        public fun custom3(custom3: String?): Builder = apply { this.custom3 = custom3 }
+        public fun custom4(custom4: String?): Builder = apply { this.custom4 = custom4 }
+        public fun custom5(custom5: String?): Builder = apply { this.custom5 = custom5 }
+        public fun custom6(custom6: String?): Builder = apply { this.custom6 = custom6 }
+        public fun custom7(custom7: String?): Builder = apply { this.custom7 = custom7 }
+        public fun custom8(custom8: String?): Builder = apply { this.custom8 = custom8 }
+        public fun caption(caption: String?): Builder = apply { this.caption = caption }
+        public fun callNumber(callNumber: String?): Builder = apply { this.callNumber = callNumber }
+        public fun cp(cp: String?): Builder = apply { this.cp = cp }
+        public fun unpublishedReferenceTitle(unpublishedReferenceTitle: String?): Builder =
             apply { this.unpublishedReferenceTitle = unpublishedReferenceTitle }
 
-        fun placePublished(placePublished: String?) = apply { this.placePublished = placePublished }
-        fun date(date: String?) = apply { this.date = date }
-        fun databaseName(databaseName: String?) = apply { this.databaseName = databaseName }
-        fun doi(doi: String?) = apply { this.doi = doi }
-        fun databaseProvider(databaseProvider: String?) = apply { this.databaseProvider = databaseProvider }
-        fun editor(editor: String?) = apply { this.editor = editor }
-        fun endPage(endPage: String?) = apply { this.endPage = endPage }
-        fun edition(edition: String?) = apply { this.edition = edition }
-        fun referenceId(referenceId: String?) = apply { this.referenceId = referenceId }
-        fun issue(issue: String?) = apply { this.issue = issue }
-        fun periodicalNameUserAbbrevation(periodicalNameUserAbbrevation: String?) =
+        public fun placePublished(placePublished: String?): Builder = apply { this.placePublished = placePublished }
+        public fun date(date: String?): Builder = apply { this.date = date }
+        public fun databaseName(databaseName: String?): Builder = apply { this.databaseName = databaseName }
+        public fun doi(doi: String?): Builder = apply { this.doi = doi }
+        public fun databaseProvider(databaseProvider: String?): Builder = apply { this.databaseProvider = databaseProvider }
+        public fun editor(editor: String?): Builder = apply { this.editor = editor }
+        public fun endPage(endPage: String?): Builder = apply { this.endPage = endPage }
+        public fun edition(edition: String?): Builder = apply { this.edition = edition }
+        public fun referenceId(referenceId: String?): Builder = apply { this.referenceId = referenceId }
+        public fun issue(issue: String?): Builder = apply { this.issue = issue }
+        public fun periodicalNameUserAbbrevation(periodicalNameUserAbbrevation: String?): Builder =
             apply { this.periodicalNameUserAbbrevation = periodicalNameUserAbbrevation }
 
-        fun alternativeTitle(alternativeTitle: String?) = apply { this.alternativeTitle = alternativeTitle }
-        fun periodicalNameStandardAbbrevation(periodicalNameStandardAbbrevation: String?) =
+        public fun alternativeTitle(alternativeTitle: String?): Builder = apply { this.alternativeTitle = alternativeTitle }
+        public fun periodicalNameStandardAbbrevation(periodicalNameStandardAbbrevation: String?): Builder =
             apply { this.periodicalNameStandardAbbrevation = periodicalNameStandardAbbrevation }
 
-        fun periodicalNameFullFormatJF(periodicalNameFullFormatJF: String?) =
+        public fun periodicalNameFullFormatJF(periodicalNameFullFormatJF: String?): Builder =
             apply { this.periodicalNameFullFormatJF = periodicalNameFullFormatJF }
 
-        fun periodicalNameFullFormatJO(periodicalNameFullFormatJO: String?) =
+        public fun periodicalNameFullFormatJO(periodicalNameFullFormatJO: String?): Builder =
             apply { this.periodicalNameFullFormatJO = periodicalNameFullFormatJO }
 
-        fun keywords(keywords: List<String>) = apply { this.keywords.clear(); this.keywords.addAll(keywords) }
-        fun pdfLinks(pdfLinks: List<String>) = apply { this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks) }
-        fun fullTextLinks(fullTextLinks: List<String>) =
+        public fun keywords(keywords: List<String>): Builder = apply { this.keywords.clear(); this.keywords.addAll(keywords) }
+        public fun pdfLinks(pdfLinks: List<String>): Builder = apply { this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks) }
+        public fun fullTextLinks(fullTextLinks: List<String>): Builder =
             apply { this.fullTextLinks.clear(); this.fullTextLinks.addAll(fullTextLinks) }
 
-        fun relatedRecords(relatedRecords: List<String>) =
+        public fun relatedRecords(relatedRecords: List<String>): Builder =
             apply { this.relatedRecords.clear(); this.relatedRecords.addAll(relatedRecords) }
 
-        fun images(images: List<String>) = apply { this.images.clear(); this.images.addAll(images) }
-        fun language(language: String?) = apply { this.language = language }
-        fun label(label: String?) = apply { this.label = label }
-        fun websiteLink(websiteLink: String?) = apply { this.websiteLink = websiteLink }
-        fun number(number: Long?) = apply { this.number = number }
-        fun miscellaneous2(miscellaneous2: String?) = apply { this.miscellaneous2 = miscellaneous2 }
-        fun typeOfWork(typeOfWork: String?) = apply { this.typeOfWork = typeOfWork }
-        fun notes(notes: String?) = apply { this.notes = notes }
-        fun abstr2(abstr2: String?) = apply { this.abstr2 = abstr2 }
-        fun numberOfVolumes(numberOfVolumes: String?) = apply { this.numberOfVolumes = numberOfVolumes }
-        fun originalPublication(originalPublication: String?) =
+        public fun images(images: List<String>): Builder = apply { this.images.clear(); this.images.addAll(images) }
+        public fun language(language: String?): Builder = apply { this.language = language }
+        public fun label(label: String?): Builder = apply { this.label = label }
+        public fun websiteLink(websiteLink: String?): Builder = apply { this.websiteLink = websiteLink }
+        public fun number(number: Long?): Builder = apply { this.number = number }
+        public fun miscellaneous2(miscellaneous2: String?): Builder = apply { this.miscellaneous2 = miscellaneous2 }
+        public fun typeOfWork(typeOfWork: String?): Builder = apply { this.typeOfWork = typeOfWork }
+        public fun notes(notes: String?): Builder = apply { this.notes = notes }
+        public fun abstr2(abstr2: String?): Builder = apply { this.abstr2 = abstr2 }
+        public fun numberOfVolumes(numberOfVolumes: String?): Builder = apply { this.numberOfVolumes = numberOfVolumes }
+        public fun originalPublication(originalPublication: String?): Builder =
             apply { this.originalPublication = originalPublication }
 
-        fun publisher(publisher: String?) = apply { this.publisher = publisher }
-        fun publishingPlace(publishingPlace: String?) = apply { this.publishingPlace = publishingPlace }
-        fun publicationYear(publicationYear: String?) = apply { this.publicationYear = publicationYear }
-        fun reviewedItem(reviewedItem: String?) = apply { this.reviewedItem = reviewedItem }
-        fun researchNotes(researchNotes: String?) = apply { this.researchNotes = researchNotes }
-        fun reprintEdition(reprintEdition: String?) = apply { this.reprintEdition = reprintEdition }
-        fun section(section: String?) = apply { this.section = section }
-        fun isbnIssn(isbnIssn: String?) = apply { this.isbnIssn = isbnIssn }
-        fun startPage(startPage: String?) = apply { this.startPage = startPage }
-        fun shortTitle(shortTitle: String?) = apply { this.shortTitle = shortTitle }
-        fun primaryTitle(primaryTitle: String?) = apply { this.primaryTitle = primaryTitle }
-        fun secondaryTitle(secondaryTitle: String?) = apply { this.secondaryTitle = secondaryTitle }
-        fun tertiaryTitle(tertiaryTitle: String?) = apply { this.tertiaryTitle = tertiaryTitle }
-        fun translatedAuthor(translatedAuthor: String?) = apply { this.translatedAuthor = translatedAuthor }
-        fun title(title: String?) = apply { this.title = title }
-        fun translatedTitle(translatedTitle: String?) = apply { this.translatedTitle = translatedTitle }
-        fun userDefinable1(userDefinable1: String?) = apply { this.userDefinable1 = userDefinable1 }
-        fun userDefinable2(userDefinable2: String?) = apply { this.userDefinable2 = userDefinable2 }
-        fun userDefinable3(userDefinable3: String?) = apply { this.userDefinable3 = userDefinable3 }
-        fun userDefinable4(userDefinable4: String?) = apply { this.userDefinable4 = userDefinable4 }
-        fun userDefinable5(userDefinable5: String?) = apply { this.userDefinable5 = userDefinable5 }
-        fun url(url: String?) = apply { this.url = url }
-        fun volumeNumber(volumeNumber: String?) = apply { this.volumeNumber = volumeNumber }
-        fun publisherStandardNumber(publisherStandardNumber: String?) =
+        public fun publisher(publisher: String?): Builder = apply { this.publisher = publisher }
+        public fun publishingPlace(publishingPlace: String?): Builder = apply { this.publishingPlace = publishingPlace }
+        public fun publicationYear(publicationYear: String?): Builder = apply { this.publicationYear = publicationYear }
+        public fun reviewedItem(reviewedItem: String?): Builder = apply { this.reviewedItem = reviewedItem }
+        public fun researchNotes(researchNotes: String?): Builder = apply { this.researchNotes = researchNotes }
+        public fun reprintEdition(reprintEdition: String?): Builder = apply { this.reprintEdition = reprintEdition }
+        public fun section(section: String?): Builder = apply { this.section = section }
+        public fun isbnIssn(isbnIssn: String?): Builder = apply { this.isbnIssn = isbnIssn }
+        public fun startPage(startPage: String?): Builder = apply { this.startPage = startPage }
+        public fun shortTitle(shortTitle: String?): Builder = apply { this.shortTitle = shortTitle }
+        public fun primaryTitle(primaryTitle: String?): Builder = apply { this.primaryTitle = primaryTitle }
+        public fun secondaryTitle(secondaryTitle: String?): Builder = apply { this.secondaryTitle = secondaryTitle }
+        public fun tertiaryTitle(tertiaryTitle: String?): Builder = apply { this.tertiaryTitle = tertiaryTitle }
+        public fun translatedAuthor(translatedAuthor: String?): Builder = apply { this.translatedAuthor = translatedAuthor }
+        public fun title(title: String?): Builder = apply { this.title = title }
+        public fun translatedTitle(translatedTitle: String?): Builder = apply { this.translatedTitle = translatedTitle }
+        public fun userDefinable1(userDefinable1: String?): Builder = apply { this.userDefinable1 = userDefinable1 }
+        public fun userDefinable2(userDefinable2: String?): Builder = apply { this.userDefinable2 = userDefinable2 }
+        public fun userDefinable3(userDefinable3: String?): Builder = apply { this.userDefinable3 = userDefinable3 }
+        public fun userDefinable4(userDefinable4: String?): Builder = apply { this.userDefinable4 = userDefinable4 }
+        public fun userDefinable5(userDefinable5: String?): Builder = apply { this.userDefinable5 = userDefinable5 }
+        public fun url(url: String?): Builder = apply { this.url = url }
+        public fun volumeNumber(volumeNumber: String?): Builder = apply { this.volumeNumber = volumeNumber }
+        public fun publisherStandardNumber(publisherStandardNumber: String?): Builder =
             apply { this.publisherStandardNumber = publisherStandardNumber }
 
-        fun primaryDate(primaryDate: String?) = apply { this.primaryDate = primaryDate }
-        fun accessDate(accessDate: String?) = apply { this.accessDate = accessDate }
+        public fun primaryDate(primaryDate: String?): Builder = apply { this.primaryDate = primaryDate }
+        public fun accessDate(accessDate: String?): Builder = apply { this.accessDate = accessDate }
 
         @Suppress("LongMethod")
-        fun build(): RisRecord = RisRecord(
+        public fun build(): RisRecord = RisRecord(
             type,
             firstAuthors,
             secondaryAuthors,
