@@ -49,7 +49,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 - {url-issues}55[#45] Activated explicit api mode
 
 .Changed
-- Bumped gradle, rxjava2, kluent
+- Bumped gradle, rxjava2, kluent, assertj, coroutines
 
 ////
 .Deprecated
