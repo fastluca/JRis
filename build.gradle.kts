@@ -12,6 +12,7 @@ val kotlinVersion = "1.4"
 val javaVersion = JavaVersion.VERSION_11
 val kotlinSrcSet = "/src/main/kotlin"
 val srcLinkSuffix = "#L"
+val sonarToken = System.getenv("SONAR_TOKEN") ?: ""
 
 config {
     release = rootProject.findProperty("release").toString().toBoolean()
@@ -74,8 +75,10 @@ config {
         }
 
         sonar {
-            username = "ursjoss"
-            configProperties["sonar.organization"] = "ursjoss-github"
+            hostUrl = "https://sonarcloud.io"
+            login = sonarToken
+            organization = "ursjoss-github"
+            projectKey = "ursjoss_${project.name}"
         }
     }
 
@@ -232,11 +235,6 @@ configure<ProjectsExtension> {
                             }
                         }
                     }
-                }
-                // temporarily explicitly set licensing plugin to disabled
-                // until the resolution of https://github.com/kordamp/kordamp-gradle-plugins/issues/331#issuecomment-680214711
-                licensing {
-                    enabled = false
                 }
             }
         }

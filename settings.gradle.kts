@@ -37,7 +37,7 @@ rootProject.name = "KRis"
 apply<SettingsPlugin>()
 
 configure<ProjectsExtension> {
-    layout.set("two-level")
+    setLayout("two-level")
     directories.addAll(listOf("docs", "subprojects"))
 
     plugins {
