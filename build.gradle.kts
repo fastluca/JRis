@@ -12,7 +12,7 @@ val kotlinVersion = "1.4"
 val javaVersion = JavaVersion.VERSION_11
 val kotlinSrcSet = "/src/main/kotlin"
 val srcLinkSuffix = "#L"
-val sonarToken = System.getenv("SONAR_TOKEN") ?: ""
+val sonarToken = System.getenv("SONAR_TOKEN") ?: "n.a."
 
 config {
     release = rootProject.findProperty("release").toString().toBoolean()
