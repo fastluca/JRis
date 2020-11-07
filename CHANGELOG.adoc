@@ -43,15 +43,13 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.2.6$$...$$main[Full Changelog]
-
-.Added
-- {url-issues}55[#45] Activated explicit api mode
-
-.Changed
-- Bumped gradle, rxjava2, kluent, assertj, coroutines, kordamp-gradle-plugins
+{url-cl}0.3.0$$...$$main[Full Changelog]
 
 ////
+.Added
+
+.Changed
+
 .Deprecated
 
 .Removed
@@ -59,8 +57,19 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Fixed
 
 .Security
-
 ////
+
+
+[[v0.3.0]]
+== [0.3.0] -- 2020-11-07
+
+{url-cl}0.2.6$$...$$0.3.0[Full Changelog]
+
+.Added
+- {url-issues}55[#45] Activated explicit api mode
+
+.Changed
+- Bumped gradle, rxjava2, kluent, assertj, coroutines, kordamp-gradle-plugins
 
 
 [[v0.2.6]]
