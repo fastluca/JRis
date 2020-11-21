@@ -1,6 +1,5 @@
 @file:Suppress("SpellCheckingInspection")
 
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformJvmPlugin
 import org.kordamp.gradle.plugin.base.ProjectsExtension
 
 plugins {
@@ -139,7 +138,7 @@ configure<ProjectsExtension> {
     all {
         path("*") {
             apply<IdeaPlugin>()
-            apply<KotlinPlatformJvmPlugin>()
+            apply(plugin = "org.jetbrains.kotlin.jvm")
 
             repositories {
                 mavenLocal()
