@@ -40,20 +40,17 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 ////
 
+
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.3.0$$...$$main[Full Changelog]
+{url-cl}0.3.1$$...$$main[Full Changelog]
 
-////
 .Added
-////
 
+////
 .Changed
-- Bumped kotlin, gradle-wrapper, kotlin, kluent, spek, assertj, kordamp-gradle-plugins, couroutines, mockk
-  spek
 
-////
 .Deprecated
 
 .Removed
@@ -62,6 +59,16 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 .Security
 ////
+
+
+[[v0.3.1]]
+== [0.3.1] -- 2021-02-04
+
+{url-cl}0.3.0$$...$$0.3.1[Full Changelog]
+
+.Changed
+- Bumped kotlin, gradle-wrapper, kotlin, kluent, spek, assertj, kordamp-gradle-plugins, couroutines, mockk
+  spek
 
 
 [[v0.3.0]]
