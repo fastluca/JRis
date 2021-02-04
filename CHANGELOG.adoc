@@ -50,7 +50,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 ////
 
 .Changed
-- Bumped gradle-wrapper, kotlin, kluent, spek, assertj, kordamp-gradle-plugins, couroutines, mockk
+- Bumped kotlin, gradle-wrapper, kotlin, kluent, spek, assertj, kordamp-gradle-plugins, couroutines, mockk
   spek
 
 ////
