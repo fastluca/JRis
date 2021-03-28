@@ -48,9 +48,11 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 .Added
 
-////
-.Changed
 
+.Changed
+- Bumped gradle-wrapper, kotlin, coroutines, mockk, rxjava, junit, kordamp-gradle-plugins
+
+////
 .Deprecated
 
 .Removed
