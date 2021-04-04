@@ -1,5 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.kordamp.gradle.plugin.base.ProjectsExtension
 
 plugins {
@@ -164,11 +165,12 @@ configure<ProjectsExtension> {
                 named("clean").configure {
                     dependsOn(deleteOutFolderTask)
                 }
-                withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+                withType<KotlinCompile>().configureEach {
                     kotlinOptions {
                         apiVersion = kotlinVersion
                         languageVersion = kotlinVersion
                         jvmTarget = javaVersion.majorVersion
+                        useIR = true
                     }
                 }
             }
@@ -217,7 +219,7 @@ configure<ProjectsExtension> {
                     }
                 }
 
-                val check by existing {
+                named("check") {
                     dependsOn("allTests")
                 }
             }
