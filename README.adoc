@@ -56,4 +56,4 @@ dependencies {
 </dependency>
 ----
 
-For maven, you need to configure the bintray repository as shown [here](https://www.jfrog.com/confluence/display/BT/Maven+Repositories)
+For maven, you need to configure the bintray repository as shown https://www.jfrog.com/confluence/display/BT/Maven+Repositories[here]
