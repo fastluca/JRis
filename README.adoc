@@ -30,7 +30,7 @@ Requires JRE 11 or later.
 [code,kotlin]
 ----
 repositories {
-    jcenter()
+    maven { url = uri("https://dl.bintray.com/difty/maven/") }
 }
 
 dependencies {
@@ -55,3 +55,5 @@ dependencies {
     <type>pom</type>
 </dependency>
 ----
+
+For maven, you need to configure the bintray repository as shown [here](https://www.jfrog.com/confluence/display/BT/Maven+Repositories)
