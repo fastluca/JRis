@@ -44,15 +44,13 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.3.1$$...$$main[Full Changelog]
+{url-cl}0.3.2$$...$$main[Full Changelog]
 
 .Added
 
-
-.Changed
-- Bumped gradle-wrapper, kotlin, coroutines, mockk, rxjava, junit, kordamp-gradle-plugins, kluent, assertj
-
 ////
+.Changed
+
 .Deprecated
 
 .Removed
@@ -60,7 +58,26 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Fixed
 
 .Security
+
 ////
+
+
+[[v0.3.3]]
+== [0.3.3] -- 2021-12-22
+
+{url-cl}0.3.2$$...$$0.3.3[Full Changelog]
+
+.Changed
+- Bumped gradle-wrapper, kotlin, coroutines, mockk, rxjava, junit, kordamp-gradle-plugins, kluent, assertj
+
+
+[[v0.3.2]]
+== [0.3.2] -- 2021-03-28
+
+{url-cl}0.3.1$$...$$0.3.2[Full Changelog]
+
+.Changed
+- Bumped gradle-wrapper, kotlin, coroutines, mockk, rxjava, junit, kordamp-gradle-plugins
 
 
 [[v0.3.1]]
