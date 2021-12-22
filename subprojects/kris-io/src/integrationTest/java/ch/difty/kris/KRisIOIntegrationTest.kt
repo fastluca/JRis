@@ -3,6 +3,7 @@ package ch.difty.kris
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.amshove.kluent.shouldContainAll
 import org.amshove.kluent.shouldHaveSize
 import org.junit.jupiter.api.Test
@@ -11,7 +12,7 @@ import java.io.File
 private const val FILE_PATH = "src/integrationTest/resources/sample.ris"
 private const val PAPER_COUNT = 3
 
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 @Suppress("FunctionName", "S100", "SpellCheckingInspection")
 internal class KRisIOIntegrationTest {
 

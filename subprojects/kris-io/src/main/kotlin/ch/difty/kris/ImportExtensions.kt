@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
@@ -12,7 +14,7 @@ import java.io.Reader
  * May throw an [IOException] if the reader fails to deliver lines or a [KRisException]
  * if the lines cannot be parsed successfully.
  */
-@ExperimentalCoroutinesApi
+
 public fun Reader.process(): List<RisRecord> = KRisIO.process(this)
 
 /**
@@ -20,7 +22,6 @@ public fun Reader.process(): List<RisRecord> = KRisIO.process(this)
  * May throw an [IOException] if the file cannot be read successfully.
  * or a [KRisException] if the lines cannot be parsed successfully.
  */
-@ExperimentalCoroutinesApi
 public fun File.process(): List<RisRecord> = KRisIO.process(this)
 
 /**
@@ -28,7 +29,6 @@ public fun File.process(): List<RisRecord> = KRisIO.process(this)
  * May throw an [IOException] if the file cannot be read successfully.
  * or a [KRisException] if the lines cannot be parsed successfully.
  */
-@ExperimentalCoroutinesApi
 public fun String.process(): List<RisRecord> = KRisIO.process(this)
 
 /**
@@ -36,5 +36,4 @@ public fun String.process(): List<RisRecord> = KRisIO.process(this)
  * May throw an [IOException] if the stream cannot be read successfully.
  * or a [KRisException] if the lines cannot be parsed successfully.
  */
-@ExperimentalCoroutinesApi
 public fun InputStream.process(): List<RisRecord> = KRisIO.process(this)

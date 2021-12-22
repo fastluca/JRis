@@ -5,7 +5,6 @@ import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisTag
 import ch.difty.kris.truncatedTo
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 
 private const val INT_INTERMEDIATE = 1000

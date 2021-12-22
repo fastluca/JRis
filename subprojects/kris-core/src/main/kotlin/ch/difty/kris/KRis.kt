@@ -31,7 +31,8 @@ internal const val TAG_SEPARATOR = "  - "
  * @author Urs Joss - urs.joss@gmx.ch
  */
 @Suppress("KDocUnresolvedReference")
-@ExperimentalCoroutinesApi
+
+@OptIn(ExperimentalCoroutinesApi::class)
 public object KRis {
 
 //region:process - RISFile lines -> RisRecords

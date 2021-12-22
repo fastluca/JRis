@@ -7,7 +7,6 @@ import ch.difty.kris.domain.RisTag
 import ch.difty.kris.domain.RisType
 import ch.difty.kris.truncatedTo
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
@@ -54,7 +53,7 @@ internal object RisImport {
         return tag
     }
 
-    private fun RisTag.typeSafeValueFrom(line: String): Any? {
+    private fun RisTag.typeSafeValueFrom(line: String): Any {
         val rawValue: String = line.substring(START_INDEX_VALUE).trim()
         return when (kClass) {
             RisType::class -> RisType.valueOf(rawValue)

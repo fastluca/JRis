@@ -11,9 +11,8 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
-@ExperimentalCoroutinesApi
 @Suppress("SpellCheckingInspection")
-@InternalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class, InternalCoroutinesApi::class)
 object KRisIoUsageImportSpec : Spek({
 
     describe("importing from file") {

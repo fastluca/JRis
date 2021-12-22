@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
@@ -11,7 +13,7 @@ import java.io.Writer
  * [Writer] provided as receiver. Optionally accepts a list of names of RisTags defining a sort order for
  * the RisTags in the file.
  */
-@ExperimentalCoroutinesApi
+
 public fun Writer.accept(records: List<RisRecord>, sort: List<String> = emptyList()): Unit = KRisIO.export(records, sort, this)
 
 /**
@@ -19,7 +21,6 @@ public fun Writer.accept(records: List<RisRecord>, sort: List<String> = emptyLis
  * provided as receiver. Optionally accepts a list of names of RisTags defining a sort order for the RisTags
  * in the file.
  */
-@ExperimentalCoroutinesApi
 public fun File.accept(records: List<RisRecord>, sort: List<String> = emptyList()): Unit = KRisIO.export(records, sort, this)
 
 /**
@@ -27,7 +28,6 @@ public fun File.accept(records: List<RisRecord>, sort: List<String> = emptyList(
  * the [OutputStream] provided as receiver. Optionally accepts a list of names of RisTags defining a sort order
  * for the RisTags in the file.
  */
-@ExperimentalCoroutinesApi
 public fun OutputStream.accept(records: List<RisRecord>, sort: List<String> = emptyList()): Unit = KRisIO.export(records, sort, this)
 
 /**
@@ -35,5 +35,4 @@ public fun OutputStream.accept(records: List<RisRecord>, sort: List<String> = em
  * the path provided as the receiver, if possible.
  * Optionally accepts a list of names of RisTags defining a sort order for the RisTags in the file.
  */
-@ExperimentalCoroutinesApi
 public fun String.accept(records: List<RisRecord>, sort: List<String> = emptyList()): Unit = KRisIO.export(records, sort, this)

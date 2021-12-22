@@ -11,9 +11,8 @@ import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
-@ExperimentalCoroutinesApi
 @Suppress("SpellCheckingInspection")
-@InternalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class, InternalCoroutinesApi::class)
 object KRisIoUsageExportSpec : Spek({
 
     describe("exporting into file") {
@@ -45,7 +44,7 @@ object KRisIoUsageExportSpec : Spek({
     }
 })
 
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 private fun List<RisRecord>.assertRecordsWereWrittenTo(file: File) {
     file.path.process() shouldHaveSize size
 }

@@ -5,7 +5,9 @@ import ch.difty.kris.accept
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import ch.difty.kris.process
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
@@ -14,8 +16,7 @@ import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
 @Suppress("SpellCheckingInspection", "unused")
-@InternalCoroutinesApi
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class, InternalCoroutinesApi::class)
 object KRisIoUsageSpec : Spek({
 
     describe("importing from file") {

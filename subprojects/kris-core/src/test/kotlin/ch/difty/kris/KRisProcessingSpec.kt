@@ -1,7 +1,9 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisType
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -12,7 +14,7 @@ import org.amshove.kluent.shouldThrow
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 @Suppress("unused", "SpellCheckingInspection", "S1192")
 object KRisProcessingSpec : Spek({
 

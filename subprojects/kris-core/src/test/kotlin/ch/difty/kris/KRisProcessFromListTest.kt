@@ -5,6 +5,7 @@ package ch.difty.kris
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
@@ -185,9 +186,9 @@ class KRisProcessFromListTest {
         |ER  - 
         |""".trimMargin()
 
-    @ExperimentalCoroutinesApi
-    @Test
     @Suppress("S100")
+    @Test
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun `can build risRecord with all fields`() {
         val lines = KRis.buildFromList(listOf(risRecord))
         lines.joinToString("") shouldBeEqualTo expected
