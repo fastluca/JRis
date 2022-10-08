@@ -41,7 +41,6 @@ testEngines = ["junitJupiter-engine", "spek-runner"]
 
 [plugins]
 asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
-asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
