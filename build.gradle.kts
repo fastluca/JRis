@@ -18,6 +18,7 @@ plugins {
 }
 
 reckon {
+    stages("rc", "final")
     setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
     setStageCalc(calcStageFromProp())
 }

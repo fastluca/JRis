@@ -60,12 +60,15 @@ tasks {
     }
 }
 
-gitPublish {
-    branch.set("gh-pages")
-    contents {
-        project.tasks.findByName("createGuide")?.outputs?.files?.let {
-            from(it)
+afterEvaluate {
+    gitPublish {
+        repoUri.set("git@github.com:ursjoss/KRis.git")
+        branch.set("gh-pages")
+        contents {
+            project.tasks.findByName("createGuide")?.outputs?.files?.let {
+                from(it)
+            }
         }
+        commitMessage.set("Publish guide for ${project.version}")
     }
-    commitMessage.set("Publish guide for version $version")
 }
