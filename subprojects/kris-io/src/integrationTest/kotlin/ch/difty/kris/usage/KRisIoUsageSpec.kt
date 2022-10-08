@@ -5,10 +5,6 @@ import ch.difty.kris.accept
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import ch.difty.kris.process
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.InternalCoroutinesApi
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
 import org.spekframework.spek2.Spek
@@ -16,7 +12,6 @@ import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
 @Suppress("SpellCheckingInspection", "unused")
-@OptIn(ExperimentalCoroutinesApi::class, InternalCoroutinesApi::class)
 object KRisIoUsageSpec : Spek({
 
     describe("importing from file") {
@@ -61,7 +56,15 @@ object KRisIoUsageSpec : Spek({
         val customSort = listOf("AB")
 
         describe("with fields in natural order") {
-            val records = listOf(RisRecord(type = RisType.ABST, typeOfWork = "tow", abstr = "abstr", language = "lang", databaseProvider = "dp"))
+            val records = listOf(
+                RisRecord(
+                    type = RisType.ABST,
+                    typeOfWork = "tow",
+                    abstr = "abstr",
+                    language = "lang",
+                    databaseProvider = "dp"
+                )
+            )
 
             it("can write to File") {
                 file.accept(records)

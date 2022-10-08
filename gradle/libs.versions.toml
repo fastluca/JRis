@@ -1,0 +1,48 @@
+[versions]
+asciidoctor = "3.3.2"
+assertj = "3.23.1"
+coroutines = "1.6.4"
+detekt = "1.21.0"
+gitPublish = "4.1.1"
+java = "11"
+junitJupiter = "5.9.1"
+kluent = "1.68"
+kotlin = "1.7.20"
+mockk = "1.13.2"
+reckon = "0.16.1"
+rxjava = "2.2.21"
+spek = "2.0.19"
+testSets = "4.0.0"
+versions = "0.42.0"
+
+[libraries]
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-rx2 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2", version.ref = "coroutines" }
+junitJupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiter" }
+junitJupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiter" }
+kluent = { module = "org.amshove.kluent:kluent", version.ref = "kluent" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
+spek-dsl = { module = "org.spekframework.spek2:spek-dsl-jvm", version.ref = "spek" }
+spek-runner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
+
+plugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+plugin-reckon = { module = "org.ajoberstar.reckon:reckon-gradle", version.ref = "reckon" }
+
+[bundles]
+kotlin = ["kotlin-stdlib", "kotlin-reflect", "coroutines-core"]
+testDeps = ["junitJupiter-api", "spek-dsl", "mockk", "kluent", "assertj-core"]
+testEngines = ["junitJupiter-engine", "spek-runner"]
+
+[plugins]
+asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
+reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
+testSets = { id = "org.unbroken-dome.test-sets", version.ref = "testSets" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

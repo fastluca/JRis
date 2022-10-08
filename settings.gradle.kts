@@ -1,63 +1,58 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.kordamp.gradle.plugin.settings.ProjectsExtension
-import org.kordamp.gradle.plugin.settings.SettingsPlugin
-
-buildscript {
+pluginManagement {
     repositories {
-        mavenLocal()
-        jcenter()
         gradlePluginPortal()
     }
+}
 
-    val kotlinVersion: String by settings
-    val kordampPluginVersion: String by settings
-    val reckonVersion: String by settings
-    val gitPublishVersion: String by settings
-
-    dependencies {
-        classpath("org.kordamp.gradle:settings-gradle-plugin:$kordampPluginVersion")
-
-        classpath("org.kordamp.gradle:kotlin-project-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:guide-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:kotlindoc-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:integrationtest-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:detekt-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:sonar-gradle-plugin:$kordampPluginVersion")
-        classpath("org.kordamp.gradle:bintray-gradle-plugin:$kordampPluginVersion")
-
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("org.ajoberstar.reckon:reckon-gradle:$reckonVersion")
-        classpath("org.ajoberstar:gradle-git-publish:$gitPublishVersion")
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
     }
 }
 
 rootProject.name = "KRis"
 
-apply<SettingsPlugin>()
+fun includeProject(projectDirName: String, projectName: String) {
+    val baseDir = File(settingsDir, projectDirName)
+    val projectDir = File(baseDir, projectName)
+    val buildFileName = "${projectName}.gradle.kts"
 
-configure<ProjectsExtension> {
-    setLayout("two-level")
-    directories.addAll(listOf("docs", "subprojects"))
+    assert(projectDir.isDirectory)
+    assert(File(projectDir, buildFileName).isFile)
 
-    plugins {
-        path(":") {
-            id("java")
-            id("org.kordamp.gradle.kotlin-project")
-            id("org.kordamp.gradle.sonar")
-            id("org.kordamp.gradle.detekt")
-            id("org.kordamp.gradle.bintray")
-        }
-        path(":guide") {
-            id("org.kordamp.gradle.guide")
-            id("org.ajoberstar.git-publish")
-        }
-        dir("subprojects") {
-            id("org.jetbrains.kotlin.jvm")
-            id("org.kordamp.gradle.kotlindoc")
-        }
-        path(":kris-io") {
-            id("org.kordamp.gradle.integration-test")
-        }
-    }
+    include(projectName)
+    project(":$projectName").projectDir = projectDir
+    project(":$projectName").buildFileName = buildFileName
 }
+
+listOf("docs", "subprojects").forEach { containerDir ->
+    File(rootDir, containerDir)
+        .walkTopDown().maxDepth(1)
+        .forEach { projectDir ->
+            val buildFile = File(projectDir, "${projectDir.name}.gradle.kts")
+            if (buildFile.exists())
+                includeProject(containerDir, projectDir.name)
+        }
+}
+
+includeBuild("gradle-plugins")
+
+//buildscript {
+//    repositories {
+//        gradlePluginPortal()
+//    }
+//
+//    val kotlinVersion: String by settings
+//    val kordampPluginVersion: String by settings
+//    val reckonVersion: String by settings
+//    val gitPublishVersion: String by settings
+//
+//    dependencies {
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+//        classpath("org.ajoberstar.reckon:reckon-gradle:$reckonVersion")
+//        classpath("org.ajoberstar:gradle-git-publish:$gitPublishVersion")
+//    }
+//}

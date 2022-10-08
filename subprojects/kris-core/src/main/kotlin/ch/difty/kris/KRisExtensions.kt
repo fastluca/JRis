@@ -71,6 +71,7 @@ public fun Sequence<RisRecord>.toRisLines(scope: CoroutineScope = GlobalScope): 
  * Thanks to @jcornaz for the help.
  */
 @OptIn(FlowPreview::class)
+@Suppress("SwallowedException")
 private fun <T, R> Sequence<T>.mapSequence(
     flowMapper: (Flow<T>) -> Flow<R>,
     scope: CoroutineScope

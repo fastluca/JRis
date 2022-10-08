@@ -1,14 +1,63 @@
-@file:Suppress("SpellCheckingInspection")
-
-import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.kordamp.gradle.plugin.base.ProjectsExtension
 
-plugins {
-    kotlin
-    id("org.ajoberstar.reckon")
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(libs.plugin.kotlin)
+        classpath(libs.plugin.reckon)
+    }
 }
 
+plugins {
+    kotlin("jvm") version libs.versions.kotlin.get()
+    id("kris-collect-sarif")
+    alias(libs.plugins.reckon)
+}
+
+reckon {
+    setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
+    setStageCalc(calcStageFromProp())
+}
+
+tasks {
+    val deleteOutFolderTask by registering(Delete::class) {
+        delete("out")
+    }
+    named("clean") {
+        delete(rootProject.buildDir)
+        dependsOn(deleteOutFolderTask)
+    }
+}
+
+subprojects.forEach { subProject ->
+    subProject.tasks {
+        val kotlinVersion = libs.versions.kotlin.get()
+        val kotlinApiLangVersion = kotlinVersion.subSequence(0, 3).toString()
+        val jvmTargetVersion = libs.versions.java.get()
+        withType<KotlinCompile>().configureEach {
+            kotlinOptions {
+                apiVersion = kotlinApiLangVersion
+                languageVersion = kotlinApiLangVersion
+                jvmTarget = jvmTargetVersion
+                freeCompilerArgs = freeCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
+            }
+        }
+        withType<JavaCompile>().configureEach {
+            sourceCompatibility = jvmTargetVersion
+            targetCompatibility = jvmTargetVersion
+        }
+
+        withType<Test> {
+            useJUnitPlatform {
+                includeEngines("junit-jupiter", "spek2")
+            }
+        }
+    }
+}
+
+/*
 val kotlinVersion: String by project
 val javaVersion = JavaVersion.VERSION_11
 val kotlinSrcSet = "/src/main/kotlin"
@@ -126,15 +175,6 @@ config {
     }
 }
 
-reckon {
-    scopeFromProp()
-    stageFromProp("beta", "rc", "final")
-}
-
-java {
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-}
 
 configure<ProjectsExtension> {
     all {
@@ -191,41 +231,6 @@ configure<ProjectsExtension> {
         }
 
         dir("subprojects") {
-            val assertjVersion: String by project
-            val coroutinesVersion: String by project
-            val kluentVersion: String by project
-            val junitJupiterVersion: String by project
-            val spekVersion: String by project
-            val mockkVersion: String by project
-
-            dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
-                implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-
-                testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-                testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
-                testImplementation("io.mockk:mockk:$mockkVersion")
-                testImplementation("org.amshove.kluent:kluent:$kluentVersion")
-                testImplementation("org.assertj:assertj-core:$assertjVersion")
-
-                testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
-                testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
-            }
-
-            tasks {
-                withType<Test> {
-                    @Suppress("UnstableApiUsage")
-                    useJUnitPlatform {
-                        includeEngines("junit-jupiter", "spek2")
-                    }
-                }
-
-                named("check") {
-                    dependsOn("allTests")
-                }
-            }
-
             config {
                 docs {
                     kotlindoc {
@@ -241,22 +246,6 @@ configure<ProjectsExtension> {
                 }
             }
         }
-
-        val rxjavaVersion: String by project
-
-        path(":kris-core") {
-            val coroutinesVersion: String by project
-            dependencies {
-                implementation("io.reactivex.rxjava2:rxjava:$rxjavaVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$coroutinesVersion")
-            }
-        }
-
-        path(":kris-guide") {
-            dependencies {
-                testImplementation("io.reactivex.rxjava2:rxjava:$rxjavaVersion")
-            }
-        }
     }
 }
 
@@ -264,3 +253,4 @@ fun Project.projectRelativSourceLink(branch: String = "main", srcSet: String = k
     rootProject.config.info.links.scm?.let { scmUrl ->
         "${scmUrl.substringBefore(".git")}/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
     }
+*/
