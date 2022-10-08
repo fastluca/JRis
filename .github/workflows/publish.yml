@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 1
 
       - name: Validate gradle wrapper
-        uses: gradle/wrapper-validation-action@v1.0.4
+        uses: gradle/wrapper-validation-action@v1
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
@@ -32,10 +32,8 @@ jobs:
           restore-keys: |
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
-      - name: Publish to Bintray and github pages
-        run: ./gradlew  -Prelease=true allTests :dokkaHtmlCollector :guide:gitPublishPush --no-daemon
+      - name: Publish github pages
+        run: ./gradlew  -Prelease=true check :guide:gitPublishPush --no-daemon
         env:
           GRGIT_USER: ursjoss
           GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
-          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}

@@ -14,11 +14,20 @@ plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("kris-collect-sarif")
     alias(libs.plugins.reckon)
+    alias(libs.plugins.sonarqube)
 }
 
 reckon {
     setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
     setStageCalc(calcStageFromProp())
+}
+sonarqube {
+    properties {
+        property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.projectKey", "ursjoss_${project.name}")
+        property("sonar.organization", "ursjoss-github")
+        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+    }
 }
 
 tasks {

@@ -11,6 +11,7 @@ kotlin = "1.7.20"
 mockk = "1.13.2"
 reckon = "0.16.1"
 rxjava = "2.2.21"
+sonarqube = "3.4.0.2513"
 spek = "2.0.19"
 testSets = "4.0.0"
 versions = "0.42.0"
@@ -44,5 +45,6 @@ asciidoctorPdf = { id = "org.asciidoctor.jvm.pdf", version.ref = "asciidoctor" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 testSets = { id = "org.unbroken-dome.test-sets", version.ref = "testSets" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

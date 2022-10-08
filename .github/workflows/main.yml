@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Validate gradle wrapper
-        uses: gradle/wrapper-validation-action@v1.0.4
+        uses: gradle/wrapper-validation-action@v1
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
@@ -44,8 +44,31 @@ jobs:
           restore-keys: |
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
-      - name: Run all tests with Gradle
-        run: ./gradlew check detekt --info --no-daemon
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            build
+            check
+            detekt
+            mergeDetektSarif
+            :gradle-plugins:buildPlugins
+            --continue
+
+      - uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: build/detekt-merged.sarif
+          category: detekt
+
+      - name: Upload failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: '**/build/reports'
+
+#      - name: Run all tests with Gradle
+#        run: ./gradlew check detekt --info --no-daemon
+#        env:
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
