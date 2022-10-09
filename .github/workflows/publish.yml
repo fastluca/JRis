@@ -39,11 +39,19 @@ jobs:
             build
             check
             :guide:gitPublishPush
-            :kris-core:publish
-            :kris-io:publish
         env:
           GRGIT_USER: ursjoss
           GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
+
+      - name: Publish to maven central
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            build
+            check
+            :kris-core:publish
+            :kris-io:publish
+        env:
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
           GPG_SIGNING_PASSPHRASE: ${{ secrets.GPG_SIGNING_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
