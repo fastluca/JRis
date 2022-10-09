@@ -25,7 +25,9 @@ class KrisPublishPlugin : Plugin<Project> {
                     artifactId = target.project.name
                     version = target.project.version.toString()
 
-                    from(target.components.findByName("java"))
+                    from(target.components.findByName("kotlin"))
+                    artifact(target.tasks.findByName("sourcesJar"))
+                    artifact(target.tasks.findByName("javadocJar"))
 
                     pom {
                         name.set(target.rootProject.name)
