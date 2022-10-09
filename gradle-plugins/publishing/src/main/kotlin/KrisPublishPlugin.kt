@@ -1,13 +1,11 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.existing
+import org.gradle.plugins.signing.SigningExtension
 
 @Suppress("unused")
 class KrisPublishPlugin : Plugin<Project> {
@@ -17,6 +15,7 @@ class KrisPublishPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.plugins.apply("org.gradle.maven-publish")
         target.plugins.apply("org.gradle.java-library")
+        target.plugins.apply("org.gradle.signing")
 
         target.extensions.configure<PublishingExtension> {
             publications {
@@ -61,6 +60,16 @@ class KrisPublishPlugin : Plugin<Project> {
                         }
                     }
                 }
+            }
+        }
+
+        target.extensions.configure<SigningExtension> {
+            val signingKey = target.providers.environmentVariable("GPG_SIGNING_KEY")
+            val signingPassphrase = target.providers.environmentVariable("GPG_SIGNING_PASSPHRASE")
+            if (signingKey.isPresent && signingPassphrase.isPresent) {
+                useInMemoryPgpKeys(signingKey.get(), signingPassphrase.get())
+                val extension = target.extensions.getByName("publishing") as PublishingExtension
+                sign(extension.publications)
             }
         }
 

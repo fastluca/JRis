@@ -21,7 +21,6 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.nexusPublish)
     `maven-publish`
-    signing
 }
 
 reckon {
@@ -36,18 +35,6 @@ sonarqube {
         property("sonar.projectKey", "ursjoss_${project.name}")
         property("sonar.organization", "ursjoss-github")
         property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
-    }
-}
-
-signing {
-    val signingKey = providers.environmentVariable("GPG_SIGNING_KEY")
-    val signingPassphrase = providers.environmentVariable("GPG_SIGNING_PASSPHRASE")
-    if (signingKey.isPresent && signingPassphrase.isPresent) {
-        useInMemoryPgpKeys(signingKey.get(), signingPassphrase.get())
-        val extension = extensions.getByName("publishing") as PublishingExtension
-        extension.publications.forEach {
-            sign(it)
-        }
     }
 }
 
