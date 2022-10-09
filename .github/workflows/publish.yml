@@ -40,8 +40,7 @@ jobs:
             check
             :guide:gitPublishPush
         env:
-          GRGIT_USER: ursjoss
-          GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
+          GRGIT_USER: ${{ secrets.GRGIT_USER }}
 
       - name: Publish to maven central
         uses: gradle/gradle-build-action@v2
