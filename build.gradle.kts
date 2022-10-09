@@ -45,7 +45,9 @@ signing {
     if (signingKey.isPresent && signingPassphrase.isPresent) {
         useInMemoryPgpKeys(signingKey.get(), signingPassphrase.get())
         val extension = extensions.getByName("publishing") as PublishingExtension
-        sign(extension.publications)
+        extension.publications.forEach {
+            sign(it)
+        }
     }
 }
 
