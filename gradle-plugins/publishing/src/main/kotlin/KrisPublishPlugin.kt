@@ -12,6 +12,7 @@ class KrisPublishPlugin : Plugin<Project> {
 
     private val gitUrl = "https://github.com/ursjoss/KRis"
 
+    @Suppress("LongMethod")
     override fun apply(target: Project) {
         target.plugins.apply("org.gradle.maven-publish")
         target.plugins.apply("org.gradle.java-library")
