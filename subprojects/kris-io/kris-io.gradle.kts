@@ -1,7 +1,7 @@
 plugins {
     id("kris-detekt")
     id("kris-collect-sarif")
-    `java-library`
+    id("kris-publish")
     kotlin("jvm")
     alias(libs.plugins.testSets)
     alias(libs.plugins.dokka)
@@ -18,6 +18,15 @@ testSets {
 tasks {
     named("check") {
         dependsOn("integrationTest")
+    }
+    val javadocJar by existing(Jar::class) {
+        group = JavaBasePlugin.DOCUMENTATION_GROUP
+        description = "Assembled Javadoc JAR"
+        archiveClassifier.set("javadoc")
+        from(named("dokkaHtml"))
+    }
+    named("sourcesJar") {
+        dependsOn(javadocJar)
     }
 }
 

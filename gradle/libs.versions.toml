@@ -10,6 +10,7 @@ junitJupiter = "5.9.1"
 kluent = "1.68"
 kotlin = "1.7.20"
 mockk = "1.13.2"
+nexusPublish = "1.1.0"
 reckon = "0.16.1"
 rxjava = "2.2.21"
 sonarqube = "3.4.0.2513"
@@ -45,6 +46,7 @@ asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciid
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
+nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
 reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 testSets = { id = "org.unbroken-dome.test-sets", version.ref = "testSets" }

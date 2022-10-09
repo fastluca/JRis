@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 }
 
 include("verification")
+include("publishing")

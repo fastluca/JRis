@@ -19,6 +19,9 @@ plugins {
     alias(libs.plugins.reckon)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.nexusPublish)
+    `maven-publish`
+    signing
 }
 
 reckon {
@@ -33,6 +36,31 @@ sonarqube {
         property("sonar.projectKey", "ursjoss_${project.name}")
         property("sonar.organization", "ursjoss-github")
         property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+    }
+}
+
+signing {
+    val signingKey = providers.environmentVariable("GPG_SIGNING_KEY")
+    val signingPassphrase = providers.environmentVariable("GPG_SIGNING_PASSPHRASE")
+    if (signingKey.isPresent && signingPassphrase.isPresent) {
+        useInMemoryPgpKeys(signingKey.get(), signingPassphrase.get())
+        val extension = extensions.getByName("publishing") as PublishingExtension
+        sign(extension.publications)
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            val ossrhUsername = providers.environmentVariable("OSSRH_USERNAME")
+            val ossrhPassword = providers.environmentVariable("OSSRH_PASSWORD")
+            if (ossrhUsername.isPresent && ossrhPassword.isPresent) {
+                username.set(ossrhUsername.get())
+                password.set(ossrhPassword.get())
+            }
+        }
     }
 }
 
@@ -95,197 +123,3 @@ subprojects.forEach { subProject ->
 
 fun Project.projectRelativeSourceLink(branch: String = "main", srcSet: String = kotlinSrcSet) =
     "https://github.com/ursjoss/KRis/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
-
-/*
-val kotlinVersion: String by project
-val javaVersion = JavaVersion.VERSION_11
-val kotlinSrcSet = "/src/main/kotlin"
-val srcLinkSuffix = "#L"
-val sonarToken = System.getenv("SONAR_TOKEN") ?: "n.a."
-
-config {
-    release = rootProject.findProperty("release").toString().toBoolean()
-
-    info {
-        name = "KRis"
-        vendor = "Private"
-        description = "Library for reading/writing RIS files"
-        inceptionYear = "2017"
-        organization {
-            url = "https://github.com/ursjoss/KRis"
-        }
-        links {
-            website = "https://ursjoss.github.io/KRis"
-            scm = "https://github.com/ursjoss/KRis.git"
-            issueTracker = "https://github.com/ursjoss/KRis/issues"
-        }
-        ciManagement {
-            url = "https://github.com/ursjoss/KRis/actions"
-        }
-        issueManagement {
-            url = "https://github.com/ursjoss/KRis/issues"
-        }
-        people {
-            person {
-                id = "ursjoss"
-                name = "Urs Joss"
-                roles = listOf("developer")
-                properties["github"] = "ursjoss"
-                properties["twitter"] = "urs_j_o_s_s"
-            }
-            person {
-                id = "fastluca"
-                name = "Gianluca Colaianni"
-                roles = listOf("developer")
-                properties["github"] = "fastluca"
-            }
-        }
-    }
-
-    licensing {
-        enabled = false
-        licenses {
-            license {
-                id = "MIT"
-            }
-        }
-    }
-
-    coverage {
-        jacoco {
-            includeProjectDependencies = true
-        }
-    }
-
-    quality {
-        detekt {
-            buildUponDefaultConfig = true
-            failFast = false
-        }
-
-        sonar {
-            hostUrl = "https://sonarcloud.io"
-            login = sonarToken
-            organization = "ursjoss-github"
-            projectKey = "ursjoss_${project.name}"
-        }
-    }
-
-    bintray {
-        enabled = true
-        credentials {
-            username = System.getenv("BINTRAY_USER") ?: "**UNDEFINED**"
-            password = System.getenv("BINTRAY_KEY") ?: "**UNDEFINED**"
-        }
-        userOrg = "difty"
-        githubRepo = "ursjoss/KRis"
-        publish = true
-        skipMavenSync = true
-    }
-
-    docs {
-        javadoc {
-            enabled = false
-        }
-
-        kotlindoc {
-            enabled = true
-            replaceJavadoc = true
-            includes = project.subprojects.filterNot { it.name == "guide" }.map { sp ->
-                "${sp.projectDir}/module.md"
-            }.toList()
-            jdkVersion = javaVersion.majorVersion.toInt()
-
-            aggregate {
-                enabled = true
-                fast = false
-                replaceJavadoc = true
-            }
-            project.subprojects.forEach { subProject ->
-                sourceLinks {
-                    sourceLink {
-                        localDirectory = "${subProject.projectDir}/$kotlinSrcSet"
-                        remoteUrl = subProject.projectRelativSourceLink()
-                        remoteLineSuffix = srcLinkSuffix
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-configure<ProjectsExtension> {
-    all {
-        path("*") {
-            apply<IdeaPlugin>()
-            apply(plugin = "org.jetbrains.kotlin.jvm")
-
-            repositories {
-                mavenLocal()
-                mavenCentral()
-                jcenter()
-            }
-
-            kotlin {
-                explicitApi()
-            }
-
-            tasks {
-                val deleteOutFolderTask by registering(Delete::class) {
-                    delete("out")
-                }
-                named("clean").configure {
-                    dependsOn(deleteOutFolderTask)
-                }
-                val kotlinApiLangVersion = kotlinVersion.subSequence(0, 3).toString()
-                val jvmTargetVersion = javaVersion.toString()
-                withType<KotlinCompile>().configureEach {
-                    kotlinOptions {
-                        apiVersion = kotlinApiLangVersion
-                        languageVersion = kotlinApiLangVersion
-                        jvmTarget = jvmTargetVersion
-                        freeCompilerArgs = freeCompilerArgs + listOf("-Xopt-in=kotlin.RequiresOptIn")
-                    }
-                }
-                withType<JavaCompile>().configureEach {
-                    sourceCompatibility = jvmTargetVersion
-                    targetCompatibility = jvmTargetVersion
-                }
-                withType<Detekt>().configureEach {
-                    jvmTarget = jvmTargetVersion
-                }
-            }
-        }
-
-        path(":") {
-            tasks {
-                val aggregateDetekt by existing {
-                    dependsOn(subprojects.map { it.tasks.getByName("detekt") })
-                }
-                named("sonarqube").configure {
-                    dependsOn(aggregateDetekt)
-                }
-            }
-        }
-
-        dir("subprojects") {
-            config {
-                docs {
-                    kotlindoc {
-                        enabled = false
-                        sourceLinks {
-                            sourceLink {
-                                localDirectory = "$projectDir/$kotlinSrcSet"
-                                remoteUrl = project.projectRelativeSourceLink()
-                                remoteLineSuffix = srcLinkSuffix
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-*/
