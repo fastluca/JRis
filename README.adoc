@@ -29,10 +29,6 @@ Requires JRE 11 or later.
 .Gradle depending on KRisc-core and -- optionally -- KRis-io
 [code,kotlin]
 ----
-repositories {
-    maven { url = uri("https://dl.bintray.com/difty/maven/") }
-}
-
 dependencies {
     implementation("ch.difty.kris:kris-core:$krisVersion")
     implementation("ch.difty.kris:kris-io:$krisVersion")
@@ -55,5 +51,3 @@ dependencies {
     <type>pom</type>
 </dependency>
 ----
-
-For maven, you need to configure the bintray repository as shown https://www.jfrog.com/confluence/display/BT/Maven+Repositories[here]
