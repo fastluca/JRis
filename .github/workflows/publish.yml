@@ -33,7 +33,12 @@ jobs:
             gradle-cache-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Publish github pages
-        run: ./gradlew  -Prelease=true check :guide:gitPublishPush --no-daemon
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            build
+            check
+            :guide:gitPublishPush
         env:
           GRGIT_USER: ursjoss
           GRGIT_PASS: ${{ secrets.GRGIT_PASS }}
