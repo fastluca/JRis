@@ -51,6 +51,7 @@ tasks {
         destinationDir = builtGuideDir
         dependsOn(asciidoctor)
         dependsOn(rootProject.tasks.named("dokkaHtmlMultiModule"))
+        dependsOn(rootProject.tasks.named("dokkaJavadocCollector"))
     }
     withType<GitPublishCommit> {
         dependsOn(createGuide)
@@ -58,7 +59,9 @@ tasks {
 }
 
 afterEvaluate {
-    val htmlMultiModuleOutputDir = rootProject.buildDir.resolve("dokka").resolve("htmlMultiModule")
+    val dokkaOutputDir = rootProject.buildDir.resolve("dokka")
+    val htmlMultiModuleOutputDir = dokkaOutputDir.resolve("htmlMultiModule")
+    val htmlJavadocOutputDir = dokkaOutputDir.resolve("javadocCollector")
     gitPublish {
         repoUri.set("git@github.com:ursjoss/KRis.git")
         branch.set("gh-pages")
@@ -68,6 +71,9 @@ afterEvaluate {
             }
             from(htmlMultiModuleOutputDir) {
                 into("kapi")
+            }
+            from(htmlJavadocOutputDir) {
+                into("javadoc")
             }
         }
         preserve {
