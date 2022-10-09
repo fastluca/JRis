@@ -1,3 +1,4 @@
+import org.ajoberstar.gradle.git.publish.tasks.GitPublishCommit
 import org.asciidoctor.gradle.jvm.AsciidoctorTask
 import java.time.Year
 
@@ -13,7 +14,7 @@ tasks {
         setBaseDir(file("src/docs/asciidoc/"))
         sources(delegateClosureOf<PatternSet> { include("index.adoc") })
         options(mapOf("doctype" to "book"))
-        outputOptions {setBackends(listOf("html5"))}
+        outputOptions { setBackends(listOf("html5")) }
         attributes = mapOf(
             "includedir" to "$sourceDir/",
             "imagesdir" to "$sourceDir/img",
@@ -49,14 +50,15 @@ tasks {
         from(project.tasks.asciidoctor.get().outputDir)
         destinationDir = builtGuideDir
         dependsOn(asciidoctor)
+        dependsOn(rootProject.tasks.named("dokkaHtmlMultiModule"))
     }
-
-    named("gitPublishCommit") {
+    withType<GitPublishCommit> {
         dependsOn(createGuide)
     }
 }
 
 afterEvaluate {
+    val htmlMultiModuleOutputDir = rootProject.buildDir.resolve("dokka").resolve("htmlMultiModule")
     gitPublish {
         repoUri.set("git@github.com:ursjoss/KRis.git")
         branch.set("gh-pages")
@@ -64,6 +66,12 @@ afterEvaluate {
             project.tasks.findByName("createGuide")?.outputs?.files?.let {
                 from(it)
             }
+            from(htmlMultiModuleOutputDir) {
+                into("kapi")
+            }
+        }
+        preserve {
+            include(htmlMultiModuleOutputDir.absolutePath)
         }
         commitMessage.set("Publish guide for ${project.version}")
     }

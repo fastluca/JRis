@@ -3,6 +3,7 @@ plugins {
     id("kris-collect-sarif")
     `java-library`
     kotlin("jvm")
+    alias(libs.plugins.dokka)
 }
 
 dependencies {

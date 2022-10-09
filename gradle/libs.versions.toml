@@ -3,6 +3,7 @@ asciidoctor = "3.3.2"
 assertj = "3.23.1"
 coroutines = "1.6.4"
 detekt = "1.21.0"
+dokka = "1.7.10"
 gitPublish = "4.1.1"
 java = "11"
 junitJupiter = "5.9.1"
@@ -42,6 +43,7 @@ testEngines = ["junitJupiter-engine", "spek-runner"]
 [plugins]
 asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }

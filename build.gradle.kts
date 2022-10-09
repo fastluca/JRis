@@ -1,4 +1,7 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.net.URL
 
 buildscript {
     repositories {
@@ -15,6 +18,7 @@ plugins {
     id("kris-collect-sarif")
     alias(libs.plugins.reckon)
     alias(libs.plugins.sonarqube)
+    alias(libs.plugins.dokka)
 }
 
 reckon {
@@ -22,6 +26,7 @@ reckon {
     setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
     setStageCalc(calcStageFromProp())
 }
+
 sonarqube {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
@@ -31,6 +36,7 @@ sonarqube {
     }
 }
 
+@Suppress("UNUSED_VARIABLE")
 tasks {
     val deleteOutFolderTask by registering(Delete::class) {
         delete("out")
@@ -39,7 +45,20 @@ tasks {
         delete(rootProject.buildDir)
         dependsOn(deleteOutFolderTask)
     }
+    val dokkaHtml by getting(DokkaTask::class) {
+        dokkaSourceSets {
+            configureEach {
+                sourceLink {
+                    localDirectory.set(file("$projectDir/$kotlinSrcSet"))
+                    remoteUrl.set(URL(projectRelativeSourceLink()))
+                    remoteLineSuffix.set("#L")
+                }
+            }
+        }
+    }
 }
+
+val kotlinSrcSet = "/src/main/kotlin"
 
 subprojects.forEach { subProject ->
     subProject.tasks {
@@ -64,8 +83,18 @@ subprojects.forEach { subProject ->
                 includeEngines("junit-jupiter", "spek2")
             }
         }
+        withType<DokkaTaskPartial>().configureEach {
+            dokkaSourceSets {
+                configureEach {
+                    includes.from("module.md")
+                }
+            }
+        }
     }
 }
+
+fun Project.projectRelativeSourceLink(branch: String = "main", srcSet: String = kotlinSrcSet) =
+    "https://github.com/ursjoss/KRis/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
 
 /*
 val kotlinVersion: String by project
@@ -248,7 +277,7 @@ configure<ProjectsExtension> {
                         sourceLinks {
                             sourceLink {
                                 localDirectory = "$projectDir/$kotlinSrcSet"
-                                remoteUrl = project.projectRelativSourceLink()
+                                remoteUrl = project.projectRelativeSourceLink()
                                 remoteLineSuffix = srcLinkSuffix
                             }
                         }
@@ -259,8 +288,4 @@ configure<ProjectsExtension> {
     }
 }
 
-fun Project.projectRelativSourceLink(branch: String = "main", srcSet: String = kotlinSrcSet) =
-    rootProject.config.info.links.scm?.let { scmUrl ->
-        "${scmUrl.substringBefore(".git")}/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
-    }
 */

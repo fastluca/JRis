@@ -18,14 +18,14 @@ import kotlin.reflect.KClass
  * [Wikipedia](https://en.wikipedia.org/wiki/RIS_(file_format)).
  */
 @Suppress("unused", "SpellCheckingInspection")
-internal enum class RisTag(
+public enum class RisTag(
     internal val description: String,
     internal val maxLength: Int? = null,
     internal val setInto: (RisRecord, Any?) -> Unit,
     internal val getFrom: (RisRecord) -> Any?,
     internal val kClass: KClass<*> = String::class,
     internal val requiredOrder: Int = 1000
-    ) {
+) {
     /** Type of reference (must be the first tag) */
     TY(
         description = "Type of reference",
@@ -618,12 +618,12 @@ internal enum class RisTag(
     ER(
         description = "End of Reference",
         requiredOrder = Integer.MAX_VALUE,
-        setInto = { _, _ -> Unit },
+        setInto = { _, _ -> },
         getFrom = { "" }
     ),
     ;
 
-    companion object {
-        fun fromName(tagName: String) = values().firstOrNull { it.name == tagName }
+    public companion object {
+        public fun fromName(tagName: String): RisTag? = values().firstOrNull { it.name == tagName }
     }
 }

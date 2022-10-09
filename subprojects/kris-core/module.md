@@ -1,7 +1,5 @@
 # Module kris-core
 
-## Module kris-core
-
 KRis core module, containing the domain logic on how to interpret RIS records and RIS files.
 
 This module can be used in case you already have the flows or collections of Strings and handle

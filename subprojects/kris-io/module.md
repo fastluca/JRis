@@ -1,7 +1,5 @@
 # Module kris-io
 
-## Module kris-io
-
 KRis extra module that builds on top of `kris-core` and offers additional functionality
 to read from files or write to files in various ways. If your application manages that
 autonomously, you don't need the IO module, e.g. in the context of a web application that
