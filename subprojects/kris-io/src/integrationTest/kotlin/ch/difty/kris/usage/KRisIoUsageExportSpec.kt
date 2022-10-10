@@ -4,19 +4,19 @@ import ch.difty.kris.accept
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import ch.difty.kris.process
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
+import io.kotest.core.spec.style.DescribeSpec
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.amshove.kluent.shouldHaveSize
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
-@Suppress("SpellCheckingInspection")
-@OptIn(ExperimentalCoroutinesApi::class, InternalCoroutinesApi::class)
-object KRisIoUsageExportSpec : Spek({
+@Suppress("unused")
+object KRisIoUsageExportSpec : DescribeSpec({
 
     describe("exporting into file") {
-        val file by memoized { File.createTempFile("kris2", null, null).also { it.deleteOnExit() } }
+        val file = withContext(Dispatchers.IO) {
+            File.createTempFile("kris2", null, null)
+        }.also { it.deleteOnExit() }
         val records = listOf(RisRecord(type = RisType.ABST))
 
         it("can write to File") {
@@ -44,7 +44,6 @@ object KRisIoUsageExportSpec : Spek({
     }
 })
 
-@OptIn(ExperimentalCoroutinesApi::class)
 private fun List<RisRecord>.assertRecordsWereWrittenTo(file: File) {
     file.path.process() shouldHaveSize size
 }

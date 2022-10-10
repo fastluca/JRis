@@ -1,22 +1,17 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisType
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
+import io.kotest.core.spec.style.DescribeSpec
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
-import org.amshove.kluent.invoking
+import org.amshove.kluent.coInvoking
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
 import org.amshove.kluent.shouldThrow
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.describe
 
-@OptIn(ExperimentalCoroutinesApi::class)
 @Suppress("unused", "SpellCheckingInspection", "S1192")
-object KRisProcessingSpec : Spek({
+object KRisProcessingSpec : DescribeSpec({
 
     describe("with RIS file as list of strings") {
         val type = "JOUR"
@@ -41,7 +36,7 @@ object KRisProcessingSpec : Spek({
             "ER  - "
         )
         describe("representing a single record") {
-            val risRecords by memoized { runBlocking { KRis.process(lines.asFlow()).toList() } }
+            val risRecords = runBlocking { KRis.process(lines.asFlow()).toList() }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
             it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }
@@ -57,7 +52,9 @@ object KRisProcessingSpec : Spek({
 
         describe("representing two records") {
             val twoRecordLines = lines + lines
-            it("should be parsed into one single RisRecord") { runBlocking { KRis.process(twoRecordLines.asFlow()).toList() shouldHaveSize 2 } }
+            it("should be parsed into one single RisRecord") {
+                runBlocking { KRis.process(twoRecordLines.asFlow()).toList() shouldHaveSize 2 }
+            }
         }
     }
 
@@ -67,10 +64,8 @@ object KRisProcessingSpec : Spek({
             "XX  - skjd"
         )
 
-        val risRecords by memoized { runBlocking { KRis.process(lines.asFlow()).toList() } }
-
         it("should throw") {
-            invoking { risRecords } shouldThrow KRisException::class
+            coInvoking { KRis.process(lines.asFlow()).toList() } shouldThrow KRisException::class
         }
     }
 
@@ -87,7 +82,7 @@ object KRisProcessingSpec : Spek({
                 "AB  - $abstract",
                 "ER  - "
             )
-            val risRecords by memoized { runBlocking { KRis.process(lines.asFlow()).toList() } }
+            val risRecords = runBlocking { KRis.process(lines.asFlow()).toList() }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
             it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }
@@ -104,7 +99,7 @@ object KRisProcessingSpec : Spek({
                 "XX  - $abstract2",
                 "ER  - "
             )
-            val risRecords by memoized { runBlocking { KRis.process(lines.asFlow()).toList() } }
+            val risRecords = runBlocking { KRis.process(lines.asFlow()).toList() }
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
             it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }

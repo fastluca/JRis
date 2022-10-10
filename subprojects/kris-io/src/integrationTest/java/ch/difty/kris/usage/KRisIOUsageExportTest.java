@@ -12,12 +12,11 @@ import ch.difty.kris.domain.RisType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-@SuppressWarnings("SpellCheckingInspection")
 class KRisIOUsageExportTest {
 
     private File file;
 
-    private List<RisRecord> records = Collections.singletonList(new RisRecord.Builder()
+    private final List<RisRecord> records = Collections.singletonList(new RisRecord.Builder()
         .type(RisType.JOUR)
         .build());
 

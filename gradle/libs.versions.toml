@@ -8,13 +8,13 @@ gitPublish = "4.1.1"
 java = "11"
 junitJupiter = "5.9.1"
 kluent = "1.68"
+kotest = "5.5.1"
 kotlin = "1.7.20"
 mockk = "1.13.2"
 nexusPublish = "1.1.0"
 reckon = "0.16.1"
 rxjava = "2.2.21"
 sonarqube = "3.4.0.2513"
-spek = "2.0.19"
 testSets = "4.0.0"
 versions = "0.42.0"
 
@@ -25,12 +25,13 @@ coroutines-rx2 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2", vers
 junitJupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiter" }
 junitJupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiter" }
 kluent = { module = "org.amshove.kluent:kluent", version.ref = "kluent" }
+kotest-framework-api = { module = "io.kotest:kotest-framework-api", version.ref = "kotest"}
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"}
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest"}
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
-spek-dsl = { module = "org.spekframework.spek2:spek-dsl-jvm", version.ref = "spek" }
-spek-runner = { module = "org.spekframework.spek2:spek-runner-junit5", version.ref = "spek" }
 
 plugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -38,8 +39,8 @@ plugin-reckon = { module = "org.ajoberstar.reckon:reckon-gradle", version.ref = 
 
 [bundles]
 kotlin = ["kotlin-stdlib", "kotlin-reflect", "coroutines-core"]
-testDeps = ["junitJupiter-api", "spek-dsl", "mockk", "kluent", "assertj-core"]
-testEngines = ["junitJupiter-engine", "spek-runner"]
+testDeps = ["junitJupiter-api", "kotest-framework-api", "mockk", "kluent", "assertj-core"]
+testEngines = ["junitJupiter-engine", "kotest-runner-junit5"]
 
 [plugins]
 asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }

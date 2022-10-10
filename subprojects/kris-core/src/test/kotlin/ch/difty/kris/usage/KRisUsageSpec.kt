@@ -6,25 +6,19 @@ import ch.difty.kris.domain.RisType
 import ch.difty.kris.risTagNames
 import ch.difty.kris.toRisLines
 import ch.difty.kris.toRisRecords
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.InternalCoroutinesApi
+import io.kotest.core.spec.style.DescribeSpec
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.describe
 
 /**
  * Specification how to use KRis from kotlin
  */
 @Suppress("SpellCheckingInspection", "unused")
-@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class, InternalCoroutinesApi::class)
-object KRisUsageSpec : Spek({
+object KRisUsageSpec : DescribeSpec({
 
     describe("with list of strings representing two RIS records") {
         // example from wikipedia (https://en.wikipedia.org/wiki/RIS_(file_format)

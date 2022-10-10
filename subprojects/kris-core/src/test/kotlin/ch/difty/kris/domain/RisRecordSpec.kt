@@ -2,18 +2,17 @@
 
 package ch.difty.kris.domain
 
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.core.spec.style.scopes.DescribeSpecContainerScope
 import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldBeNull
 import org.amshove.kluent.shouldContainAll
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.Suite
-import org.spekframework.spek2.style.specification.describe
 
 @Suppress("unused")
-object RisRecordSpec : Spek({
+object RisRecordSpec : DescribeSpec({
 
-    group("no values specified") {
+    describe("no values specified") {
 
         describe("given default record as data class") {
             val record = RisRecord()
@@ -111,7 +110,7 @@ object RisRecordSpec : Spek({
         }
     }
 
-    group("with all values specified") {
+    describe("with all values specified") {
         describe("given record as data class") {
             val record = RisRecord(
                 type = RisType.ABST,
@@ -285,7 +284,7 @@ object RisRecordSpec : Spek({
 })
 
 @Suppress("LongMethod")
-private fun Suite.assertDefaultValues(record: RisRecord) {
+private suspend fun DescribeSpecContainerScope.assertDefaultValues(record: RisRecord) {
     mapOf(
         "type" to record.type,
         "abstr" to record.abstr,
@@ -381,7 +380,7 @@ private fun Suite.assertDefaultValues(record: RisRecord) {
 }
 
 @Suppress("LongMethod")
-private fun Suite.assertSpecifiedValues(record: RisRecord) {
+private suspend fun DescribeSpecContainerScope.assertSpecifiedValues(record: RisRecord) {
     mapOf(
         RisType.ABST.toString() to record.type,
         "abstr" to record.abstr,

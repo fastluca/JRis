@@ -5,21 +5,22 @@ import ch.difty.kris.accept
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import ch.difty.kris.process
+import io.kotest.core.spec.style.DescribeSpec
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldHaveSize
-import org.spekframework.spek2.Spek
-import org.spekframework.spek2.style.specification.describe
 import java.io.File
 
-@Suppress("SpellCheckingInspection", "unused")
-object KRisIoUsageSpec : Spek({
+@Suppress("unused")
+object KRisIoUsageSpec : DescribeSpec({
 
     describe("importing from file") {
-        val file by memoized {
-            File.createTempFile("kris1", null, null).apply {
-                accept(listOf(RisRecord(type = RisType.JOUR)))
-                deleteOnExit()
-            }
+        val file = withContext(Dispatchers.IO) {
+            File.createTempFile("kris1", null, null)
+        }.apply {
+            accept(listOf(RisRecord(type = RisType.JOUR)))
+            deleteOnExit()
         }
 
         it("can read from File") {
@@ -52,7 +53,10 @@ object KRisIoUsageSpec : Spek({
     }
 
     describe("exporting into file") {
-        val file by memoized { File.createTempFile("kris2", null, null).apply { deleteOnExit() } }
+        val file = withContext(Dispatchers.IO) {
+            File.createTempFile("kris2", null, null)
+        }.apply { deleteOnExit() }
+
         val customSort = listOf("AB")
 
         describe("with fields in natural order") {

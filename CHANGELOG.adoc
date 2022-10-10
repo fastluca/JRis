@@ -47,14 +47,18 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 {url-cl}0.4.0$$...$$main[Full Changelog]
 
 .Added
+- {url-issues}89[#89] use kotest as testing/specification library
 
 ////
 .Changed
 
 .Deprecated
+////
 
 .Removed
+- {url-issues}89[#89] removed spek as testing/specification library
 
+////
 .Fixed
 
 .Security

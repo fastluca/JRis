@@ -39,20 +39,3 @@ listOf("docs", "subprojects").forEach { containerDir ->
 }
 
 includeBuild("gradle-plugins")
-
-//buildscript {
-//    repositories {
-//        gradlePluginPortal()
-//    }
-//
-//    val kotlinVersion: String by settings
-//    val kordampPluginVersion: String by settings
-//    val reckonVersion: String by settings
-//    val gitPublishVersion: String by settings
-//
-//    dependencies {
-//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-//        classpath("org.ajoberstar.reckon:reckon-gradle:$reckonVersion")
-//        classpath("org.ajoberstar:gradle-git-publish:$gitPublishVersion")
-//    }
-//}
