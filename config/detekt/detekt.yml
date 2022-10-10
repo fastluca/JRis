@@ -1,5 +1,6 @@
 style:
   MaxLineLength:
+    active: true
     maxLineLength: 150
 
 complexity:

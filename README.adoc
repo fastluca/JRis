@@ -26,6 +26,8 @@ Requires JRE 11 or later.
 
 == Setup
 
+As of version 0.4.0, KRis is available in https://search.maven.org/search?q=g:ch.difty.kris[maven-central].
+
 .Gradle depending on KRisc-core and -- optionally -- KRis-io
 [code,kotlin]
 ----

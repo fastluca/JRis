@@ -6,7 +6,6 @@ import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.implementation.RisExport
 import ch.difty.kris.implementation.RisImport
 import io.reactivex.Observable
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
@@ -32,7 +31,6 @@ internal const val TAG_SEPARATOR = "  - "
  */
 @Suppress("KDocUnresolvedReference")
 
-@OptIn(ExperimentalCoroutinesApi::class)
 public object KRis {
 
 //region:process - RISFile lines -> RisRecords
@@ -56,7 +54,9 @@ public object KRis {
      * May throw a [KRisException] if the line flow cannot be parsed successfully.
      */
     @JvmStatic
-    public fun processList(risLines: List<String>): List<RisRecord> = runBlocking { process(risLines.asFlow()).toList() }
+    public fun processList(risLines: List<String>): List<RisRecord> = runBlocking {
+        process(risLines.asFlow()).toList()
+    }
 
 //endregion
 
@@ -66,7 +66,8 @@ public object KRis {
      * Converts a flow of [RisRecord]s into a flow of [String]s in RIS file format.
      * Optionally accepts a list of names of [RisTag]s defining a sort order for the [RisTag]s in the file.
      */
-    public fun build(recordFlow: Flow<RisRecord>, sort: List<String> = emptyList()): Flow<String> = RisExport.build(recordFlow, sort)
+    public fun build(recordFlow: Flow<RisRecord>, sort: List<String> = emptyList()): Flow<String> =
+        RisExport.build(recordFlow, sort)
 
     /**
      * Converts a list of [RisRecord]s into a list of [String]s in RIS file format in blocking manner.
@@ -83,7 +84,10 @@ public object KRis {
      */
     @JvmStatic
     @JvmOverloads
-    public fun exportObservable(observable: Observable<RisRecord>, sort: List<String> = emptyList()): Observable<String> =
+    public fun exportObservable(
+        observable: Observable<RisRecord>,
+        sort: List<String> = emptyList(),
+    ): Observable<String> =
         build(observable.asFlow(), sort).asObservable()
 
 //endregion

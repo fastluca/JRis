@@ -5,7 +5,6 @@ package ch.difty.kris
 import ch.difty.kris.domain.RisRecord
 import ch.difty.kris.domain.RisType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 

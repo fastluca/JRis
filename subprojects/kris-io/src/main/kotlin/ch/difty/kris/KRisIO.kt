@@ -2,7 +2,6 @@ package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -20,7 +19,6 @@ import java.io.Writer
 /**
  * Convenience methods offering to directly work with IO methods.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 public object KRisIO {
 
     //region:process -> RISFile lines -> RisRecords

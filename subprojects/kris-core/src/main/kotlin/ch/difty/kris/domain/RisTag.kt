@@ -24,7 +24,7 @@ public enum class RisTag(
     internal val setInto: (RisRecord, Any?) -> Unit,
     internal val getFrom: (RisRecord) -> Any?,
     internal val kClass: KClass<*> = String::class,
-    internal val requiredOrder: Int = 1000
+    internal val requiredOrder: Int = 1000,
 ) {
     /** Type of reference (must be the first tag) */
     TY(
@@ -275,7 +275,9 @@ public enum class RisTag(
         maxLength = 255
     ),
 
-    /** Alternate Title (this field is used for the abbreviated title of a book or journal name, the latter mapped to T2) */
+    /**
+     * Alternate Title (this field is used for the abbreviated title of a book or journal name, the latter mapped to T2)
+     **/
     J2(
         description = "Alternate Title",
         setInto = { r, v -> r.alternativeTitle = v as String? },

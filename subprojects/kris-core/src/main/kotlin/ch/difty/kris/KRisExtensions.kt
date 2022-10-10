@@ -37,8 +37,9 @@ public fun List<String>.toRisRecords(): List<RisRecord> = KRis.processList(this)
  * Converts a sequence of Strings (representing lines in a RIS file) (as receiver) into a sequence of [RisRecord]s
  * in a blocking manner. May throw a [KRisException] if the line flow cannot be parsed successfully.
  */
-@OptIn(FlowPreview::class, DelicateCoroutinesApi::class)
-public fun Sequence<String>.toRisRecords(scope: CoroutineScope = GlobalScope): Sequence<RisRecord> = mapSequence(KRis::process, scope)
+@OptIn(DelicateCoroutinesApi::class)
+public fun Sequence<String>.toRisRecords(scope: CoroutineScope = GlobalScope): Sequence<RisRecord> =
+    mapSequence(KRis::process, scope)
 //endregion
 
 //region:export - RisRecords -> RISFile lines
@@ -61,8 +62,9 @@ public fun List<RisRecord>.toRisLines(sort: List<String> = emptyList()): List<St
 /**
  * Processes a sequence of [RisRecord]s into a sequence of Strings representing lines in RIS file format.
  */
-@OptIn(FlowPreview::class, DelicateCoroutinesApi::class)
-public fun Sequence<RisRecord>.toRisLines(scope: CoroutineScope = GlobalScope): Sequence<String> = mapSequence(KRis::build, scope)
+@OptIn(DelicateCoroutinesApi::class)
+public fun Sequence<RisRecord>.toRisLines(scope: CoroutineScope = GlobalScope): Sequence<String> =
+    mapSequence(KRis::build, scope)
 //endregion
 
 /**
@@ -74,7 +76,7 @@ public fun Sequence<RisRecord>.toRisLines(scope: CoroutineScope = GlobalScope): 
 @Suppress("SwallowedException")
 private fun <T, R> Sequence<T>.mapSequence(
     flowMapper: (Flow<T>) -> Flow<R>,
-    scope: CoroutineScope
+    scope: CoroutineScope,
 ): Sequence<R> = sequence {
     val sourceFlow: Flow<T> = this@mapSequence.asFlow()
     val targetFlow: Flow<R> = flowMapper(sourceFlow)

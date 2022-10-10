@@ -1,9 +1,6 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.io.File
 import java.io.IOException
 import java.io.InputStream

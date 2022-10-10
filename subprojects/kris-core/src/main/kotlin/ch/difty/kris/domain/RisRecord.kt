@@ -386,11 +386,17 @@ public data class RisRecord(
         public fun subsidiaryAuthors(subsidiaryAuthors: List<String>): Builder =
             apply { this.subsidiaryAuthors.clear(); this.subsidiaryAuthors.addAll(subsidiaryAuthors) }
 
-        public fun authors(authors: List<String>): Builder = apply { this.authors.clear(); this.authors.addAll(authors) }
+        public fun authors(authors: List<String>): Builder = apply {
+            this.authors.clear(); this.authors.addAll(authors)
+        }
+
         public fun abstr(abstr: String?): Builder = apply { this.abstr = abstr }
         public fun authorAddress(authorAddress: String?): Builder = apply { this.authorAddress = authorAddress }
         public fun accessionNumber(accessionNumber: String?): Builder = apply { this.accessionNumber = accessionNumber }
-        public fun archivesLocation(archivesLocation: String?): Builder = apply { this.archivesLocation = archivesLocation }
+        public fun archivesLocation(archivesLocation: String?): Builder = apply {
+            this.archivesLocation = archivesLocation
+        }
+
         public fun bt(bt: String?): Builder = apply { this.bt = bt }
         public fun custom1(custom1: String?): Builder = apply { this.custom1 = custom1 }
         public fun custom2(custom2: String?): Builder = apply { this.custom2 = custom2 }
@@ -410,7 +416,11 @@ public data class RisRecord(
         public fun date(date: String?): Builder = apply { this.date = date }
         public fun databaseName(databaseName: String?): Builder = apply { this.databaseName = databaseName }
         public fun doi(doi: String?): Builder = apply { this.doi = doi }
-        public fun databaseProvider(databaseProvider: String?): Builder = apply { this.databaseProvider = databaseProvider }
+
+        public fun databaseProvider(databaseProvider: String?): Builder = apply {
+            this.databaseProvider = databaseProvider
+        }
+
         public fun editor(editor: String?): Builder = apply { this.editor = editor }
         public fun endPage(endPage: String?): Builder = apply { this.endPage = endPage }
         public fun edition(edition: String?): Builder = apply { this.edition = edition }
@@ -419,7 +429,10 @@ public data class RisRecord(
         public fun periodicalNameUserAbbrevation(periodicalNameUserAbbrevation: String?): Builder =
             apply { this.periodicalNameUserAbbrevation = periodicalNameUserAbbrevation }
 
-        public fun alternativeTitle(alternativeTitle: String?): Builder = apply { this.alternativeTitle = alternativeTitle }
+        public fun alternativeTitle(alternativeTitle: String?): Builder = apply {
+            this.alternativeTitle = alternativeTitle
+        }
+
         public fun periodicalNameStandardAbbrevation(periodicalNameStandardAbbrevation: String?): Builder =
             apply { this.periodicalNameStandardAbbrevation = periodicalNameStandardAbbrevation }
 
@@ -429,8 +442,14 @@ public data class RisRecord(
         public fun periodicalNameFullFormatJO(periodicalNameFullFormatJO: String?): Builder =
             apply { this.periodicalNameFullFormatJO = periodicalNameFullFormatJO }
 
-        public fun keywords(keywords: List<String>): Builder = apply { this.keywords.clear(); this.keywords.addAll(keywords) }
-        public fun pdfLinks(pdfLinks: List<String>): Builder = apply { this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks) }
+        public fun keywords(keywords: List<String>): Builder = apply {
+            this.keywords.clear(); this.keywords.addAll(keywords)
+        }
+
+        public fun pdfLinks(pdfLinks: List<String>): Builder = apply {
+            this.pdfLinks.clear(); this.pdfLinks.addAll(pdfLinks)
+        }
+
         public fun fullTextLinks(fullTextLinks: List<String>): Builder =
             apply { this.fullTextLinks.clear(); this.fullTextLinks.addAll(fullTextLinks) }
 
@@ -463,7 +482,10 @@ public data class RisRecord(
         public fun primaryTitle(primaryTitle: String?): Builder = apply { this.primaryTitle = primaryTitle }
         public fun secondaryTitle(secondaryTitle: String?): Builder = apply { this.secondaryTitle = secondaryTitle }
         public fun tertiaryTitle(tertiaryTitle: String?): Builder = apply { this.tertiaryTitle = tertiaryTitle }
-        public fun translatedAuthor(translatedAuthor: String?): Builder = apply { this.translatedAuthor = translatedAuthor }
+        public fun translatedAuthor(translatedAuthor: String?): Builder = apply {
+            this.translatedAuthor = translatedAuthor
+        }
+
         public fun title(title: String?): Builder = apply { this.title = title }
         public fun translatedTitle(translatedTitle: String?): Builder = apply { this.translatedTitle = translatedTitle }
         public fun userDefinable1(userDefinable1: String?): Builder = apply { this.userDefinable1 = userDefinable1 }
