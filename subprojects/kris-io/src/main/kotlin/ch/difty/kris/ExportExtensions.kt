@@ -1,7 +1,6 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.io.File
 import java.io.OutputStream
 import java.io.Writer

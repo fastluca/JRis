@@ -2,6 +2,7 @@ plugins {
     id("kris-detekt")
     id("kris-collect-sarif")
     id("kris-publish")
+    id("kris-jacoco")
     kotlin("jvm")
     alias(libs.plugins.testSets)
     alias(libs.plugins.dokka)

@@ -29,12 +29,12 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-#      - name: Cache SonarCloud packages
-#        uses: actions/cache@v3
-#        with:
-#          path: ~/.sonar/cache
-#          key: ${{ runner.os }}-sonar
-#          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache global .gradle folder
         uses: actions/cache@v3
@@ -67,8 +67,8 @@ jobs:
           name: reports
           path: '**/build/reports'
 
-#      - name: Run all tests with Gradle
-#        run: ./gradlew check detekt --info --no-daemon
-#        env:
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run all tests with Gradle
+        run: ./gradlew check detekt sonar --info --no-daemon
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -28,5 +28,9 @@ gradlePlugin {
             id = "kris-collect-sarif"
             implementationClass = "CollectSarifPlugin"
         }
+        create("kris-jacoco") {
+            id = "kris-jacoco"
+            implementationClass = "KrisJacocoPlugin"
+        }
     }
 }

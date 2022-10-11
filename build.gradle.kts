@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.nexusPublish)
     `maven-publish`
+    jacoco
 }
 
 reckon {
@@ -29,11 +30,18 @@ reckon {
     setStageCalc(calcStageFromProp())
 }
 
+val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+
+jacoco {
+    toolVersion = libs.versions.jacoco.get()
+}
+
 sonarqube {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.projectKey", "ursjoss_${project.name}")
         property("sonar.organization", "ursjoss-github")
+        property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
         property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
     }
 }
@@ -109,6 +117,7 @@ subprojects.forEach { subProject ->
         }
     }
 }
+
 
 fun Project.projectRelativeSourceLink(branch: String = "main", srcSet: String = kotlinSrcSet) =
     "https://github.com/ursjoss/KRis/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
