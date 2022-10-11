@@ -21,6 +21,9 @@ class KrisJacocoPlugin : Plugin<Project> {
                 }
                 dependsOn(test)
             }
+            target.rootProject.tasks.named("sonarqube") {
+                dependsOn(tasks.getByName("jacocoTestReport"))
+            }
         }
     }
 }

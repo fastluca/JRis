@@ -42,7 +42,7 @@ sonarqube {
         property("sonar.projectKey", "ursjoss_${project.name}")
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
-        property("sonar.kotlin.detekt.reportPaths", "build/reports/detekt/detekt.xml")
+        property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt/detekt.xml")
     }
 }
 
@@ -121,3 +121,5 @@ subprojects.forEach { subProject ->
 
 fun Project.projectRelativeSourceLink(branch: String = "main", srcSet: String = kotlinSrcSet) =
     "https://github.com/ursjoss/KRis/blob/$branch/${projectDir.relativeTo(rootDir)}/$srcSet"
+
+fun String.mayHaveTestCoverage(): Boolean = startsWith("kris")
