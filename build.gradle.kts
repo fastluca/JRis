@@ -61,7 +61,6 @@ nexusPublishing {
     }
 }
 
-@Suppress("UNUSED_VARIABLE")
 tasks {
     val deleteOutFolderTask by registering(Delete::class) {
         delete("out")

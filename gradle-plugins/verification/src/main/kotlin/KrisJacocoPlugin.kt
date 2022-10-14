@@ -6,6 +6,7 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.testing.jacoco.plugins.JacocoPlugin
 import org.gradle.testing.jacoco.tasks.JacocoReport
 
+@Suppress("unused")
 class KrisJacocoPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {

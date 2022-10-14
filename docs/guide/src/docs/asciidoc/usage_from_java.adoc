@@ -1,7 +1,8 @@
 [[_java_usage]]
 = Using `KRis` from Java
 
-Building RisRecords in Java is more cumbersome than in kotlin, as we cannot simply use the default arguments of the data class or compfortably use extension functions.
+Building RisRecords in Java is more cumbersome than in kotlin,
+as we cannot simply use the default arguments of the data class or comfortably use extension functions.
 
 [[_java_export]]
 == Export: RIS records -> text file
@@ -18,7 +19,7 @@ include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide
 === List: Blocking conversion
 
 We can convert the records as a list into a list of strings.
-This happens in a blocking manner and it is up to us what we want to do with the list of lines.
+This happens in a blocking manner, and it is up to us what we want to do with the list of lines.
 
 .Converting a list of `RisRecords` in a blocking manner into a list of RIS lines [Java]
 [subs=attributes+,source,java]
@@ -41,7 +42,7 @@ All the subsequent method calls optionally accept a list of RIS tag names, speci
 We will not explicitly mention this option in the subsequent examples.
 ====
 
-You can get get a complete list of the RisTags available:
+You can get a complete list of the RisTags available:
 
 .Getting a list of all RisTags (list of strings) [Java]
 [subs=attributes+,source,java]

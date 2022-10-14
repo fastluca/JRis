@@ -142,14 +142,14 @@ public data class RisRecord(
 
     /**
      * L1. There is no practical limit to the length of this field. URL addresses can be entered individually,
-     *     one per tag or multiple addresses can be entered on one line using a semi-colon as a separator.
+     *     one per tag or multiple addresses can be entered on one line using a semicolon as a separator.
      */
     public val pdfLinks: MutableList<String> = mutableListOf(),
 
     /**
      * L2. Link to Full-text. There is no practical limit to the length of this field.
      *     URL addresses can be entered individually, one per tag or multiple addresses
-     *     can be entered on one line using a semi-colon as a separator.
+     *     can be entered on one line using a semicolon as a separator.
      */
     public val fullTextLinks: MutableList<String> = mutableListOf(),
 

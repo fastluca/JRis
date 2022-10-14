@@ -1,4 +1,4 @@
-@file:Suppress("SpellCheckingInspection", "RedundantVisibilityModifier")
+@file:Suppress("SpellCheckingInspection")
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
 package ch.difty.kris

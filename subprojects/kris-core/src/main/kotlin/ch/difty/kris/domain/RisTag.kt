@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
  * The class was composed from information available on
  * [Wikipedia](https://en.wikipedia.org/wiki/RIS_(file_format)).
  */
-@Suppress("unused", "SpellCheckingInspection")
+@Suppress("SpellCheckingInspection")
 public enum class RisTag(
     internal val description: String,
     internal val maxLength: Int? = null,
@@ -323,7 +323,7 @@ public enum class RisTag(
     /**
      * Link to PDF. There is no practical limit to the length of this field.
      * URL addresses can be entered individually, one per tag or multiple addresses
-     * can be entered on one line using a semi-colon as a separator.
+     * can be entered on one line using a semicolon as a separator.
      */
     L1(
         description = "Link to PDF.",
@@ -335,7 +335,7 @@ public enum class RisTag(
     /**
      * Link to Full-text. There is no practical limit to the length of this field.
      * URL addresses can be entered individually, one per tag or multiple addresses
-     * can be entered on one line using a semi-colon as a separator.
+     * can be entered on one line using a semicolon as a separator.
      */
     L2(
         description = "Link to Full-text.",

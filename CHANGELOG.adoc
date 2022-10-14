@@ -44,7 +44,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.4.0$$...$$main[Full Changelog]
+{url-cl}0.4.0++...++main[Full Changelog]
 
 .Added
 - {url-issues}89[#89] use kotest as testing/specification library
@@ -68,7 +68,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.4.0]]
 == [0.4.0] -- 2022-10-09
 
-{url-cl}0.3.3$$...$$0.4.0[Full Changelog]
+{url-cl}0.3.3++...++0.4.0[Full Changelog]
 
 .Changed
 - Bumped gradle-wrapper, kotlin, coroutines, git-publish, detekt, junit-jupiter, spek, mockk,
@@ -82,7 +82,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.3.3]]
 == [0.3.3] -- 2021-12-22
 
-{url-cl}0.3.2$$...$$0.3.3[Full Changelog]
+{url-cl}0.3.2++...++0.3.3[Full Changelog]
 
 .Changed
 - Bumped gradle-wrapper, kotlin, coroutines, mockk, rxjava, junit, kordamp-gradle-plugins, kluent, assertj
@@ -91,7 +91,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.3.2]]
 == [0.3.2] -- 2021-03-28
 
-{url-cl}0.3.1$$...$$0.3.2[Full Changelog]
+{url-cl}0.3.1++...++0.3.2[Full Changelog]
 
 .Changed
 - Bumped gradle-wrapper, kotlin, coroutines, mockk, rxjava, junit, kordamp-gradle-plugins
@@ -100,7 +100,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.3.1]]
 == [0.3.1] -- 2021-02-04
 
-{url-cl}0.3.0$$...$$0.3.1[Full Changelog]
+{url-cl}0.3.0++...++0.3.1[Full Changelog]
 
 .Changed
 - Bumped kotlin, gradle-wrapper, kotlin, kluent, spek, assertj, kordamp-gradle-plugins, couroutines, mockk
@@ -110,7 +110,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.3.0]]
 == [0.3.0] -- 2020-11-07
 
-{url-cl}0.2.6$$...$$0.3.0[Full Changelog]
+{url-cl}0.2.6++...++0.3.0[Full Changelog]
 
 .Added
 - {url-issues}55[#45] Activated explicit api mode
@@ -122,7 +122,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.2.6]]
 == [0.2.6] -- 2020-10-04
 
-{url-cl}0.2.5$$...$$0.2.6[Full Changelog]
+{url-cl}0.2.5++...++0.2.6[Full Changelog]
 
 .Added
 - Improved some kotlinDoc (RisTag)
@@ -132,13 +132,13 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 - {url-issues}45[#45] Compile to Java 11
 
 .Fixed
-- Github action for publication
+- GitHub action for publication
 
 
 [[v0.2.5]]
 == [0.2.5] -- 2020-06-07
 
-{url-cl}0.2.3$$...$$0.2.5[Full Changelog]
+{url-cl}0.2.3++...++0.2.5[Full Changelog]
 
 .Added
 
@@ -159,7 +159,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.2.3]]
 == [0.2.3] -- 2020-04-11
 
-{url-cl}0.2.1$$...$$0.2.3[Full Changelog]
+{url-cl}0.2.1++...++0.2.3[Full Changelog]
 
 .Added
 - {url-issues}31[#31] Added module.md and include link from README to dokka guide
@@ -176,7 +176,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.2.1]]
 == [0.2.1] -- 2020-03-28
 
-{url-cl}0.2.0$$...$$0.2.1[Full Changelog]
+{url-cl}0.2.0++...++0.2.1[Full Changelog]
 
 .Added
 - https://ursjoss.github.io/KRis/kapi/-k-ris/index.html[kotlindoc]
@@ -199,7 +199,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[v0.2.0]]
 == [0.2.0] -- 2020-03-10
 
-{url-cl}0.1.0$$...$$0.2.0[Full Changelog]
+{url-cl}0.1.0++...++0.2.0[Full Changelog]
 
 .Changed
 - Bumped kotlin, coroutines, spekframework, rxjava, gradle-wrapper
@@ -213,7 +213,7 @@ First version of KRis (initially forked from https://github.com/fastluca/JRis[JR
 
 .Added
 - https://ursjoss.github.io/KRis/[Guide]
-- {url-issues}2[#2] Added Github Actions
+- {url-issues}2[#2] Added GitHub Actions
 - {url-issues}3[#3] Static code analysis on SonarQube
 - {url-issues}5[#5] Integrate Detekt (static analysis for kotlin files)
 - {url-issues}7[#7] Configure to push code coverage into https://sonarcloud.io/dashboard?id=ursjoss_KRis[sonarcloud]
@@ -228,9 +228,9 @@ First version of KRis (initially forked from https://github.com/fastluca/JRis[JR
 - {url-issues}24[#24] Migrate Repo into KRis
 - {url-issues}26[#26] Guide: Fix Javadoc and Source links in Section 5
 - use reckon for version management
-- Github action to publish guide
+- GitHub action to publish guide
 - Bumped kotlin, gradle-wrapper, kordamp-gradle-plugins, coroutines, rxjava, reckon, git-publish plugin, spekframework, detekt, kluent, assertj
 
 .Security
-- github actions: validate gradle-wrapper
+- GitHub actions: validate gradle-wrapper
 

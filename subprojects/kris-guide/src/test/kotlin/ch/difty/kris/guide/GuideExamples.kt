@@ -1,5 +1,4 @@
 @file:Suppress("unused", "SpellCheckingInspection", "UNUSED_VARIABLE", "RedundantExplicitType")
-@file: OptIn(ExperimentalCoroutinesApi::class)
 
 package ch.difty.kris.guide
 

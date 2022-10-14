@@ -1,4 +1,4 @@
-@file:Suppress("unused", "TooManyFunctions", "SpellCheckingInspection")
+@file:Suppress("TooManyFunctions", "SpellCheckingInspection")
 
 package ch.difty.kris
 

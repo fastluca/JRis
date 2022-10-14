@@ -19,7 +19,7 @@ include::../../../../../subprojects/kris-guide/src/test/kotlin/ch/difty/kris/gui
 === List: Blocking conversion
 
 We can convert the records as a list into a list of strings.
-This happens in a blocking manner and it is up to us what we want to do with the list of lines.
+This happens in a blocking manner, and it is up to us what we want to do with the list of lines.
 
 .Converting a list of `RisRecords` in a blocking manner into a list of RIS lines [kotlin]
 [subs=attributes+,source,kotlin]
@@ -42,7 +42,7 @@ All the subsequent method calls optionally accept a list of RIS tag names, speci
 We will not explicitly mention this option in the subsequent examples.
 ====
 
-You can get get a complete list of the RisTags available:
+You can get a complete list of the RisTags available:
 
 .Getting a list of all RisTags (list of strings) [kotlin]
 [subs=attributes+,source,kotlin]

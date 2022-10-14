@@ -187,7 +187,6 @@ class KRisProcessFromListTest {
 
     @Suppress("S100")
     @Test
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun `can build risRecord with all fields`() {
         val lines = KRis.buildFromList(listOf(risRecord))
         lines.joinToString("") shouldBeEqualTo expected

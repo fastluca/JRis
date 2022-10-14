@@ -6,7 +6,7 @@ package ch.difty.kris.domain
  * The class was composed from information available on
  * [Wikipedia](https://en.wikipedia.org/wiki/RIS_(file_format)).
  */
-@Suppress("unused", "SpellCheckingInspection")
+@Suppress("SpellCheckingInspection")
 public enum class RisType(public val description: String) {
     /** Abstract */
     ABST("Abstract"),
