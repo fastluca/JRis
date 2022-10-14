@@ -10,8 +10,6 @@ import ch.difty.kris.risTagNames
 import ch.difty.kris.toRisLines
 import ch.difty.kris.toRisRecords
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -171,7 +169,6 @@ fun processPath() {
     // end::processPath[]
 }
 
-@OptIn(FlowPreview::class)
 @Suppress("UNUSED_VARIABLE", "UNREACHABLE_CODE")
 fun passRisLinesAsList() {
     // tag::passRisLinesAsList[]
@@ -181,7 +178,7 @@ fun passRisLinesAsList() {
     // end::passRisLinesAsList[]
 }
 
-@OptIn(FlowPreview::class, DelicateCoroutinesApi::class)
+@OptIn(DelicateCoroutinesApi::class)
 @Suppress("UNUSED_VARIABLE", "UNREACHABLE_CODE")
 fun passRisLinesAsSequence() {
     // tag::passRisLinesAsSequence[]
@@ -191,7 +188,6 @@ fun passRisLinesAsSequence() {
     // end::passRisLinesAsSequence[]
 }
 
-@OptIn(FlowPreview::class)
 @Suppress("UNUSED_VARIABLE", "UNREACHABLE_CODE")
 fun passRisLinesAsFlow() {
     // tag::passRisLinesAsFlow[]

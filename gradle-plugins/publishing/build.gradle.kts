@@ -10,7 +10,7 @@ dependencies {
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile::class.java).configureEach {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.name
+    kotlinOptions.jvmTarget = libs.versions.java.get()
 }
 
 detekt {

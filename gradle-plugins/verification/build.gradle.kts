@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile
+
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
@@ -9,8 +11,8 @@ dependencies {
     implementation(libs.plugin.detekt)
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinJvmCompile::class.java).configureEach {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.name
+tasks.withType(KotlinJvmCompile::class.java).configureEach {
+    kotlinOptions.jvmTarget = libs.versions.java.get()
 }
 
 detekt {

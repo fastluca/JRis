@@ -24,6 +24,10 @@ plugins {
     jacoco
 }
 
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
+}
+
 reckon {
     stages("rc", "final")
     setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))

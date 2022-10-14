@@ -8,7 +8,7 @@ plugins {
 tasks {
     withType<KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
+            jvmTarget = libs.versions.java.get()
         }
     }
 }
