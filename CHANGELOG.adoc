@@ -44,26 +44,38 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.4.0++...++main[Full Changelog]
+{url-cl}0.4.1++...++main[Full Changelog]
 
 .Added
-- {url-issues}89[#89] use kotest as testing/specification library
 
 ////
 .Changed
 
 .Deprecated
-////
 
 .Removed
-- {url-issues}89[#89] removed spek as testing/specification library
 
-////
 .Fixed
 
 .Security
 
 ////
+
+
+[[v0.4.1]]
+== [0.4.1] -- 2022-10-16
+
+{url-cl}0.4.0++...++0.4.1[Full Changelog]
+
+
+.Changed
+- {url-issues}89[#89] use kotest as testing/specification library
+- use renovate instead of dependabot for dependency management
+- Bumped dokka, kluent
+
+.Fixed
+- re-introduced sonar analysis
+
 
 [[v0.4.0]]
 == [0.4.0] -- 2022-10-09
