@@ -15,7 +15,7 @@ mockk = "1.13.2"
 nexusPublish = "1.1.0"
 reckon = "0.16.1"
 rxjava = "2.2.21"
-sonarqube = "3.4.0.2513"
+sonarqube = "3.5.0.2730"
 testSets = "4.0.0"
 versions = "0.43.0"
 
