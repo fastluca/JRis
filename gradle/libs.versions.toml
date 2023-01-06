@@ -1,6 +1,6 @@
 [versions]
 asciidoctor = "3.3.2"
-assertj = "3.24.0"
+assertj = "3.24.1"
 coroutines = "1.6.4"
 detekt = "1.22.0"
 dokka = "1.7.20"
