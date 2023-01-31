@@ -17,7 +17,7 @@ reckon = "0.16.1"
 rxjava = "2.2.21"
 sonarqube = "3.5.0.2730"
 testSets = "4.0.0"
-versions = "0.44.0"
+versions = "0.45.0"
 
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
