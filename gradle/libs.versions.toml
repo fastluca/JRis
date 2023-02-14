@@ -16,7 +16,6 @@ nexusPublish = "1.1.0"
 reckon = "0.16.1"
 rxjava = "2.2.21"
 sonarqube = "3.5.0.2730"
-testSets = "4.0.0"
 versions = "0.45.0"
 
 [libraries]
@@ -40,8 +39,7 @@ plugin-reckon = { module = "org.ajoberstar.reckon:reckon-gradle", version.ref = 
 
 [bundles]
 kotlin = ["kotlin-stdlib", "kotlin-reflect", "coroutines-core"]
-testDeps = ["junitJupiter-api", "kotest-framework-api", "mockk", "kluent", "assertj-core"]
-testEngines = ["junitJupiter-engine", "kotest-runner-junit5"]
+testDeps = ["junitJupiter-api", "kotest-runner-junit5", "kotest-framework-api", "mockk", "kluent", "assertj-core"]
 
 [plugins]
 asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
@@ -51,5 +49,4 @@ gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
 reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
-testSets = { id = "org.unbroken-dome.test-sets", version.ref = "testSets" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

@@ -4,21 +4,44 @@ plugins {
     id("kris-publish")
     id("kris-jacoco")
     kotlin("jvm")
-    alias(libs.plugins.testSets)
+    `jvm-test-suite`
     alias(libs.plugins.dokka)
 }
 
 kotlin {
     explicitApi()
+    jvmToolchain(libs.versions.java.get().toInt())
 }
 
-testSets {
-    create("integrationTest")
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter()
+        }
+
+        val integrationTest by registering(JvmTestSuite::class) {
+            dependencies {
+                implementation(project())
+            }
+
+            targets {
+                all {
+                    testTask.configure {
+                        shouldRunAfter(test)
+                    }
+                }
+            }
+        }
+    }
+}
+
+val integrationTestImplementation by configurations.getting {
+    extendsFrom(configurations.testImplementation.get())
 }
 
 tasks {
     named("check") {
-        dependsOn("integrationTest")
+        dependsOn(testing.suites.named("integrationTest"))
     }
     val javadocJar by existing(Jar::class) {
         group = JavaBasePlugin.DOCUMENTATION_GROUP
@@ -37,5 +60,4 @@ dependencies {
     implementation(libs.bundles.kotlin)
 
     testImplementation(libs.bundles.testDeps)
-    testRuntimeOnly(libs.bundles.testEngines)
 }
