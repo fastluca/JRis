@@ -1,6 +1,6 @@
 package ch.difty.kris.domain
 
-import io.kotest.matchers.collections.shouldContainAll
+import org.amshove.kluent.shouldContainAll
 import org.junit.jupiter.api.Test
 
 @Suppress("SpellCheckingInspection")
