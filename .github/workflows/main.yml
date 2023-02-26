@@ -68,7 +68,7 @@ jobs:
           path: '**/build/reports'
 
       - name: Run all tests with Gradle
-        run: ./gradlew check detekt sonar --info --no-daemon
+        run: ./gradlew check detekt --info --no-daemon
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
