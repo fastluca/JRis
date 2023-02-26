@@ -1,10 +1,16 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     `java-library`
     kotlin("jvm")
 }
 
-kotlin {
-    jvmToolchain(libs.versions.java.get().toInt())
+tasks {
+    withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = libs.versions.java.get()
+        }
+    }
 }
 
 dependencies {
@@ -13,4 +19,5 @@ dependencies {
     implementation(libs.bundles.kotlin)
 
     testImplementation(libs.bundles.testDeps)
+    testRuntimeOnly(libs.bundles.testEngines)
 }

@@ -15,6 +15,7 @@ mockk = "1.13.4"
 nexusPublish = "1.2.0"
 rxjava = "2.2.21"
 sonarqube = "4.0.0.2929"
+testSets = "4.0.0"
 versions = "0.46.0"
 
 [libraries]
@@ -37,7 +38,8 @@ plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.
 
 [bundles]
 kotlin = ["kotlin-stdlib", "kotlin-reflect", "coroutines-core"]
-testDeps = ["junitJupiter-api", "kotest-runner-junit5", "kotest-framework-api", "mockk", "kluent", "assertj-core"]
+testDeps = ["junitJupiter-api", "kotest-framework-api", "mockk", "kluent", "assertj-core"]
+testEngines = ["junitJupiter-engine", "kotest-runner-junit5"]
 
 [plugins]
 asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
@@ -46,4 +48,5 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
+testSets = { id = "org.unbroken-dome.test-sets", version.ref = "testSets" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

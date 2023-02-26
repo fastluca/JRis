@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -22,6 +20,10 @@ plugins {
     alias(libs.plugins.nexusPublish)
     `maven-publish`
     jacoco
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
 }
 
 val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
@@ -76,27 +78,31 @@ tasks {
     }
 }
 
-testing {
-    suites {
-        val test by getting(JvmTestSuite::class) {
-            useJUnitJupiter()
-        }
-    }
-}
-
 val kotlinSrcSet = "/src/main/kotlin"
 
 subprojects.forEach { subProject ->
     subProject.tasks {
         val kotlinVersion = libs.versions.kotlin.get()
         val kotlinApiLangVersion = kotlinVersion.subSequence(0, 3).toString()
+        val jvmTargetVersion = libs.versions.java.get()
         withType<KotlinCompile>().configureEach {
             kotlinOptions {
                 apiVersion = kotlinApiLangVersion
                 languageVersion = kotlinApiLangVersion
+                jvmTarget = jvmTargetVersion
+                freeCompilerArgs = freeCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
             }
         }
+        withType<JavaCompile>().configureEach {
+            sourceCompatibility = jvmTargetVersion
+            targetCompatibility = jvmTargetVersion
+        }
 
+        withType<Test> {
+            useJUnitPlatform {
+                includeEngines("junit-jupiter", "kotest")
+            }
+        }
         withType<DokkaTaskPartial>().configureEach {
             dokkaSourceSets {
                 configureEach {

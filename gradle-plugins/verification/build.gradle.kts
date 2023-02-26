@@ -11,6 +11,10 @@ dependencies {
     implementation(libs.plugin.detekt)
 }
 
+tasks.withType(KotlinJvmCompile::class.java).configureEach {
+    kotlinOptions.jvmTarget = libs.versions.java.get()
+}
+
 detekt {
     buildUponDefaultConfig = true
     config.from(file("../../config/detekt/detekt.yml"))
