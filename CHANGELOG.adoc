@@ -71,8 +71,9 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Changed
 - {url-issues}129[#129] Allow importing M1 as String
 - Bumped dependencies kotlin,
-  kotest, kluent, detekt, mockk, junit5, assertj-core,
+  kotest, kluent, detekt, mockk, junit5, assertj-core, reckon,
   gradle wrapper, sonarqube gradle plugin, versions gradle plugin, nexus publish gradle plugin
+- move reckon configuration from build.gradle.kts into settings.gradle.kts
 
 .Deprecated
 - {url-issues}129[#129] RisRecord.number, RisRecord.typeOfWork (in favor of RisRecord.miscellaneous1 and RisRecord.miscellaneous3)

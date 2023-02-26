@@ -13,7 +13,6 @@ kotest = "5.5.5"
 kotlin = "1.8.10"
 mockk = "1.13.4"
 nexusPublish = "1.2.0"
-reckon = "0.16.1"
 rxjava = "2.2.21"
 sonarqube = "4.0.0.2929"
 versions = "0.46.0"
@@ -35,7 +34,6 @@ rxjava = { module = "io.reactivex.rxjava2:rxjava", version.ref = "rxjava" }
 
 plugin-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-plugin-reckon = { module = "org.ajoberstar.reckon:reckon-gradle", version.ref = "reckon" }
 
 [bundles]
 kotlin = ["kotlin-stdlib", "kotlin-reflect", "coroutines-core"]
@@ -47,6 +45,5 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
-reckon = { id = "org.ajoberstar.reckon", version.ref = "reckon" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

@@ -1,9 +1,21 @@
 @file:Suppress("UnstableApiUsage")
 
+import org.ajoberstar.reckon.gradle.ReckonExtension
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
     }
+}
+
+plugins {
+    id("org.ajoberstar.reckon.settings") version "0.17.0-beta.4"
+}
+
+configure<ReckonExtension> {
+    stages("beta", "rc", "final", "bosch")
+    setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
+    setStageCalc(calcStageFromProp())
 }
 
 dependencyResolutionManagement {

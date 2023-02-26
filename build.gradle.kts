@@ -11,25 +11,17 @@ buildscript {
     }
     dependencies {
         classpath(libs.plugin.kotlin)
-        classpath(libs.plugin.reckon)
     }
 }
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("kris-collect-sarif")
-    alias(libs.plugins.reckon)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.dokka)
     alias(libs.plugins.nexusPublish)
     `maven-publish`
     jacoco
-}
-
-reckon {
-    stages("rc", "final")
-    setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
-    setStageCalc(calcStageFromProp())
 }
 
 val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
