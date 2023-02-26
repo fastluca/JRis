@@ -34,13 +34,13 @@ jobs:
 
       - name: Publish github pages
         uses: gradle/gradle-build-action@v2
+        env:
+          GRGIT_USER: ${{ secrets.GRGIT_USER }}
         with:
           arguments: |
             build
             check
             :guide:gitPublishPush
-        env:
-          GRGIT_USER: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to maven central
         uses: gradle/gradle-build-action@v2
