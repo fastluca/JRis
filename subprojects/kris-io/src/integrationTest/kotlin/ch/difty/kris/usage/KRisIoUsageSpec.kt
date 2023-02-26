@@ -63,7 +63,7 @@ object KRisIoUsageSpec : DescribeSpec({
             val records = listOf(
                 RisRecord(
                     type = RisType.ABST,
-                    typeOfWork = "tow",
+                    miscellaneous3 = "tow",
                     abstr = "abstr",
                     language = "lang",
                     databaseProvider = "dp"

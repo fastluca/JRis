@@ -72,9 +72,9 @@ object RisRecordSpec : DescribeSpec({
                 language = null,
                 label = null,
                 websiteLink = null,
-                number = null,
+                miscellaneous1 = null,
                 miscellaneous2 = null,
-                typeOfWork = null,
+                miscellaneous3 = null,
                 notes = null,
                 abstr2 = null,
                 numberOfVolumes = null,
@@ -159,9 +159,9 @@ object RisRecordSpec : DescribeSpec({
                 language = "language",
                 label = "label",
                 websiteLink = "websiteLink",
-                number = 1234,
+                miscellaneous1 = "number",
                 miscellaneous2 = "miscellaneous2",
-                typeOfWork = "typeOfWork",
+                miscellaneous3 = "typeOfWork",
                 notes = "notes",
                 abstr2 = "abstr2",
                 numberOfVolumes = "numberOfVolumes",
@@ -244,9 +244,9 @@ object RisRecordSpec : DescribeSpec({
                 .language("language")
                 .label("label")
                 .websiteLink("websiteLink")
-                .number(1234)
+                .miscellaneous1("number")
                 .miscellaneous2("miscellaneous2")
-                .typeOfWork("typeOfWork")
+                .miscellaneous3("typeOfWork")
                 .notes("notes")
                 .abstr2("abstr2")
                 .numberOfVolumes("numberOfVolumes")
@@ -279,6 +279,40 @@ object RisRecordSpec : DescribeSpec({
                 .accessDate("accessDate")
                 .build()
             assertSpecifiedValues(record)
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    describe("Deprecated fields") {
+        describe("with RisRecord constructed with new properties") {
+            val record = RisRecord(miscellaneous1 = "1234", miscellaneous3 = "foo")
+            it("should return null as Number") {
+                record.number.shouldBeNull()
+            }
+            it("should return null as typeOfWork") {
+                record.typeOfWork.shouldBeNull()
+            }
+            it("should return '1234' as miscellaneous1") {
+                record.miscellaneous1 shouldBeEqualTo "1234"
+            }
+            it("should return 'foo'' as miscellaneous3") {
+                record.miscellaneous3  shouldBeEqualTo "foo"
+            }
+        }
+        describe("with RisRecord constructed with deprecated properties") {
+            val record = RisRecord(number = 1234L,  typeOfWork = "foo")
+            it("should return 1234 as Number") {
+                record.number shouldBeEqualTo 1234L
+            }
+            it("should return 'foo' as typeOfWork") {
+                record.typeOfWork  shouldBeEqualTo "foo"
+            }
+            it("should return null as miscellaneous1") {
+                record.miscellaneous1.shouldBeNull()
+            }
+            it("should return null as miscellaneous3") {
+                record.miscellaneous3.shouldBeNull()
+            }
         }
     }
 })
@@ -322,9 +356,9 @@ private suspend fun DescribeSpecContainerScope.assertDefaultValues(record: RisRe
         "language" to record.language,
         "label" to record.label,
         "websiteLink" to record.websiteLink,
-        "number" to record.number,
+        "number" to record.miscellaneous1,
         "miscellaneous2" to record.miscellaneous2,
-        "typeOfWork" to record.typeOfWork,
+        "typeOfWork" to record.miscellaneous3,
         "notes" to record.notes,
         "abstr2" to record.abstr2,
         "numberOfVolumes" to record.numberOfVolumes,
@@ -418,9 +452,9 @@ private suspend fun DescribeSpecContainerScope.assertSpecifiedValues(record: Ris
         "language" to record.language,
         "label" to record.label,
         "websiteLink" to record.websiteLink,
-        "1234" to record.number,
+        "number" to record.miscellaneous1,
         "miscellaneous2" to record.miscellaneous2,
-        "typeOfWork" to record.typeOfWork,
+        "typeOfWork" to record.miscellaneous3,
         "notes" to record.notes,
         "abstr2" to record.abstr2,
         "numberOfVolumes" to record.numberOfVolumes,

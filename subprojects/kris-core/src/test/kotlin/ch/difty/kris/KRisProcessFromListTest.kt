@@ -56,9 +56,9 @@ class KRisProcessFromListTest {
         language = "language",
         label = "label",
         websiteLink = "websiteLink",
-        number = 1L,
+        miscellaneous1 = "number",
         miscellaneous2 = "miscellaneous2",
-        typeOfWork = "typeOfWork",
+        miscellaneous3 = "typeOfWork",
         notes = "notes",
         abstr2 = "abstr2",
         numberOfVolumes = "numberOfVolumes",
@@ -148,7 +148,7 @@ class KRisProcessFromListTest {
         |LA  - language
         |LB  - label
         |LK  - websiteLink
-        |M1  - 1
+        |M1  - number
         |M2  - miscellaneous2
         |M3  - typeOfWork
         |N1  - notes

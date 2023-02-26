@@ -183,9 +183,9 @@ public enum class RisTag(
         getFrom = { r: RisRecord -> r.callNumber }
     ),
 
-    /** This field can contain alphanumeric characters. There is no practical limit to the length of this field. */
+    /** CP - This field can contain alphanumeric characters. There is no practical limit to the length of this field. */
     CP(
-        description = "This field can contain alphanumeric characters.",
+        description = "CP - This field can contain alphanumeric characters.",
         setInto = { r, v -> r.cp = v as String? },
         getFrom = { r: RisRecord -> r.cp }
     ),
@@ -269,7 +269,7 @@ public enum class RisTag(
 
     /** Periodical name: user abbreviation 1. This is an alphanumeric field of up to 255 characters. */
     J1(
-        description = "Periodical name: user abbreviation 1.",
+        description = "Periodical name: user abbreviation 1",
         setInto = { r, v -> r.periodicalNameUserAbbrevation = v as String? },
         getFrom = { r: RisRecord -> r.periodicalNameUserAbbrevation },
         maxLength = 255
@@ -290,7 +290,7 @@ public enum class RisTag(
      * This is an alphanumeric field of up to 255 characters.
      */
     JA(
-        description = "Periodical name: standard abbreviation.",
+        description = "Periodical name: standard abbreviation",
         setInto = { r, v -> r.periodicalNameStandardAbbrevation = v as String? },
         getFrom = { r: RisRecord -> r.periodicalNameStandardAbbrevation },
         maxLength = 255
@@ -298,7 +298,7 @@ public enum class RisTag(
 
     /** Journal/Periodical name: full format. This is an alphanumeric field of up to 255 characters. */
     JF(
-        description = "Journal/Periodical name: full format.",
+        description = "Journal/Periodical name: full format",
         setInto = { r, v -> r.periodicalNameFullFormatJF = v as String? },
         getFrom = { r: RisRecord -> r.periodicalNameFullFormatJF },
         maxLength = 255
@@ -306,7 +306,7 @@ public enum class RisTag(
 
     /** Journal/Periodical name: full format. This is an alphanumeric field of up to 255 characters. */
     JO(
-        description = "Journal/Periodical name: full format.",
+        description = "Journal/Periodical name: full format",
         setInto = { r, v -> r.periodicalNameFullFormatJO = v as String? },
         getFrom = { r: RisRecord -> r.periodicalNameFullFormatJO },
         maxLength = 255
@@ -326,7 +326,7 @@ public enum class RisTag(
      * can be entered on one line using a semicolon as a separator.
      */
     L1(
-        description = "Link to PDF.",
+        description = "Link to PDF",
         setInto = { r, v -> r.pdfLinks.add(v as String) },
         getFrom = { r: RisRecord -> r.pdfLinks },
         kClass = List::class
@@ -338,7 +338,7 @@ public enum class RisTag(
      * can be entered on one line using a semicolon as a separator.
      */
     L2(
-        description = "Link to Full-text.",
+        description = "Link to Full-text",
         setInto = { r, v -> r.fullTextLinks.add(v as String) },
         getFrom = { r: RisRecord -> r.fullTextLinks },
         kClass = List::class
@@ -346,7 +346,7 @@ public enum class RisTag(
 
     /** Related Records. There is no practical limit to the length of this field. */
     L3(
-        description = "Related Records.",
+        description = "Related Records",
         setInto = { r, v -> r.relatedRecords.add(v as String) },
         getFrom = { r: RisRecord -> r.relatedRecords },
         kClass = List::class
@@ -354,7 +354,7 @@ public enum class RisTag(
 
     /** Image(s). There is no practical limit to the length of this field. */
     L4(
-        description = "Image(s).",
+        description = "Image(s)",
         setInto = { r, v -> r.images.add(v as String) },
         getFrom = { r: RisRecord -> r.images },
         kClass = List::class
@@ -381,26 +381,40 @@ public enum class RisTag(
         getFrom = { r: RisRecord -> r.websiteLink }
     ),
 
-    /** Number */
+    /** Miscellaneous 1. Often used for Number or Range of Numbers */
+    @Suppress("Deprecation")
     M1(
-        description = "Number",
-        setInto = { r, v -> r.number = v as Long? },
-        getFrom = { r: RisRecord -> r.number },
-        kClass = Long::class
+        description = "Miscellaneous 1 (often Number)",
+        setInto = { r, v ->
+            r.miscellaneous1 = v as String?
+            r.number = v?.toLongOrNull()
+        },
+        getFrom = { r: RisRecord ->
+            r.miscellaneous1.takeUnless { it.isNullOrBlank() }
+                ?: r.number
+        },
+        kClass = String::class
     ),
 
     /** Miscellaneous 2. This is an alphanumeric field and there is no practical limit to the length of this field. */
     M2(
-        description = "Miscellaneous 2.",
+        description = "Miscellaneous 2",
         setInto = { r, v -> r.miscellaneous2 = v as String? },
         getFrom = { r: RisRecord -> r.miscellaneous2 }
     ),
 
-    /** Type of Work */
+    /** Miscellaneous 3. Often used for Type of Work */
+    @Suppress("Deprecation")
     M3(
-        description = "Type of Work",
-        setInto = { r, v -> r.typeOfWork = v as String? },
-        getFrom = { r: RisRecord -> r.typeOfWork }
+        description = "Miscellaneous 3 (often Type of Work)",
+        setInto = { r, v ->
+            r.miscellaneous3 = v as String?
+            r.typeOfWork = v
+        },
+        getFrom = { r: RisRecord ->
+            r.miscellaneous3.takeUnless { it.isNullOrBlank() }
+                ?: r.typeOfWork
+        }
     ),
 
     /** Notes */
@@ -415,7 +429,7 @@ public enum class RisTag(
      * There is no practical length limit to this field.
      */
     N2(
-        description = "Abstract.",
+        description = "Abstract",
         setInto = { r, v -> r.abstr2 = v as String? },
         getFrom = { r: RisRecord -> r.abstr2 }
     ),
@@ -548,35 +562,35 @@ public enum class RisTag(
 
     /** User definable 1. This is an alphanumeric field and there is no practical limit to the length of this field. */
     U1(
-        description = "User definable 1.",
+        description = "User definable 1",
         setInto = { r, v -> r.userDefinable1 = v as String? },
         getFrom = { r: RisRecord -> r.userDefinable1 }
     ),
 
     /** User definable 2. This is an alphanumeric field and there is no practical limit to the length of this field. */
     U2(
-        description = "User definable 2.",
+        description = "User definable 2",
         setInto = { r, v -> r.userDefinable2 = v as String? },
         getFrom = { r: RisRecord -> r.userDefinable2 }
     ),
 
     /** User definable 3. This is an alphanumeric field and there is no practical limit to the length of this field. */
     U3(
-        description = "User definable 3.",
+        description = "User definable 3",
         setInto = { r, v -> r.userDefinable3 = v as String? },
         getFrom = { r: RisRecord -> r.userDefinable3 }
     ),
 
     /** User definable 4. This is an alphanumeric field and there is no practical limit to the length of this field. */
     U4(
-        description = "User definable 4.",
+        description = "User definable 4",
         setInto = { r, v -> r.userDefinable4 = v as String? },
         getFrom = { r: RisRecord -> r.userDefinable4 }
     ),
 
     /** User definable 5. This is an alphanumeric field and there is no practical limit to the length of this field. */
     U5(
-        description = "User definable 5.",
+        description = "User definable 5",
         setInto = { r, v -> r.userDefinable5 = v as String? },
         getFrom = { r: RisRecord -> r.userDefinable5 }
     ),

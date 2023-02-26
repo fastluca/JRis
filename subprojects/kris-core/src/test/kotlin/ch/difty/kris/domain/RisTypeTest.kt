@@ -1,5 +1,6 @@
 package ch.difty.kris.domain
 
+import io.kotest.matchers.collections.shouldContainAll
 import org.junit.jupiter.api.Test
 
 @Suppress("SpellCheckingInspection")
@@ -8,7 +9,7 @@ internal class RisTypeTest {
     @Test
     @Suppress("LongMethod")
     fun description() {
-        RisType.values().map { it.description }.containsAll(
+        RisType.values().map { it.description } shouldContainAll
             listOf(
                 "Abstract",
                 "Audiovisual material",
@@ -67,6 +68,5 @@ internal class RisTypeTest {
                 "Unpublished work",
                 "Video recording"
             )
-        )
     }
 }

@@ -48,11 +48,15 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 .Added
 
-////
+
 .Changed
+- {url-issues}129[#129] Allow importing M1 as String
 
 .Deprecated
+- {url-issues}129[#129] RisRecord.number, RisRecord.typeOfWork (in favor of RisRecord.miscellaneous1 and RisRecord.miscellaneous3)
 
+
+////
 .Removed
 
 .Fixed

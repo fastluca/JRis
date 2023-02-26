@@ -44,7 +44,9 @@ object KRisProcessingSpec : DescribeSpec({
             it("should have author $author") { risRecords.first().authors.first() shouldBeEqualTo author }
             it("should have publication year $pubYear") { risRecords.first().publicationYear shouldBeEqualTo pubYear }
             it("should have title $title") { risRecords.first().title shouldBeEqualTo title }
-            it("should have secondary/journal title $journalTitle") { risRecords.first().secondaryTitle shouldBeEqualTo journalTitle }
+            it("should have secondary/journal title $journalTitle") {
+                risRecords.first().secondaryTitle shouldBeEqualTo journalTitle
+            }
             it("should have start page $startPage") { risRecords.first().startPage shouldBeEqualTo startPage }
             it("should have end page $endPage") { risRecords.first().endPage shouldBeEqualTo endPage }
             it("should have volume $volume") { risRecords.first().volumeNumber shouldBeEqualTo volume }
@@ -71,14 +73,14 @@ object KRisProcessingSpec : DescribeSpec({
 
     describe("with RIS file with other fields") {
         val type = "JOUR"
-        val number = 1999L
+        val miscellaneous1 = "1999"
         val abstract = "abstr line 1"
         val abstract2 = "abstr line 2"
 
         describe("with number and abstract") {
             val lines = listOf(
                 "TY  - $type",
-                "M1  - $number",
+                "M1  - $miscellaneous1",
                 "AB  - $abstract",
                 "ER  - "
             )
@@ -86,7 +88,9 @@ object KRisProcessingSpec : DescribeSpec({
 
             it("should be parsed into one single RisRecord") { risRecords shouldHaveSize 1 }
             it("should have the reference type $type") { risRecords.first().type shouldBeEqualTo RisType.JOUR }
-            it("should have number $number") { risRecords.first().number shouldBeEqualTo number }
+            it("should have number $miscellaneous1") {
+                risRecords.first().miscellaneous1 shouldBeEqualTo miscellaneous1
+            }
             it("should have abstract $abstract") { risRecords.first().abstr shouldBeEqualTo abstract }
         }
 

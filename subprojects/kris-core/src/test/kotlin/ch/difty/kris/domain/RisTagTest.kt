@@ -1,5 +1,6 @@
 package ch.difty.kris.domain
 
+import io.kotest.matchers.collections.shouldContainAll
 import org.junit.jupiter.api.Test
 
 @Suppress("SpellCheckingInspection")
@@ -8,7 +9,7 @@ internal class RisTagTest {
     @Test
     @Suppress("LongMethod")
     fun description() {
-        RisTag.values().map { it.description }.containsAll(
+        RisTag.values().map { it.description } shouldContainAll
             listOf(
                 "Type of reference",
                 "First Author",
@@ -31,7 +32,7 @@ internal class RisTagTest {
                 "Custom 8",
                 "Caption",
                 "Call Number",
-                "This field can contain alphanumeric characters.",
+                "CP - This field can contain alphanumeric characters.",
                 "Title of unpublished reference",
                 "Place Published",
                 "Date",
@@ -43,24 +44,24 @@ internal class RisTagTest {
                 "Edition",
                 "Reference ID",
                 "Issue number",
-                "Periodical name: user abbreviation 1.",
+                "Periodical name: user abbreviation 1",
                 "Alternate Title",
-                "Periodical name: standard abbreviation.",
-                "Journal/Periodical name: full format.",
-                "Journal/Periodical name: full format.",
+                "Periodical name: standard abbreviation",
+                "Journal/Periodical name: full format",
+                "Journal/Periodical name: full format",
                 "Keywords",
-                "Link to PDF.",
-                "Link to Full-text.",
-                "Related Records.",
-                "Image(s).",
+                "Link to PDF",
+                "Link to Full-text",
+                "Related Records",
+                "Image(s)",
                 "Language",
                 "Label",
                 "Website Link",
-                "Number",
-                "Miscellaneous 2.",
-                "Type of Work",
+                "Miscellaneous 1 (often Number)",
+                "Miscellaneous 2",
+                "Miscellaneous 3 (often Type of Work)",
                 "Notes",
-                "Abstract.",
+                "Abstract",
                 "Number of Volumes",
                 "Original Publication",
                 "Publisher",
@@ -74,24 +75,22 @@ internal class RisTagTest {
                 "Start Page",
                 "Short Title",
                 "Primary Title",
-                "Secondary Title (journal title",
-                "if applicable)",
+                "Secondary Title (journal title, if applicable)",
                 "Tertiary Title",
                 "Translated Author",
                 "Title",
                 "Translated Title",
-                "User definable 1.",
-                "User definable 2.",
-                "User definable 3.",
-                "User definable 4.",
-                "User definable 5.",
+                "User definable 1",
+                "User definable 2",
+                "User definable 3",
+                "User definable 4",
+                "User definable 5",
                 "URL",
                 "Volume number",
                 "Published Standard number",
                 "Primary Date",
                 "Access Date",
-                "End of Reference"
+                "End of Reference",
             )
-        )
     }
 }

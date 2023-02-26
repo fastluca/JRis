@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldBeEqualTo
+import org.amshove.kluent.shouldBeNull
 import org.amshove.kluent.shouldHaveSize
 
 /**
@@ -147,6 +148,7 @@ object KRisUsageSpec : DescribeSpec({
         }
 
         it("can get list of all RisTag names") {
+            @Suppress("MaxLineLength")
             risTagNames.joinToString() shouldBeEqualTo
                 "TY, A1, A2, A3, A4, AB, AD, AN, AU, AV, BT, C1, C2, C3, C4, C5, C6, C7, C8, CA, CN, CP, CT, CY, DA, DB, DO, " +
                 "DP, ED, EP, ET, ID, IS, J1, J2, JA, JF, JO, KW, L1, L2, L3, L4, LA, LB, LK, M1, M2, M3, N1, N2, NV, OP, PB, " +
@@ -155,6 +157,88 @@ object KRisUsageSpec : DescribeSpec({
 
         it("can get list of all RisTag names via KRis") {
             KRis.risTagNames() shouldBeEqualTo risTagNames
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    describe("deprecated RisRecord Properties") {
+        describe("importing from RIS") {
+            describe("given M1 with numeric value") {
+                val risLines: List<String> = listOf(
+                    "M1  - 1234",
+                    "ER  - "
+                )
+                it("can be processed") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.shouldHaveSize(1)
+                }
+                it("can retrieve it with new property miscellaneous1") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.first().miscellaneous1 shouldBeEqualTo "1234"
+                }
+                it("can retrieve it with deprecated property number") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.first().number shouldBeEqualTo 1234L
+                }
+            }
+            describe("given M1 with non-numeric value") {
+                val risLines: List<String> = listOf(
+                    "M1  - 1234-5678",
+                    "ER  - "
+                )
+                it("can be processed") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.shouldHaveSize(1)
+                }
+                it("can retrieve it with new property miscellaneous1") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.first().miscellaneous1 shouldBeEqualTo "1234-5678"
+                }
+                it("can retrieve null with deprecated property number") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.first().number.shouldBeNull()
+                }
+            }
+            describe("given M3") {
+                val risLines: List<String> = listOf(
+                    "M3  - typeOfWork",
+                    "ER  - "
+                )
+                it("can be processed") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.shouldHaveSize(1)
+                }
+                it("can retrieve it with new property miscellaneous3") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.first().miscellaneous3 shouldBeEqualTo "typeOfWork"
+                }
+                it("can retrieve it with deprecated property typeOfWork") {
+                    val risRecords = risLines.toRisRecords()
+                    risRecords.first().typeOfWork shouldBeEqualTo "typeOfWork"
+                }
+            }
+        }
+        describe("exporting to RIS") {
+            describe("using new properties miscellaneous1 and miscellaneous 3") {
+                val risRecord1 = RisRecord(
+                    miscellaneous1 = "1234-5678",
+                    miscellaneous3 = "typeOfWork",
+                )
+                val risRecord2 = RisRecord(
+                    number = 4567L,
+                    typeOfWork = "tow",
+                )
+                it("should export both to M1 and M3") {
+                    listOf(risRecord1, risRecord2).toRisLines().joinToString(separator = "") shouldBeEqualTo """M1  - 1234-5678
+                                |M3  - typeOfWork
+                                |ER  - 
+                                |
+                                |M1  - 4567
+                                |M3  - tow
+                                |ER  - 
+                                |""".trimMargin()
+                }
+            }
         }
     }
 })

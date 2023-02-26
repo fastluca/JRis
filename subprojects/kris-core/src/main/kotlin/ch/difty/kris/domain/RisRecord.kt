@@ -2,10 +2,6 @@ package ch.difty.kris.domain
 
 /**
  * A single RIS record. It contains all the allowed tag from RIS format.
- *
- * @author Gianluca Colaianni -- g.colaianni5@gmail.com
- * @version 1.0
- * @since 22 apr 2017
  */
 @Suppress("ParameterListWrapping", "SpellCheckingInspection", "TooManyFunctions")
 public data class RisRecord(
@@ -172,7 +168,12 @@ public data class RisRecord(
     /** LK */
     public var websiteLink: String? = null,
 
-    /** M1 */
+    /** M1. Often used for Number. This is an alphanumeric field, thus suporting e.g. ranges or chars */
+    public var miscellaneous1: String? = null,
+
+    // TODO remove in #132
+    /** M1 - deprecated */
+    @Deprecated("Use miscellaneous1 (returning a nullable String) instead", ReplaceWith("miscellaneous1"))
     public var number: Long? = null,
 
     /**
@@ -180,7 +181,14 @@ public data class RisRecord(
      */
     public var miscellaneous2: String? = null,
 
-    /** M3 */
+    /**
+     * M3 - often used for Type of Work. Alphanumeric field.
+     */
+    public var miscellaneous3: String? = null,
+
+    // TODO remove in #132
+    /** M3 - deprecated */
+    @Deprecated("Use miscellaneous3 instead", ReplaceWith("miscellaneous3"))
     public var typeOfWork: String? = null,
 
     /** N1 */
@@ -339,8 +347,12 @@ public data class RisRecord(
         private var language: String? = null
         private var label: String? = null
         private var websiteLink: String? = null
+        private var miscellaneous1: String? = null
+        // TODO remove in #132
         private var number: Long? = null
         private var miscellaneous2: String? = null
+        private var miscellaneous3: String? = null
+        // TODO remove in #132
         private var typeOfWork: String? = null
         private var notes: String? = null
         private var abstr2: String? = null
@@ -460,8 +472,14 @@ public data class RisRecord(
         public fun language(language: String?): Builder = apply { this.language = language }
         public fun label(label: String?): Builder = apply { this.label = label }
         public fun websiteLink(websiteLink: String?): Builder = apply { this.websiteLink = websiteLink }
+        public fun miscellaneous1(miscellaneous1: String?): Builder = apply { this.miscellaneous1 = miscellaneous1 }
+
+        @Deprecated("use miscellaneous1(number.toString()) instead", ReplaceWith("miscellaneous1(number.toString())"))
         public fun number(number: Long?): Builder = apply { this.number = number }
         public fun miscellaneous2(miscellaneous2: String?): Builder = apply { this.miscellaneous2 = miscellaneous2 }
+        public fun miscellaneous3(miscellaneous3: String?): Builder = apply { this.miscellaneous3 = miscellaneous3 }
+
+        @Deprecated("use miscellaneous3(String) instead", ReplaceWith("miscellaneous3(typeOfWork)"))
         public fun typeOfWork(typeOfWork: String?): Builder = apply { this.typeOfWork = typeOfWork }
         public fun notes(notes: String?): Builder = apply { this.notes = notes }
         public fun abstr2(abstr2: String?): Builder = apply { this.abstr2 = abstr2 }
@@ -549,8 +567,10 @@ public data class RisRecord(
             language,
             label,
             websiteLink,
+            miscellaneous1,
             number,
             miscellaneous2,
+            miscellaneous3,
             typeOfWork,
             notes,
             abstr2,
