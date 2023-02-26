@@ -44,19 +44,16 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.4.1++...++main[Full Changelog]
+{url-cl}0.4.2++...++main[Full Changelog]
 
 .Added
 
+////
 
 .Changed
-- {url-issues}129[#129] Allow importing M1 as String
 
 .Deprecated
-- {url-issues}129[#129] RisRecord.number, RisRecord.typeOfWork (in favor of RisRecord.miscellaneous1 and RisRecord.miscellaneous3)
 
-
-////
 .Removed
 
 .Fixed
@@ -64,6 +61,22 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Security
 
 ////
+
+
+[[v0.4.2]]
+== [0.4.2] -- 2023-02-26
+
+{url-cl}0.4.1++...++0.4.2[Full Changelog]
+
+.Changed
+- {url-issues}129[#129] Allow importing M1 as String
+- Bumped dependencies kotlin,
+  kotest, kluent, detekt, mockk, junit5, assertj-core,
+  gradle wrapper, sonarqube gradle plugin, versions gradle plugin, nexus publish gradle plugin
+
+.Deprecated
+- {url-issues}129[#129] RisRecord.number, RisRecord.typeOfWork (in favor of RisRecord.miscellaneous1 and RisRecord.miscellaneous3)
+
 
 
 [[v0.4.1]]
