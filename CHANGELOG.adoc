@@ -56,11 +56,13 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 .Removed
 
+////
+
 .Fixed
+- {url-issues}138[#138] Properly handle newlines when importing
 
 .Security
 
-////
 
 
 [[v0.4.2]]
@@ -69,7 +71,6 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 {url-cl}0.4.1++...++0.4.2[Full Changelog]
 
 .Changed
-- {url-issues}129[#129] Allow importing M1 as String
 - Bumped dependencies kotlin,
   kotest, kluent, detekt, mockk, junit5, assertj-core, reckon,
   gradle wrapper, sonarqube gradle plugin, versions gradle plugin, nexus publish gradle plugin
@@ -78,6 +79,8 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 .Deprecated
 - {url-issues}129[#129] RisRecord.number, RisRecord.typeOfWork (in favor of RisRecord.miscellaneous1 and RisRecord.miscellaneous3)
 
+.Fixed
+- {url-issues}129[#129] Allow importing M1 as String
 
 
 [[v0.4.1]]

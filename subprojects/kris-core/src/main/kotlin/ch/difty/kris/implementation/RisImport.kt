@@ -25,7 +25,8 @@ internal object RisImport {
 
         lineFlow.filterNotNull()
             .filterNot { line -> line.isEmpty() }
-            .collect { line ->
+            .collect { l ->
+                val line = l.removeSuffix("\r\n").removeSuffix("\n").removeSuffix("\r")
                 if (line.isEndOfRecord()) {
                     emit(record)
                     record = RisRecord()
@@ -42,7 +43,7 @@ internal object RisImport {
      * Returns the tag as context for parsing the next line.
      */
     private fun RisRecord.fillFrom(line: String, previousTag: RisTag?): RisTag? {
-        if (line.length <= START_INDEX_VALUE + 1)
+        if (line.length < START_INDEX_VALUE + 1)
             return previousTag
 
         val tagName = line.substring(0, TAG_LENGTH)
