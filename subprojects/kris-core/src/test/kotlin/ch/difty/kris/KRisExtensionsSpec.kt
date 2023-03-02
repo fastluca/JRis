@@ -2,7 +2,6 @@ package ch.difty.kris
 
 import io.kotest.core.spec.style.DescribeSpec
 import org.amshove.kluent.shouldBeEqualTo
-import org.amshove.kluent.shouldBeNull
 
 object KRisExtensionsSpec : DescribeSpec({
 
@@ -30,7 +29,7 @@ object KRisExtensionsSpec : DescribeSpec({
 
     describe("with a list of lines - each w/o new lines") {
         it("should extract startPage") {
-            recordWithoutNewLines.toRisRecords().first().startPage.shouldBeNull() // TODO wrong, should be 'shouldBeEqualTo "2"'
+            recordWithoutNewLines.toRisRecords().first().startPage shouldBeEqualTo "2"
         }
         it("should extract endPage") {
             recordWithoutNewLines.toRisRecords().first().endPage shouldBeEqualTo "28"

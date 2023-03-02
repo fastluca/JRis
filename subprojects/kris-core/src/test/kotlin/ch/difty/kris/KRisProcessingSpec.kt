@@ -54,7 +54,7 @@ object KRisProcessingSpec : DescribeSpec({
 
         describe("representing two records") {
             val twoRecordLines = lines + lines
-            it("should be parsed into one single RisRecord") {
+            it("should be parsed into two individual RisRecord") {
                 runBlocking { KRis.process(twoRecordLines.asFlow()).toList() shouldHaveSize 2 }
             }
         }
@@ -77,7 +77,7 @@ object KRisProcessingSpec : DescribeSpec({
         val abstract = "abstr line 1"
         val abstract2 = "abstr line 2"
 
-        describe("with number and abstract") {
+        describe("with miscellaneous1 and abstract") {
             val lines = listOf(
                 "TY  - $type",
                 "M1  - $miscellaneous1",
@@ -98,7 +98,6 @@ object KRisProcessingSpec : DescribeSpec({
             val lines = listOf(
                 "TY  - $type",
                 "",
-                "abcdefg",
                 "AB  - $abstract",
                 "XX  - $abstract2",
                 "ER  - "
