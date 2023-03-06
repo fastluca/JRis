@@ -26,7 +26,7 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
 }
 
-val jacocoTestReportFile = "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+val jacocoTestReportFile = "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
 
 jacoco {
     toolVersion = libs.versions.jacoco.get()
