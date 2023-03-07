@@ -32,13 +32,14 @@ jacoco {
     toolVersion = libs.versions.jacoco.get()
 }
 
+
 sonarqube {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.projectKey", "ursjoss_${project.name}")
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
-        property("sonar.kotlin.detekt.reportPaths", "$buildDir/reports/detekt/detekt.xml")
+        property("sonar.kotlin.detekt.reportPaths", "${project.buildDir}/reports/detekt/detekt.xml")
     }
 }
 
