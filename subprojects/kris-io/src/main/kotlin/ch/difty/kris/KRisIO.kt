@@ -2,7 +2,9 @@ package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import java.io.BufferedReader
@@ -31,7 +33,7 @@ public object KRisIO {
     @JvmStatic
     @Throws(IOException::class)
     public fun process(reader: Reader): List<RisRecord> = runBlocking(Dispatchers.IO) {
-        val lineFlow = BufferedReader(reader).readLines().asFlow()
+        val lineFlow = BufferedReader(reader).lineSequence().asFlow()
         KRis.process(lineFlow).toList()
     }
 
@@ -76,9 +78,11 @@ public object KRisIO {
     public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
         writer.use { w ->
             runBlocking(Dispatchers.IO) {
-                KRis.build(records.asFlow(), sort).toList().forEach { line ->
-                    w.write(line)
-                }
+                KRis.build(records.asFlow(), sort)
+                    .buffer(onBufferOverflow = BufferOverflow.SUSPEND)
+                    .collect { line ->
+                        w.write(line)
+                    }
             }
         }
     }
