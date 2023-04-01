@@ -44,7 +44,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.4.4++...++main[Full Changelog]
+{url-cl}0.4.5++...++main[Full Changelog]
 
 .Added
 
@@ -62,18 +62,14 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 ////
 
-[[v0.4.4]]
-== [0.4.4] -- 2023-04-01
+[[v0.4.5]]
+== [0.4.5] -- 2023-04-01
 
-{url-cl}0.4.3++...++0.4.4[Full Changelog]
+{url-cl}0.4.3++...++0.4.5[Full Changelog]
 
-.Chnaged
-- Bumped kotlin, dokka, nexus-graddle-plugin
-
-.Chenged
+.Changed
 - Skip list collection where applicable (thanks to @pawelpasterz
-
-
+- Bumped kotlin, dokka, nexus-graddle-plugin
 
 
 [[v0.4.3]]
