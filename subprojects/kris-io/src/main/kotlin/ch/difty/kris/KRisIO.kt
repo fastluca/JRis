@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
@@ -5,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import java.io.BufferedReader
@@ -17,6 +20,8 @@ import java.io.OutputStream
 import java.io.OutputStreamWriter
 import java.io.Reader
 import java.io.Writer
+import java.util.stream.Stream
+import kotlinx.coroutines.flow.lastOrNull
 
 /**
  * Convenience methods offering to directly work with IO methods.
@@ -63,6 +68,47 @@ public object KRisIO {
     @JvmStatic
     @Throws(IOException::class)
     public fun process(inputStream: InputStream): List<RisRecord> = process(inputStream.bufferedReader())
+
+    /**
+     * Converts the RISFile lines provided by the reader into a stream of [RisRecord]s.
+     * May throw an [IOException] if the reader fails to deliver lines
+     * or a [KRisException] if the lines cannot be parsed successfully.
+     */
+    @JvmStatic
+    @Throws(IOException::class)
+    public fun processToStream(reader: Reader): Stream<RisRecord> = runBlocking(Dispatchers.IO) {
+        val lineFlow = BufferedReader(reader).lineSequence().asFlow()
+        Stream.builder<RisRecord>().also { recordsStream ->
+            KRis.process(lineFlow).onEach { recordsStream.add(it) }.lastOrNull()
+        }.build()
+    }
+
+    /**
+     * Converts the RISFile lines in the provided [File] into a stream of [RisRecord]s.
+     * May throw an [IOException] if the file cannot be read successfully.
+     * or a [KRisException] if the lines cannot be parsed successfully.
+     */
+    @JvmStatic
+    @Throws(IOException::class)
+    public fun processToStream(file: File): Stream<RisRecord> = processToStream(file.bufferedReader())
+
+    /**
+     * Converts the RISFile lines from the file with the provided path into a stream of [RisRecord]s.
+     * May throw an [IOException] if the file cannot be read successfully.
+     * or a [KRisException] if the lines cannot be parsed successfully.
+     */
+    @JvmStatic
+    @Throws(IOException::class)
+    public fun processToStream(filePath: String): Stream<RisRecord> = processToStream(File(filePath).bufferedReader())
+
+    /**
+     * Converts the RISFile lines provided by the [InputStream] into a stream of [RisRecord]s.
+     * May throw an [IOException] if the stream cannot be read successfully.
+     * or a [KRisException] if the lines cannot be parsed successfully.
+     */
+    @JvmStatic
+    @Throws(IOException::class)
+    public fun processToStream(inputStream: InputStream): Stream<RisRecord> = processToStream(inputStream.bufferedReader())
 
     //endregion
 

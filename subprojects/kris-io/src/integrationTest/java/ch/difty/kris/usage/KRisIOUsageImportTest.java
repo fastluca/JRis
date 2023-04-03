@@ -1,5 +1,6 @@
 package ch.difty.kris.usage;
 
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.*;
@@ -49,5 +50,36 @@ class KRisIOUsageImportTest {
     void canImportFromPath() throws IOException {
         String path = file.getPath();
         assertThat(KRisIO.process(path)).hasSize(1);
+    }
+
+    @Test
+    void canImportFromFileToStream() throws IOException {
+        assertThat(KRisIO
+            .processToStream(file)
+            .collect(toList())).hasSize(1);
+    }
+
+    @Test
+    void canImportFromReaderToStream() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        assertThat(KRisIO
+            .processToStream(reader)
+            .collect(toList())).hasSize(1);
+    }
+
+    @Test
+    void canImportFromStreamToStream() throws IOException {
+        InputStream stream = new FileInputStream(file);
+        assertThat(KRisIO
+            .processToStream(stream)
+            .collect(toList())).hasSize(1);
+    }
+
+    @Test
+    void canImportFromPathToStream() throws IOException {
+        String path = file.getPath();
+        assertThat(KRisIO
+            .processToStream(path)
+            .collect(toList())).hasSize(1);
     }
 }
