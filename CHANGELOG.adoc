@@ -44,7 +44,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 [[unreleased]]
 == [unreleased]
 
-{url-cl}0.4.5++...++main[Full Changelog]
+{url-cl}0.4.6++...++main[Full Changelog]
 
 .Added
 
@@ -62,13 +62,23 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog].
 
 ////
 
+
+[[v0.4.6]]
+== [0.4.6] -- 2023-04-03
+
+{url-cl}0.4.5++...++0.4.6[Full Changelog]
+
+.Added
+- Add Stream API to KRisIO (thanks to @pawelpasterz)
+
+
 [[v0.4.5]]
 == [0.4.5] -- 2023-04-01
 
 {url-cl}0.4.3++...++0.4.5[Full Changelog]
 
 .Changed
-- Skip list collection where applicable (thanks to @pawelpasterz
+- Skip list collection where applicable (thanks to @pawelpasterz)
 - Bumped kotlin, dokka, nexus-graddle-plugin
 
 
