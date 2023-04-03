@@ -11,8 +11,15 @@ import java.util.stream.Collectors.toList
 private const val FILE_PATH = "src/integrationTest/resources/sample.ris"
 private const val PAPER_COUNT = 4
 
-@Suppress("FunctionName", "S100", "SpellCheckingInspection", "MaxLineLength")
+@Suppress("FunctionName", "S100", "SpellCheckingInspection", "MaxLineLength", "TooManyFunctions")
 internal class KRisIOIntegrationTest {
+
+    private val expectedLines = setOf(
+        "Exposure to traffic noise and air pollution and risk for febrile seizure: a cohort study.",
+        "Impact of Road Traffic Pollution on Pre-eclampsia and Pregnancy-induced Hypertensive Disorders.",
+        "Exposure to long-term air pollution and road traffic noise in relation to cholesterol: A cross-sectional study.",
+        "∂ for Data: Differentiating Data Structures",
+    )
 
     //region Importing
     @Test
@@ -20,12 +27,7 @@ internal class KRisIOIntegrationTest {
         val parsed = File(FILE_PATH).bufferedReader().process()
         parsed shouldHaveSize PAPER_COUNT
 
-        parsed.map { it.title } shouldContainAll setOf(
-            "Exposure to traffic noise and air pollution and risk for febrile seizure: a cohort study.",
-            "Impact of Road Traffic Pollution on Pre-eclampsia and Pregnancy-induced Hypertensive Disorders.",
-            "Exposure to long-term air pollution and road traffic noise in relation to cholesterol: A cross-sectional study.",
-            "∂ for Data: Differentiating Data Structures",
-        )
+        parsed.map { it.title } shouldContainAll expectedLines
     }
 
     @Test
@@ -47,13 +49,7 @@ internal class KRisIOIntegrationTest {
     fun `can read from reader to stream`() {
         val parsed = File(FILE_PATH).bufferedReader().processToStream().collect(toList())
         parsed shouldHaveSize PAPER_COUNT
-
-        parsed.map { it.title } shouldContainAll setOf(
-            "Exposure to traffic noise and air pollution and risk for febrile seizure: a cohort study.",
-            "Impact of Road Traffic Pollution on Pre-eclampsia and Pregnancy-induced Hypertensive Disorders.",
-            "Exposure to long-term air pollution and road traffic noise in relation to cholesterol: A cross-sectional study.",
-            "∂ for Data: Differentiating Data Structures",
-        )
+        parsed.map { it.title } shouldContainAll expectedLines
     }
 
     @Test

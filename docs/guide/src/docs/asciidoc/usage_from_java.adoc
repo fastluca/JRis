@@ -141,6 +141,32 @@ include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide
 include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide//GuideExamples.java[tags=processPath]
 ----
 
+While this is sufficient to process reasonably small files, you may prefer consuming streams for processing large files.
+
+.Reading RIS records as stream from BufferedReader [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide//GuideExamples.java[tags=processReaderAsStream]
+----
+
+.Reading RIS records as stream from File [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide//GuideExamples.java[tags=processFileAsStream]
+----
+
+.Reading RIS records as stream from InputStream [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide//GuideExamples.java[tags=processInputStreamAsStream]
+----
+
+.Reading RIS records as stream from Path [Java]
+[subs=attributes+,source,java]
+----
+include::../../../../../subprojects/kris-guide/src/test/java/ch/difty/kris/guide//GuideExamples.java[tags=processPathAsStream]
+----
+
 [[_java_import_memory]]
 === RIS file lines in memory
 

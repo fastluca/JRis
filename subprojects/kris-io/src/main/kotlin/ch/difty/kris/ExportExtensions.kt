@@ -10,7 +10,6 @@ import java.io.Writer
  * [Writer] provided as receiver. Optionally accepts a list of names of RisTags defining a sort order for
  * the RisTags in the file.
  */
-
 public fun Writer.accept(records: List<RisRecord>, sort: List<String> = emptyList()): Unit =
     KRisIO.export(records, sort, this)
 

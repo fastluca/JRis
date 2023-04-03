@@ -3,6 +3,7 @@ package ch.difty.kris.guide;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import ch.difty.kris.KRis;
 import ch.difty.kris.KRisIO;
@@ -148,6 +149,35 @@ public class GuideExamples {
         // tag::processPath[]
         final List<RisRecord> records = KRisIO.process("import.ris");
         // end::processPath[]
+    }
+
+    void processReaderAsStream() throws IOException {
+        // tag::processReaderAsStream[]
+        try (final BufferedReader reader = new BufferedReader(new FileReader("import.ris"))) {
+            final Stream<RisRecord> records = KRisIO.processToStream(reader);
+        }
+        // end::processReaderAsStream[]
+    }
+
+    void processFileAsStream() throws IOException {
+        // tag::processFileAsStream[]
+        final File file = new File("import.ris");
+        final Stream<RisRecord> records = KRisIO.processToStream(file);
+        // end::processFileAsStream[]
+    }
+
+    void processInputStreamAsStream() throws IOException {
+        // tag::processInputStreamAsStream[]
+        try (InputStream s = new BufferedInputStream(new FileInputStream("import.ris"))) {
+            final Stream<RisRecord> records = KRisIO.processToStream(s);
+        }
+        // end::processInputStreamAsStream[]
+    }
+
+    void processPathAsStream() throws IOException {
+        // tag::processPathAsStream[]
+        final Stream<RisRecord> records = KRisIO.processToStream("import.ris");
+        // end::processPathAsStream[]
     }
 
     void passRisLinesAsList() throws IOException {

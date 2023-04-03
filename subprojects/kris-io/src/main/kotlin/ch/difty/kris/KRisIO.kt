@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.flow.lastOrNull
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -21,7 +22,6 @@ import java.io.OutputStreamWriter
 import java.io.Reader
 import java.io.Writer
 import java.util.stream.Stream
-import kotlinx.coroutines.flow.lastOrNull
 
 /**
  * Convenience methods offering to directly work with IO methods.
@@ -78,8 +78,8 @@ public object KRisIO {
     @Throws(IOException::class)
     public fun processToStream(reader: Reader): Stream<RisRecord> = runBlocking(Dispatchers.IO) {
         val lineFlow = BufferedReader(reader).lineSequence().asFlow()
-        Stream.builder<RisRecord>().also { recordsStream ->
-            KRis.process(lineFlow).onEach { recordsStream.add(it) }.lastOrNull()
+        Stream.builder<RisRecord>().apply {
+            KRis.process(lineFlow).onEach { add(it) }.lastOrNull()
         }.build()
     }
 
