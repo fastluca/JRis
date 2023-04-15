@@ -3,8 +3,6 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.buffer
@@ -141,8 +139,8 @@ public object KRisIO {
     public fun export(
         records: List<RisRecord>,
         sort: List<String> = emptyList(),
-        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
         writer: Writer,
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
     ) {
         writer.use { w ->
             runBlocking(dispatchers.io) {
@@ -165,11 +163,11 @@ public object KRisIO {
     public fun export(
         records: List<RisRecord>,
         sort: List<String> = emptyList(),
-        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
         file: File,
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
     ) {
         FileWriter(file).use { fileWriter ->
-            export(records, sort, dispatchers, fileWriter)
+            export(records, sort, fileWriter, dispatchers)
         }
     }
 
@@ -183,11 +181,11 @@ public object KRisIO {
     public fun export(
         records: List<RisRecord>,
         sort: List<String> = emptyList(),
-        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
         out: OutputStream,
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
     ) {
         OutputStreamWriter(out).use { writer ->
-            export(records, sort, dispatchers, writer)
+            export(records, sort, writer, dispatchers)
         }
     }
 
@@ -201,11 +199,11 @@ public object KRisIO {
     public fun export(
         records: List<RisRecord>,
         sort: List<String> = emptyList(),
-        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
         filePath: String,
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
     ) {
         FileOutputStream(filePath).use {
-            export(records, sort, dispatchers, it)
+            export(records, sort, it, dispatchers)
         }
     }
 

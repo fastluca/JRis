@@ -23,7 +23,7 @@ internal class KRisIoTest {
         }
 
         @OptIn(ExperimentalCoroutinesApi::class)
-        KRisIO.export(records, dispatchers = TestDispatcherProvider(), writer = writer)
+        KRisIO.export(records, writer = writer, dispatchers = TestDispatcherProvider())
 
         verify { writer.write("TY  - BOOK\n") }
         verify { writer.write("AU  - Bond J.\n") }

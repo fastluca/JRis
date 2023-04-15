@@ -15,7 +15,7 @@ public fun Writer.accept(
     records: List<RisRecord>,
     sort: List<String> = emptyList(),
     dispatchers: DispatcherProvider = DefaultDispatcherProvider,
-): Unit = KRisIO.export(records, sort, dispatchers, this)
+): Unit = KRisIO.export(records, sort, this, dispatchers)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into the [File]
@@ -27,7 +27,7 @@ public fun File.accept(
     records: List<RisRecord>,
     sort: List<String> = emptyList(),
     dispatchers: DispatcherProvider = DefaultDispatcherProvider,
-): Unit = KRisIO.export(records, sort, dispatchers, this)
+): Unit = KRisIO.export(records, sort, this, dispatchers)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into
@@ -39,7 +39,7 @@ public fun OutputStream.accept(
     records: List<RisRecord>,
     sort: List<String> = emptyList(),
     dispatchers: DispatcherProvider = DefaultDispatcherProvider,
-): Unit = KRisIO.export(records, sort, dispatchers, this)
+): Unit = KRisIO.export(records, sort, this, dispatchers)
 
 /**
  * Converts a list of [RisRecord]s into a list of [String]s in RIS file format, writing them into file with
@@ -51,4 +51,4 @@ public fun String.accept(
     records: List<RisRecord>,
     sort: List<String> = emptyList(),
     dispatchers: DispatcherProvider = DefaultDispatcherProvider,
-): Unit = KRisIO.export(records, sort, dispatchers, this)
+): Unit = KRisIO.export(records, sort, this, dispatchers)
