@@ -17,7 +17,7 @@ jobs:
       JDK_VERSION:  ${{ matrix.jdk }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Run detekt hint
         uses: mkohm/detekt-hint-action@v1.1
