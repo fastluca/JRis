@@ -12,12 +12,14 @@ buildscript {
     }
 }
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     id("kris-collect-sarif")
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.dokka)
     alias(libs.plugins.nexusPublish)
+    alias(libs.plugins.binaryCompatValidator)
     `maven-publish`
     jacoco
 }

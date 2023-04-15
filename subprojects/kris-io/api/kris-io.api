@@ -1,0 +1,46 @@
+public final class ch/difty/kris/ExportExtensionsKt {
+	public static final fun accept (Ljava/io/File;Ljava/util/List;Ljava/util/List;)V
+	public static final fun accept (Ljava/io/OutputStream;Ljava/util/List;Ljava/util/List;)V
+	public static final fun accept (Ljava/io/Writer;Ljava/util/List;Ljava/util/List;)V
+	public static final fun accept (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+	public static synthetic fun accept$default (Ljava/io/File;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
+	public static synthetic fun accept$default (Ljava/io/OutputStream;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
+	public static synthetic fun accept$default (Ljava/io/Writer;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
+	public static synthetic fun accept$default (Ljava/lang/String;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
+}
+
+public final class ch/difty/kris/ImportExtensionsKt {
+	public static final fun process (Ljava/io/File;)Ljava/util/List;
+	public static final fun process (Ljava/io/InputStream;)Ljava/util/List;
+	public static final fun process (Ljava/io/Reader;)Ljava/util/List;
+	public static final fun process (Ljava/lang/String;)Ljava/util/List;
+	public static final fun processToStream (Ljava/io/File;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/InputStream;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/Reader;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/lang/String;)Ljava/util/stream/Stream;
+}
+
+public final class ch/difty/kris/KRisIO {
+	public static final field INSTANCE Lch/difty/kris/KRisIO;
+	public static final fun export (Ljava/util/List;Ljava/io/File;)V
+	public static final fun export (Ljava/util/List;Ljava/io/OutputStream;)V
+	public static final fun export (Ljava/util/List;Ljava/io/Writer;)V
+	public static final fun export (Ljava/util/List;Ljava/lang/String;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/io/File;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/io/OutputStream;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/io/Writer;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/io/File;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/io/OutputStream;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/io/Writer;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun process (Ljava/io/File;)Ljava/util/List;
+	public static final fun process (Ljava/io/InputStream;)Ljava/util/List;
+	public static final fun process (Ljava/io/Reader;)Ljava/util/List;
+	public static final fun process (Ljava/lang/String;)Ljava/util/List;
+	public static final fun processToStream (Ljava/io/File;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/InputStream;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/Reader;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/lang/String;)Ljava/util/stream/Stream;
+}
+

@@ -1,6 +1,7 @@
 [versions]
 asciidoctor = "3.3.2"
 assertj = "3.24.2"
+binaryCompaValidator = "0.13.0"
 coroutines = "1.6.4"
 detekt = "1.22.0"
 dokka = "1.8.10"
@@ -43,6 +44,7 @@ testEngines = ["junitJupiter-engine", "kotest-runner-junit5"]
 
 [plugins]
 asciidoctorConvert = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+binaryCompatValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompaValidator" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }

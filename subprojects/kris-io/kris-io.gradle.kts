@@ -1,3 +1,4 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("kris-detekt")
     id("kris-collect-sarif")
