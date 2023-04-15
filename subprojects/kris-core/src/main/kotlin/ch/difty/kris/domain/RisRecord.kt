@@ -306,7 +306,7 @@ public data class RisRecord(
         private val secondaryAuthors: MutableList<String> = mutableListOf()
         private val tertiaryAuthors: MutableList<String> = mutableListOf()
         private val subsidiaryAuthors: MutableList<String> = mutableListOf()
-        private var authors: MutableList<String> = mutableListOf()
+        private val authors: MutableList<String> = mutableListOf()
         private var abstr: String? = null
         private var authorAddress: String? = null
         private var accessionNumber: String? = null

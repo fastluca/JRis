@@ -37,6 +37,7 @@ public object KRisIO {
      */
     @JvmStatic
     @Throws(IOException::class)
+    @Suppress("InjectDispatcher") // TODO #150
     public fun process(reader: Reader): List<RisRecord> = runBlocking(Dispatchers.IO) {
         val lineFlow = BufferedReader(reader).lineSequence().asFlow()
         KRis.process(lineFlow).toList()
@@ -76,6 +77,7 @@ public object KRisIO {
      */
     @JvmStatic
     @Throws(IOException::class)
+    @Suppress("InjectDispatcher") // TODO #150
     public fun processToStream(reader: Reader): Stream<RisRecord> = runBlocking(Dispatchers.IO) {
         val lineFlow = BufferedReader(reader).lineSequence().asFlow()
         Stream.builder<RisRecord>().apply {
@@ -123,6 +125,7 @@ public object KRisIO {
     @JvmOverloads
     public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
         writer.use { w ->
+            @Suppress("InjectDispatcher") // TODO #150
             runBlocking(Dispatchers.IO) {
                 KRis.build(records.asFlow(), sort)
                     .buffer(onBufferOverflow = BufferOverflow.SUSPEND)
