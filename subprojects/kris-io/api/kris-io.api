@@ -1,23 +1,69 @@
+public final class ch/difty/kris/DefaultDispatcherProvider : ch/difty/kris/DispatcherProvider {
+	public static final field INSTANCE Lch/difty/kris/DefaultDispatcherProvider;
+	public fun getDefault ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public fun getIo ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public fun getMain ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public fun getUnconfined ()Lkotlinx/coroutines/CoroutineDispatcher;
+}
+
+public abstract interface class ch/difty/kris/DispatcherProvider {
+	public abstract fun getDefault ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public abstract fun getIo ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public abstract fun getMain ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public abstract fun getUnconfined ()Lkotlinx/coroutines/CoroutineDispatcher;
+}
+
+public final class ch/difty/kris/DispatcherProvider$DefaultImpls {
+	public static fun getDefault (Lch/difty/kris/DispatcherProvider;)Lkotlinx/coroutines/CoroutineDispatcher;
+	public static fun getIo (Lch/difty/kris/DispatcherProvider;)Lkotlinx/coroutines/CoroutineDispatcher;
+	public static fun getMain (Lch/difty/kris/DispatcherProvider;)Lkotlinx/coroutines/CoroutineDispatcher;
+	public static fun getUnconfined (Lch/difty/kris/DispatcherProvider;)Lkotlinx/coroutines/CoroutineDispatcher;
+}
+
 public final class ch/difty/kris/ExportExtensionsKt {
+	public static final fun accept (Ljava/io/File;Ljava/util/List;)V
 	public static final fun accept (Ljava/io/File;Ljava/util/List;Ljava/util/List;)V
+	public static final fun accept (Ljava/io/File;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;)V
+	public static final fun accept (Ljava/io/OutputStream;Ljava/util/List;)V
 	public static final fun accept (Ljava/io/OutputStream;Ljava/util/List;Ljava/util/List;)V
+	public static final fun accept (Ljava/io/OutputStream;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;)V
+	public static final fun accept (Ljava/io/Writer;Ljava/util/List;)V
 	public static final fun accept (Ljava/io/Writer;Ljava/util/List;Ljava/util/List;)V
+	public static final fun accept (Ljava/io/Writer;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;)V
+	public static final fun accept (Ljava/lang/String;Ljava/util/List;)V
 	public static final fun accept (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
-	public static synthetic fun accept$default (Ljava/io/File;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
-	public static synthetic fun accept$default (Ljava/io/OutputStream;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
-	public static synthetic fun accept$default (Ljava/io/Writer;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
-	public static synthetic fun accept$default (Ljava/lang/String;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)V
+	public static final fun accept (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;)V
+	public static synthetic fun accept$default (Ljava/io/File;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)V
+	public static synthetic fun accept$default (Ljava/io/OutputStream;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)V
+	public static synthetic fun accept$default (Ljava/io/Writer;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)V
+	public static synthetic fun accept$default (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)V
 }
 
 public final class ch/difty/kris/ImportExtensionsKt {
 	public static final fun process (Ljava/io/File;)Ljava/util/List;
+	public static final fun process (Ljava/io/File;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
 	public static final fun process (Ljava/io/InputStream;)Ljava/util/List;
+	public static final fun process (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
 	public static final fun process (Ljava/io/Reader;)Ljava/util/List;
+	public static final fun process (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
 	public static final fun process (Ljava/lang/String;)Ljava/util/List;
+	public static final fun process (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/io/File;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
 	public static final fun processToStream (Ljava/io/File;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/File;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
 	public static final fun processToStream (Ljava/io/InputStream;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
 	public static final fun processToStream (Ljava/io/Reader;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
 	public static final fun processToStream (Ljava/lang/String;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/io/File;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
 }
 
 public final class ch/difty/kris/KRisIO {
@@ -26,21 +72,41 @@ public final class ch/difty/kris/KRisIO {
 	public static final fun export (Ljava/util/List;Ljava/io/OutputStream;)V
 	public static final fun export (Ljava/util/List;Ljava/io/Writer;)V
 	public static final fun export (Ljava/util/List;Ljava/lang/String;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/io/File;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/io/OutputStream;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/io/Writer;)V
+	public static final fun export (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/lang/String;)V
 	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/io/File;)V
 	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/io/OutputStream;)V
 	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/io/Writer;)V
 	public static final fun export (Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
-	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/io/File;ILjava/lang/Object;)V
-	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/io/OutputStream;ILjava/lang/Object;)V
-	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/io/Writer;ILjava/lang/Object;)V
-	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/io/File;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/io/OutputStream;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/io/Writer;ILjava/lang/Object;)V
+	public static synthetic fun export$default (Ljava/util/List;Ljava/util/List;Lch/difty/kris/DispatcherProvider;Ljava/lang/String;ILjava/lang/Object;)V
 	public static final fun process (Ljava/io/File;)Ljava/util/List;
+	public static final fun process (Ljava/io/File;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
 	public static final fun process (Ljava/io/InputStream;)Ljava/util/List;
+	public static final fun process (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
 	public static final fun process (Ljava/io/Reader;)Ljava/util/List;
+	public static final fun process (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
 	public static final fun process (Ljava/lang/String;)Ljava/util/List;
+	public static final fun process (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/io/File;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun process$default (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/List;
 	public static final fun processToStream (Ljava/io/File;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/File;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
 	public static final fun processToStream (Ljava/io/InputStream;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
 	public static final fun processToStream (Ljava/io/Reader;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
 	public static final fun processToStream (Ljava/lang/String;)Ljava/util/stream/Stream;
+	public static final fun processToStream (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/io/File;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/io/InputStream;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/io/Reader;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
+	public static synthetic fun processToStream$default (Ljava/lang/String;Lch/difty/kris/DispatcherProvider;ILjava/lang/Object;)Ljava/util/stream/Stream;
 }
 

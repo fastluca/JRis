@@ -3,6 +3,7 @@
 package ch.difty.kris
 
 import ch.difty.kris.domain.RisRecord
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.asFlow
@@ -36,12 +37,13 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    @Suppress("InjectDispatcher") // TODO #150
-    public fun process(reader: Reader): List<RisRecord> = runBlocking(Dispatchers.IO) {
-        val lineFlow = BufferedReader(reader).lineSequence().asFlow()
-        KRis.process(lineFlow).toList()
-    }
+    public fun process(reader: Reader, dispatchers: DispatcherProvider = DefaultDispatcherProvider): List<RisRecord> =
+        runBlocking(dispatchers.io) {
+            val lineFlow = BufferedReader(reader).lineSequence().asFlow()
+            KRis.process(lineFlow).toList()
+        }
 
     /**
      * Converts the RISFile lines in the provided [File] into a list of [RisRecord]s.
@@ -49,8 +51,10 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    public fun process(file: File): List<RisRecord> = process(file.bufferedReader())
+    public fun process(file: File, dispatchers: DispatcherProvider = DefaultDispatcherProvider): List<RisRecord> =
+        process(file.bufferedReader(), dispatchers)
 
     /**
      * Converts the RISFile lines from the file with the provided path into a list of [RisRecord]s.
@@ -58,8 +62,10 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    public fun process(filePath: String): List<RisRecord> = process(File(filePath).bufferedReader())
+    public fun process(filePath: String, dispatchers: DispatcherProvider = DefaultDispatcherProvider): List<RisRecord> =
+        process(File(filePath).bufferedReader(), dispatchers)
 
     /**
      * Converts the RISFile lines provided by the [InputStream] into a list of [RisRecord]s.
@@ -67,8 +73,10 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    public fun process(inputStream: InputStream): List<RisRecord> = process(inputStream.bufferedReader())
+    public fun process(inputStream: InputStream, dispatchers: DispatcherProvider = DefaultDispatcherProvider): List<RisRecord> =
+        process(inputStream.bufferedReader(), dispatchers)
 
     /**
      * Converts the RISFile lines provided by the reader into a stream of [RisRecord]s.
@@ -76,14 +84,15 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    @Suppress("InjectDispatcher") // TODO #150
-    public fun processToStream(reader: Reader): Stream<RisRecord> = runBlocking(Dispatchers.IO) {
-        val lineFlow = BufferedReader(reader).lineSequence().asFlow()
-        Stream.builder<RisRecord>().apply {
-            KRis.process(lineFlow).onEach { add(it) }.lastOrNull()
-        }.build()
-    }
+    public fun processToStream(reader: Reader, dispatchers: DispatcherProvider = DefaultDispatcherProvider): Stream<RisRecord> =
+        runBlocking(dispatchers.io) {
+            val lineFlow = BufferedReader(reader).lineSequence().asFlow()
+            Stream.builder<RisRecord>().apply {
+                KRis.process(lineFlow).onEach { add(it) }.lastOrNull()
+            }.build()
+        }
 
     /**
      * Converts the RISFile lines in the provided [File] into a stream of [RisRecord]s.
@@ -91,8 +100,10 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    public fun processToStream(file: File): Stream<RisRecord> = processToStream(file.bufferedReader())
+    public fun processToStream(file: File, dispatchers: DispatcherProvider = DefaultDispatcherProvider): Stream<RisRecord> =
+        processToStream(file.bufferedReader(), dispatchers)
 
     /**
      * Converts the RISFile lines from the file with the provided path into a stream of [RisRecord]s.
@@ -100,8 +111,10 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    public fun processToStream(filePath: String): Stream<RisRecord> = processToStream(File(filePath).bufferedReader())
+    public fun processToStream(filePath: String, dispatchers: DispatcherProvider = DefaultDispatcherProvider): Stream<RisRecord> =
+        processToStream(File(filePath).bufferedReader(), dispatchers)
 
     /**
      * Converts the RISFile lines provided by the [InputStream] into a stream of [RisRecord]s.
@@ -109,8 +122,10 @@ public object KRisIO {
      * or a [KRisException] if the lines cannot be parsed successfully.
      */
     @JvmStatic
+    @JvmOverloads
     @Throws(IOException::class)
-    public fun processToStream(inputStream: InputStream): Stream<RisRecord> = processToStream(inputStream.bufferedReader())
+    public fun processToStream(inputStream: InputStream, dispatchers: DispatcherProvider = DefaultDispatcherProvider): Stream<RisRecord> =
+        processToStream(inputStream.bufferedReader(), dispatchers)
 
     //endregion
 
@@ -123,10 +138,14 @@ public object KRisIO {
      */
     @JvmStatic
     @JvmOverloads
-    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), writer: Writer) {
+    public fun export(
+        records: List<RisRecord>,
+        sort: List<String> = emptyList(),
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
+        writer: Writer,
+    ) {
         writer.use { w ->
-            @Suppress("InjectDispatcher") // TODO #150
-            runBlocking(Dispatchers.IO) {
+            runBlocking(dispatchers.io) {
                 KRis.build(records.asFlow(), sort)
                     .buffer(onBufferOverflow = BufferOverflow.SUSPEND)
                     .collect { line ->
@@ -143,9 +162,14 @@ public object KRisIO {
      */
     @JvmStatic
     @JvmOverloads
-    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), file: File) {
+    public fun export(
+        records: List<RisRecord>,
+        sort: List<String> = emptyList(),
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
+        file: File,
+    ) {
         FileWriter(file).use { fileWriter ->
-            export(records, sort, fileWriter)
+            export(records, sort, dispatchers, fileWriter)
         }
     }
 
@@ -156,9 +180,14 @@ public object KRisIO {
      */
     @JvmStatic
     @JvmOverloads
-    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), out: OutputStream) {
+    public fun export(
+        records: List<RisRecord>,
+        sort: List<String> = emptyList(),
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
+        out: OutputStream,
+    ) {
         OutputStreamWriter(out).use { writer ->
-            export(records, sort, writer)
+            export(records, sort, dispatchers, writer)
         }
     }
 
@@ -169,9 +198,14 @@ public object KRisIO {
      */
     @JvmStatic
     @JvmOverloads
-    public fun export(records: List<RisRecord>, sort: List<String> = emptyList(), filePath: String) {
+    public fun export(
+        records: List<RisRecord>,
+        sort: List<String> = emptyList(),
+        dispatchers: DispatcherProvider = DefaultDispatcherProvider,
+        filePath: String,
+    ) {
         FileOutputStream(filePath).use {
-            export(records, sort, it)
+            export(records, sort, dispatchers, it)
         }
     }
 
