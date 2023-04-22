@@ -9,7 +9,7 @@ pluginManagement {
 }
 
 plugins {
-    id("org.ajoberstar.reckon.settings") version "0.17.0-beta.4"
+    id("org.ajoberstar.reckon.settings") version "0.17.0"
 }
 
 configure<ReckonExtension> {
