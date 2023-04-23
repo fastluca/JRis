@@ -9,11 +9,12 @@ pluginManagement {
 }
 
 plugins {
-    id("org.ajoberstar.reckon.settings") version "0.17.0"
+    id("org.ajoberstar.reckon.settings") version "0.18.0"
 }
 
 configure<ReckonExtension> {
-    stages("beta", "rc", "final", "bosch")
+    setDefaultInferredScope("patch")
+    stages("beta", "rc", "final")
     setScopeCalc(calcScopeFromProp().or(calcScopeFromCommitMessages()))
     setStageCalc(calcStageFromProp())
 }
