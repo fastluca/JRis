@@ -2,7 +2,7 @@
 asciidoctor = "3.3.2"
 assertj = "3.24.2"
 binaryCompaValidator = "0.13.2"
-coroutines = "1.7.2"
+coroutines = "1.7.3"
 detekt = "1.22.0"
 dokka = "1.8.20"
 gitPublish = "4.2.0"
