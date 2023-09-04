@@ -7,13 +7,15 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
+    }
+}
+
 dependencies {
     implementation(libs.plugin.kotlin)
     implementation(libs.plugin.detekt)
-}
-
-tasks.withType(KotlinJvmCompile::class.java).configureEach {
-    kotlinOptions.jvmTarget = libs.versions.java.get()
 }
 
 detekt {

@@ -4,7 +4,7 @@ assertj = "3.24.2"
 binaryCompaValidator = "0.13.2"
 coroutines = "1.7.3"
 detekt = "1.22.0"
-dokka = "1.8.20"
+dokka = "1.9.0"
 gitPublish = "4.2.0"
 jacoco = "0.8.8"
 java = "11"
@@ -16,7 +16,6 @@ mockk = "1.13.7"
 nexusPublish = "1.3.0"
 rxjava = "2.2.21"
 sonarqube = "4.2.1.3168"
-testSets = "4.0.0"
 versions = "0.47.0"
 
 [libraries]
@@ -50,5 +49,4 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gitPublish = { id = "org.ajoberstar.git-publish", version.ref = "gitPublish" }
 nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
-testSets = { id = "org.unbroken-dome.test-sets", version.ref = "testSets" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

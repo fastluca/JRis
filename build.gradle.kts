@@ -24,11 +24,7 @@ plugins {
     jacoco
 }
 
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
-}
-
-val jacocoTestReportFile = "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+val jacocoTestReportFile = "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
 
 jacoco {
     toolVersion = libs.versions.jacoco.get()
@@ -41,7 +37,7 @@ sonarqube {
         property("sonar.projectKey", "ursjoss_${project.name}")
         property("sonar.organization", "ursjoss-github")
         property("sonar.coverage.jacoco.xmlReportPaths", jacocoTestReportFile)
-        property("sonar.kotlin.detekt.reportPaths", "${project.buildDir}/reports/detekt/detekt.xml")
+        property("sonar.kotlin.detekt.reportPaths", "${layout.buildDirectory.get()}/reports/detekt/detekt.xml")
     }
 }
 
@@ -65,7 +61,7 @@ tasks {
         delete("out")
     }
     named("clean") {
-        delete(rootProject.buildDir)
+        delete(rootProject.layout.buildDirectory.get())
         dependsOn(deleteOutFolderTask)
     }
     val dokkaHtml by getting(DokkaTask::class) {
@@ -78,6 +74,12 @@ tasks {
                 }
             }
         }
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
     }
 }
 
@@ -111,6 +113,11 @@ subprojects.forEach { subProject ->
                 configureEach {
                     includes.from("module.md")
                 }
+            }
+        }
+        kotlin {
+            jvmToolchain {
+                languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get()))
             }
         }
     }

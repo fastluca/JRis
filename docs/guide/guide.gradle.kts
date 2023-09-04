@@ -8,7 +8,7 @@ plugins {
 }
 
 tasks {
-    val builtGuideDir = file("${project.buildDir}/guide")
+    val builtGuideDir = project.layout.buildDirectory.get().asFile.resolve("/guide")
     withType<AsciidoctorTask> {
         sourceDir(file("src/docs/asciidoc/"))
         setBaseDir(file("src/docs/asciidoc/"))
@@ -59,7 +59,7 @@ tasks {
 }
 
 afterEvaluate {
-    val dokkaOutputDir = rootProject.buildDir.resolve("dokka")
+    val dokkaOutputDir = rootProject.layout.buildDirectory.get().asFile.resolve("dokka")
     val htmlMultiModuleOutputDir = dokkaOutputDir.resolve("htmlMultiModule")
     val htmlJavadocOutputDir = dokkaOutputDir.resolve("javadocCollector")
     gitPublish {

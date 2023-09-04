@@ -9,7 +9,7 @@ class CollectSarifPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.tasks.register(MERGE_DETEKT_TASK_NAME, ReportMergeTask::class.java) {
             group = JavaBasePlugin.VERIFICATION_GROUP
-            output.set(project.layout.buildDirectory.file("detekt-merged.sarif"))
+            output.set(project.layout.buildDirectory.get().asFile.resolve("detekt-merged.sarif"))
         }
     }
 
