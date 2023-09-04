@@ -30,7 +30,6 @@ jacoco {
     toolVersion = libs.versions.jacoco.get()
 }
 
-
 sonarqube {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")

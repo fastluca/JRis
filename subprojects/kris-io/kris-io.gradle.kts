@@ -1,4 +1,4 @@
-import org.jetbrains.dokka.plugability.configuration
+@file:Suppress("UnstableApiUsage")
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -20,7 +20,7 @@ testing {
         val test by getting(JvmTestSuite::class) {
             useJUnitJupiter()
         }
-        register<JvmTestSuite>("integrationTest") {
+        val integrationTest by registering(JvmTestSuite::class) {
             testType.set(TestSuiteType.INTEGRATION_TEST)
             dependencies {
                 implementation(project())
@@ -35,13 +35,14 @@ testing {
             }
         }
         configurations.named("integrationTestImplementation") {
-            extendsFrom(configurations.named("testImplementation").get())
+            extendsFrom(configurations.testImplementation.get())
         }
     }
 }
+
 tasks {
     named("check") {
-        dependsOn("integrationTest")
+        dependsOn(testing.suites.named("integrationTest"))
     }
     val javadocJar by existing(Jar::class) {
         group = JavaBasePlugin.DOCUMENTATION_GROUP
