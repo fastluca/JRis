@@ -446,6 +446,7 @@ public final class ch/difty/kris/domain/RisTag : java/lang/Enum {
 	public static final field VO Lch/difty/kris/domain/RisTag;
 	public static final field Y1 Lch/difty/kris/domain/RisTag;
 	public static final field Y2 Lch/difty/kris/domain/RisTag;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lch/difty/kris/domain/RisTag;
 	public static fun values ()[Lch/difty/kris/domain/RisTag;
 }
@@ -512,6 +513,7 @@ public final class ch/difty/kris/domain/RisType : java/lang/Enum {
 	public static final field UNPB Lch/difty/kris/domain/RisType;
 	public static final field VIDEO Lch/difty/kris/domain/RisType;
 	public final fun getDescription ()Ljava/lang/String;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lch/difty/kris/domain/RisType;
 	public static fun values ()[Lch/difty/kris/domain/RisType;
 }
