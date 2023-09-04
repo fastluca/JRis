@@ -640,6 +640,6 @@ public enum class RisTag(
     ;
 
     public companion object {
-        public fun fromName(tagName: String): RisTag? = values().firstOrNull { it.name == tagName }
+        public fun fromName(tagName: String): RisTag? = entries.firstOrNull { it.name == tagName }
     }
 }

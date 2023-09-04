@@ -1,5 +1,4 @@
 @file:Suppress("SpellCheckingInspection")
-@file:OptIn(ExperimentalCoroutinesApi::class)
 
 package ch.difty.kris
 
@@ -72,7 +71,7 @@ public fun Sequence<RisRecord>.toRisLines(scope: CoroutineScope = GlobalScope): 
  * accepting a flow of type [T] and returning a flow of type [R].
  * Thanks to @jcornaz for the help.
  */
-@OptIn(FlowPreview::class)
+@OptIn(DelicateCoroutinesApi::class)
 @Suppress("SwallowedException")
 private fun <T, R> Sequence<T>.mapSequence(
     flowMapper: (Flow<T>) -> Flow<R>,
@@ -98,4 +97,4 @@ private fun <T, R> Sequence<T>.mapSequence(
 /**
  * List of the names of all [RisTag]s.
  */
-public val risTagNames: List<String> get() = RisTag.values().map { it.name }
+public val risTagNames: List<String> get() = RisTag.entries.map { it.name }

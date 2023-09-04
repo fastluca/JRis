@@ -9,7 +9,7 @@ internal class RisTypeTest {
     @Test
     @Suppress("LongMethod")
     fun description() {
-        RisType.values().map { it.description } shouldContainAll
+        RisType.entries.map { it.description } shouldContainAll
             listOf(
                 "Abstract",
                 "Audiovisual material",

@@ -9,7 +9,7 @@ internal class RisTagTest {
     @Test
     @Suppress("LongMethod")
     fun description() {
-        RisTag.values().map { it.description } shouldContainAll
+        RisTag.entries.map { it.description } shouldContainAll
             listOf(
                 "Type of reference",
                 "First Author",

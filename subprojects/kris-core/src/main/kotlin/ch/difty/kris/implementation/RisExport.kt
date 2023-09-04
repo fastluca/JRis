@@ -24,12 +24,13 @@ internal object RisExport {
         recordFlow.collect { risRecord ->
             if (!firstRecord) emit(LINE_SEPARATOR)
             firstRecord = false
-            RisTag.values().sortedWith(sortMap.toComparator()).forEach { tag ->
+            RisTag.entries.sortedWith(sortMap.toComparator()).forEach { tag ->
                 tag.getFrom(risRecord)?.let { recordValue: Any ->
                     when (recordValue) {
                         is List<*> -> recordValue.forEach { listValue ->
                             emit(tag.withValue(listValue as String))
                         }
+
                         is String -> emit(tag.withValue(recordValue.truncatedTo(tag.maxLength)))
                         else -> emit(tag.withValue(recordValue))
                     }
